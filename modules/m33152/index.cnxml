@@ -1,0 +1,38 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Results and Conclusions</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33152</md:content-id>
+  <md:title>Results and Conclusions</md:title>
+  <md:abstract>The outcome of our DMT transmission system</md:abstract>
+  <md:uuid>3651b381-da4e-4f50-8eb5-619ea46806f0</md:uuid>
+</metadata>
+<content>
+    <para id="id1169942900709"><title>Results</title></para>
+    <para id="id1169945097744">Unfortunately, our microphone-speaker system was not successful in transmitting a text message. The measured transfer function seemed reasonable since it modeled a low-pass filter. But it was ineffective in equalizing our received signal. This is most likely because the channel added far too much noise, in addition to attenuating many of the frequencies beyond recovery.</para>
+    <para id="id1169935181932">Since we were unable to acquire the desired results on bit-rate maximization and error minimization in the acoustic channel, we created an artificial channel, using our observed frequency response plus Gaussian noise. Modeling this channel in Matlab produced notable results. See the figures below.</para>
+    <figure id="results">
+  <title>Bit-rate vs Block Length (2 and 4 bit)</title>
+  <media id="bitrate" alt="Bit rate.">
+	   
+  <image mime-type="image/jpeg" src="../../media/Graph2.jpg"/>
+		 
+</media>
+  <caption>
+     This graph illustrates the fact that data rate increases as we increase block length.  It also shows that a 4-bit scheme has twice the data rate of a 2-bit scheme, as one would expect.
+  </caption>
+</figure>
+    <figure id="results2">
+  <title>Percent Error vs Block Length (2 and 4 bit)</title>
+  <media id="percerror" alt="percent.">
+	   
+  <image mime-type="image/jpeg" src="../../media/Graph1.jpg"/>
+		 
+</media>
+  <caption>
+     This graph illustrates the fact that as block length increases so will the amount of errors.  Also we see that the 4-bit scheme has a much greater amount of errors than the 2-bit.
+  </caption>
+</figure>
+    <para id="id1169946438911">These figures indicate that both bit-rate and error-rate go up as block length increases. This makes sense since increasing the block length increases the number of channels (Taking the iFFT of a longer signal produces more unique sinusoids.). Squeezing more sinusoid carriers over the same bandlimited channel (0-22kHz) should result in more errors in demodulation, while transmitting more bits at the same time. It also makes sense that the 4 bit constellation mapping yielded higher bit-rates and error percentages since each sinusoid carries more information, yet can more easily be approximated to the wrong constellation point.</para>
+    <para id="id1169943748649">The next project dealing with Discrete Multi-Tone modulation in the acoustic channel should certainly involve a more professional recording system. </para>
+  </content>
+</document>

@@ -1,0 +1,18 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Conclusion</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33165</md:content-id>
+  <md:title>Conclusion</md:title>
+  <md:abstract/>
+  <md:uuid>de2e64d7-ca6d-4587-a8b4-24c41de0d35e</md:uuid>
+</metadata>
+
+<content>
+    <para id="id1166234596944">Conclusion</para>
+    <para id="id1166229447791"> We have thus shown in this module an overview of the large body of established research in signal processing from which to draw from in developing a functional QRS detector and heart rate analyzer. The open-source community has developed a robust set of algorithms from which to streamline algorithm testing and implementation. We have conclusively demonstrated that the algorithms developed are capable of noise tolerance to an acceptable medical standard, with high sensitivity ratio and high Positive Predictivity ratio.</para>
+    <para id="id1166229486916"> In particular, we found the WQRS algorithm was the most consistently noise-tolerant, and most accurate at all noise levels, and we recommend its use in implementation trials.</para>
+    <para id="id1166229418791"> Given the open-source nature of the programs here analyzed, the reader is encouraged to download the toolkit and run the programs themselves to verify the conclusions of this module.</para>
+    <para id="id1166229493445"> Having completed this testing, it is clear that this capable testbed available from the MIT Physiotoolkit database would allow a team to implement readily the software onto a processing program for real-time.</para>
+    <para id="id1166224421618"> The particular steps that a team needs to take in order to implement this algorithm are to modify it for real-time signal analysis by attaching a set of electrodes to the patient, creating a set of analog filters to remove noise, and programming a data buffer from which to read in analog voltage signals from electrodes and separate them into discrete components that an Analog to Digital Converter can sample and read into a digital processor. These are topics out of the scope of this module.</para>
+  </content>
+</document>

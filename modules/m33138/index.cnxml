@@ -1,0 +1,311 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Simulation Procedure</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33138</md:content-id>
+  <md:title>Simulation Procedure</md:title>
+  <md:abstract>This module is part of a collection of modules for a class project on matrix completion techniques for the sensor network localization problem done for the Fall, 2009 offering of Prof.  Baraniuk's ELEC 301 course at Rice University.</md:abstract>
+  <md:uuid>8db3ae52-1877-409d-ba44-a5874873ae91</md:uuid>
+</metadata>
+<content>
+    <section id="cid1">
+      <title>Simulation Procedure</title>
+      <para id="id184841">For our project, we applied these new matrix completion techniques to the sensor network localization problem. More explicitly, our idea was to take an incomplete matrix of distances between sensors and use the OptSpace algorithm
+mentioned previously to fill in the missing entries, whereupon the network may be reconstructed using multidimensional scaling methods. Because a matrix of Euclidean distances between random points is, in general, full rank, it cannot
+be completed directly; however, the matrix of the <emphasis effect="italics">squares</emphasis> of the distances between the points has a fixed maximum rank depending on the dimension of the space in which the points are embedded. To see this, suppose that we are
+given <m:math overflow="scroll"><m:mi>N</m:mi></m:math> points <m:math overflow="scroll"><m:mrow><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mo>...</m:mo><m:mo>,</m:mo><m:msub><m:mi>x</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:math> in <m:math overflow="scroll"><m:msup><m:mi mathvariant="double-struck">R</m:mi><m:mi>n</m:mi></m:msup></m:math>, and let <m:math overflow="scroll"><m:msub><m:mi>D</m:mi><m:mn>2</m:mn></m:msub></m:math> be the <m:math overflow="scroll"><m:mi>N</m:mi></m:math>-by-<m:math overflow="scroll"><m:mi>N</m:mi></m:math> matrix of their squared distances; that is, the <m:math overflow="scroll"><m:mrow><m:mi>i</m:mi><m:mi>j</m:mi></m:mrow></m:math>-entry of <m:math overflow="scroll"><m:msub><m:mi>D</m:mi><m:mn>2</m:mn></m:msub></m:math> is equal to <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>∥</m:mo></m:mrow><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub><m:msup><m:mrow><m:mo>∥</m:mo></m:mrow><m:mn>2</m:mn></m:msup></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mo>...</m:mo><m:mo>,</m:mo><m:mi>n</m:mi></m:mrow></m:math>. Denote the
+<m:math overflow="scroll"><m:msup><m:mi>k</m:mi><m:mi> th </m:mi></m:msup></m:math> coordinate of <m:math overflow="scroll"><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:math> by <m:math overflow="scroll"><m:msubsup><m:mi>x</m:mi><m:mi>i</m:mi><m:mrow><m:mo>(</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:msubsup></m:math>. Because <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>∥</m:mo></m:mrow><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub><m:msup><m:mrow><m:mo>∥</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mrow><m:mo>=</m:mo><m:mo>∥</m:mo></m:mrow><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub><m:msup><m:mrow><m:mo>∥</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>-</m:mo><m:mn>2</m:mn><m:mrow><m:mo>(</m:mo><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub><m:mo>•</m:mo><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:msup><m:mrow><m:mo>∥</m:mo><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub><m:mo>∥</m:mo></m:mrow><m:mn>2</m:mn></m:msup></m:mrow></m:math> (where <m:math overflow="scroll"><m:mo>•</m:mo></m:math> denotes the usual dot product on <m:math overflow="scroll"><m:msup><m:mi mathvariant="double-struck">R</m:mi><m:mi>n</m:mi></m:msup></m:math>), we have</para>
+      <equation id="id185536">
+        <m:math overflow="scroll" mode="display">
+          <m:mtable displaystyle="true">
+            <m:mtr>
+              <m:mtd columnalign="right">
+                <m:mrow>
+                  <m:msub>
+                    <m:mi>D</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msub>
+                  <m:mo>=</m:mo>
+                  <m:mfenced separators="" open="[" close="]">
+                    <m:mtable>
+                      <m:mtr>
+                        <m:mtd>
+                          <m:mrow>
+                            <m:mrow>
+                              <m:mo>∥</m:mo>
+                            </m:mrow>
+                            <m:msub>
+                              <m:mi>x</m:mi>
+                              <m:mn>1</m:mn>
+                            </m:msub>
+                            <m:msup>
+                              <m:mrow>
+                                <m:mo>∥</m:mo>
+                              </m:mrow>
+                              <m:mn>2</m:mn>
+                            </m:msup>
+                          </m:mrow>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mrow>
+                            <m:mo>-</m:mo>
+                            <m:mn>2</m:mn>
+                            <m:msubsup>
+                              <m:mi>x</m:mi>
+                              <m:mn>1</m:mn>
+                              <m:mrow>
+                                <m:mo>(</m:mo>
+                                <m:mn>1</m:mn>
+                                <m:mo>)</m:mo>
+                              </m:mrow>
+                            </m:msubsup>
+                          </m:mrow>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mo>⋯</m:mo>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mrow>
+                            <m:mo>-</m:mo>
+                            <m:mn>2</m:mn>
+                            <m:msubsup>
+                              <m:mi>x</m:mi>
+                              <m:mn>1</m:mn>
+                              <m:mrow>
+                                <m:mo>(</m:mo>
+                                <m:mi>n</m:mi>
+                                <m:mo>)</m:mo>
+                              </m:mrow>
+                            </m:msubsup>
+                          </m:mrow>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mn>1</m:mn>
+                        </m:mtd>
+                      </m:mtr>
+                      <m:mtr>
+                        <m:mtd>
+                          <m:mo>⋮</m:mo>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mo>⋮</m:mo>
+                        </m:mtd>
+                        <m:mtd/>
+                        <m:mtd>
+                          <m:mo>⋮</m:mo>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mo>⋮</m:mo>
+                        </m:mtd>
+                      </m:mtr>
+                      <m:mtr>
+                        <m:mtd>
+                          <m:mrow>
+                            <m:mrow>
+                              <m:mo>∥</m:mo>
+                            </m:mrow>
+                            <m:msub>
+                              <m:mi>x</m:mi>
+                              <m:mi>N</m:mi>
+                            </m:msub>
+                            <m:msup>
+                              <m:mrow>
+                                <m:mo>∥</m:mo>
+                              </m:mrow>
+                              <m:mn>2</m:mn>
+                            </m:msup>
+                          </m:mrow>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mrow>
+                            <m:mo>-</m:mo>
+                            <m:mn>2</m:mn>
+                            <m:msubsup>
+                              <m:mi>x</m:mi>
+                              <m:mi>N</m:mi>
+                              <m:mrow>
+                                <m:mo>(</m:mo>
+                                <m:mn>1</m:mn>
+                                <m:mo>)</m:mo>
+                              </m:mrow>
+                            </m:msubsup>
+                          </m:mrow>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mo>⋯</m:mo>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mrow>
+                            <m:mo>-</m:mo>
+                            <m:mn>2</m:mn>
+                            <m:msubsup>
+                              <m:mi>x</m:mi>
+                              <m:mi>N</m:mi>
+                              <m:mrow>
+                                <m:mo>(</m:mo>
+                                <m:mi>n</m:mi>
+                                <m:mo>)</m:mo>
+                              </m:mrow>
+                            </m:msubsup>
+                          </m:mrow>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mn>1</m:mn>
+                        </m:mtd>
+                      </m:mtr>
+                    </m:mtable>
+                  </m:mfenced>
+                  <m:mo>·</m:mo>
+                  <m:mfenced separators="" open="[" close="]">
+                    <m:mtable>
+                      <m:mtr>
+                        <m:mtd>
+                          <m:mn>1</m:mn>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mo>⋯</m:mo>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mn>1</m:mn>
+                        </m:mtd>
+                      </m:mtr>
+                      <m:mtr>
+                        <m:mtd>
+                          <m:msubsup>
+                            <m:mi>x</m:mi>
+                            <m:mn>1</m:mn>
+                            <m:mrow>
+                              <m:mo>(</m:mo>
+                              <m:mn>1</m:mn>
+                              <m:mo>)</m:mo>
+                            </m:mrow>
+                          </m:msubsup>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mo>⋯</m:mo>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:msubsup>
+                            <m:mi>x</m:mi>
+                            <m:mi>N</m:mi>
+                            <m:mrow>
+                              <m:mo>(</m:mo>
+                              <m:mn>1</m:mn>
+                              <m:mo>)</m:mo>
+                            </m:mrow>
+                          </m:msubsup>
+                        </m:mtd>
+                      </m:mtr>
+                      <m:mtr>
+                        <m:mtd>
+                          <m:mo>⋮</m:mo>
+                        </m:mtd>
+                        <m:mtd/>
+                        <m:mtd>
+                          <m:mo>⋮</m:mo>
+                        </m:mtd>
+                      </m:mtr>
+                      <m:mtr>
+                        <m:mtd>
+                          <m:msubsup>
+                            <m:mi>x</m:mi>
+                            <m:mn>1</m:mn>
+                            <m:mrow>
+                              <m:mo>(</m:mo>
+                              <m:mi>n</m:mi>
+                              <m:mo>)</m:mo>
+                            </m:mrow>
+                          </m:msubsup>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mo>⋯</m:mo>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:msubsup>
+                            <m:mi>x</m:mi>
+                            <m:mi>N</m:mi>
+                            <m:mrow>
+                              <m:mo>(</m:mo>
+                              <m:mi>n</m:mi>
+                              <m:mo>)</m:mo>
+                            </m:mrow>
+                          </m:msubsup>
+                        </m:mtd>
+                      </m:mtr>
+                      <m:mtr>
+                        <m:mtd>
+                          <m:mrow>
+                            <m:mrow>
+                              <m:mo>∥</m:mo>
+                            </m:mrow>
+                            <m:msub>
+                              <m:mi>x</m:mi>
+                              <m:mn>1</m:mn>
+                            </m:msub>
+                            <m:msup>
+                              <m:mrow>
+                                <m:mo>∥</m:mo>
+                              </m:mrow>
+                              <m:mn>2</m:mn>
+                            </m:msup>
+                          </m:mrow>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mo>⋯</m:mo>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mrow>
+                            <m:mrow>
+                              <m:mo>∥</m:mo>
+                            </m:mrow>
+                            <m:msub>
+                              <m:mi>x</m:mi>
+                              <m:mi>N</m:mi>
+                            </m:msub>
+                            <m:msup>
+                              <m:mrow>
+                                <m:mo>∥</m:mo>
+                              </m:mrow>
+                              <m:mn>2</m:mn>
+                            </m:msup>
+                          </m:mrow>
+                        </m:mtd>
+                      </m:mtr>
+                    </m:mtable>
+                  </m:mfenced>
+                  <m:mo>,</m:mo>
+                </m:mrow>
+              </m:mtd>
+            </m:mtr>
+          </m:mtable>
+        </m:math>
+      </equation>
+      <para id="id185889">and so <m:math overflow="scroll"><m:msub><m:mi>D</m:mi><m:mn>2</m:mn></m:msub></m:math> may be written as the product of a matrix with <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>2</m:mn></m:mrow></m:math> columns and a matrix with <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>2</m:mn></m:mrow></m:math> rows. The rank of <m:math overflow="scroll"><m:msub><m:mi>D</m:mi><m:mn>2</m:mn></m:msub></m:math> may therefore not exceed <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>2</m:mn></m:mrow></m:math>. For our particular project, we restricted our attention to sensors
+embedded in a plane (in which case the rank of <m:math overflow="scroll"><m:msub><m:mi>D</m:mi><m:mn>2</m:mn></m:msub></m:math> is at most 4 for any number of sensors <m:math overflow="scroll"><m:mi>N</m:mi></m:math>), but this property of the matrix <m:math overflow="scroll"><m:msub><m:mi>D</m:mi><m:mn>2</m:mn></m:msub></m:math> offers a simple way to extend our work to higher dimensions.</para>
+      <para id="id185994">To try out our ideas, we designed and executed several different MATLAB simulations, each of which proceded according to the following general outline:</para>
+      <list id="id186001" display="block" list-type="enumerated">
+        <item id="uid1">Generate <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>=</m:mo><m:mn>200</m:mn></m:mrow></m:math> uniformly distributed random points inside the unit square <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>]</m:mo><m:mo>×</m:mo><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math>.
+</item>
+        <item id="uid2">Form the matrix <m:math overflow="scroll"><m:mi>D</m:mi></m:math> of pairwise distances between the points. Add noise if necessary.
+</item>
+        <item id="uid3">Form the matrix <m:math overflow="scroll"><m:msub><m:mi>D</m:mi><m:mn>2</m:mn></m:msub></m:math> of the squares of the (possibly noisy) distances between the points.
+</item>
+        <item id="uid4">Knock out pairs of distances in <m:math overflow="scroll"><m:msub><m:mi>D</m:mi><m:mn>2</m:mn></m:msub></m:math> according one of two procedures (described below) to form the partially observed matrix <m:math overflow="scroll"><m:mi>R</m:mi></m:math>.
+</item>
+        <item id="uid5">Complete the matrix <m:math overflow="scroll"><m:mi>R</m:mi></m:math> using OptSpace to get <m:math overflow="scroll"><m:mover accent="true"><m:msub><m:mi>D</m:mi><m:mn>2</m:mn></m:msub><m:mo>^</m:mo></m:mover></m:math>.
+</item>
+        <item id="uid6">Form the matrix <m:math overflow="scroll"><m:mover accent="true"><m:mi>D</m:mi><m:mo>^</m:mo></m:mover></m:math>, which is the element-wise square-root of <m:math overflow="scroll"><m:mover accent="true"><m:msub><m:mi>D</m:mi><m:mn>2</m:mn></m:msub><m:mo>^</m:mo></m:mover></m:math>.
+</item>
+        <item id="uid7">Compare the completed matrix <m:math overflow="scroll"><m:mover accent="true"><m:mi>D</m:mi><m:mo>^</m:mo></m:mover></m:math> to the original <m:math overflow="scroll"><m:mi>D</m:mi></m:math> by measuring the relative Frobenius-norm error <m:math overflow="scroll"><m:mrow><m:mrow><m:mi>e</m:mi><m:mo>=</m:mo><m:mo>∥</m:mo></m:mrow><m:mover accent="true"><m:mi>D</m:mi><m:mo>^</m:mo></m:mover><m:msub><m:mrow><m:mo>-</m:mo><m:mi>D</m:mi><m:mo>∥</m:mo></m:mrow><m:mi>F</m:mi></m:msub><m:mo>/</m:mo><m:msub><m:mrow><m:mo>∥</m:mo><m:mi>D</m:mi><m:mo>∥</m:mo></m:mrow><m:mi>F</m:mi></m:msub></m:mrow></m:math>.
+</item>
+        <item id="uid8">Repeat the above steps for 25 trials, and compute the average relative Frobenius-norm error at the end.
+</item>
+      </list>
+      <para id="id186499">We used two different methods for determining which entries in the matrix to eliminate, which we call “random" and “realistic" knock-out, respectively. By random knock-out, we mean that distance pairs were selected at random to be
+knocked-out according to a fixed probability. In constrast, realistic knock-out involves removing all entries of the matrix that exceed a certain threshold distance. The idea is that in a realistic setting, sensors which are far apart
+from each other may not be able to construct an estimate of the distance between themselves.</para>
+      <para id="id186509">To simulate noise in the trials that required it, we randomly generated values from zero-mean Gaussian distributions and added them to the entries in the matrix of distances. In order to understand what effect the noise amplitude
+would have on the results, we used five different values for the standard deviations of these distributions: 0.01, 0.05, 0.1, 0.2, and 0.5.</para><para id="eip-3">A copy of the MATLAB code we wrote for the simulations is available <link url="EXPT_CODE.zip">here</link>.  The OptSpace code must be downloaded separately and may be found at the OptSpace website listed in this project's References module.</para>
+    </section>
+  </content>
+  <bib:file/>
+</document>

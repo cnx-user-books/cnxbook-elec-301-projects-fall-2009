@@ -1,0 +1,31 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>About the Team</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33196</md:content-id>
+  <md:title>About the Team</md:title>
+  <md:abstract/>
+  <md:uuid>092c2d5e-54d3-412b-8a12-2cabba6532a3</md:uuid>
+</metadata>
+<content>
+    <section id="id1171228173908">
+      <title>Team Members</title>
+      <list id="id1171225532749" list-type="bulleted">
+        <item>Dante Soares is a Junior ECE student at Martel. He is specializing in Computer Engineering.</item>
+        <item>Yilong Yao is a Junior ECE student at Sid Richardson. He is specializing in Computer Engineering.</item>
+        <item>Curtis Thompson is a Junior ECE at Sid Richardson College. He is specializing in Signals and Systems.</item>
+        <item>Shahzaib Shaheen is a Junior ECE at Sid Rich. He is specializing in Photonics.</item>
+      </list>
+    </section>
+    <section id="id1171228734204">
+      <title>Special Thanks</title>
+      <para id="id1171225609113"> We would like to thank Eva Dyer for her help with the algorithm and her feedback on the poster presentation.</para>
+    </section>
+    <section id="id1171225517992">
+      <title>Sources</title>
+      <para id="id1171225771372">Dan, Ellis. "Robust Landmark-Based Audio Fingerprinting." Lab ROSA. Columbia University, 7 June 2006. Web. 6 Dec. 2009. &lt;http://labrosa.ee.columbia.edu/&gt;. </para>
+      <para id="id1171233571555">Dyer, Eva. Personal interview. 13 Nov. 2009. </para>
+      <para id="id1171224225450">Fiona, Harvey. "Name That Tune." Scientific American June 2003: 84-6. Print. </para>
+      <para id="id1171226360103">Wang, Avery Li-Chun. An Industrial-Strength Audio Search Algorithm. Bellingham: Society of Photo-Optical Instrumentation Engineers, 2003. Print. SPIE proceedings series. </para>
+    </section>
+  </content>
+</document>

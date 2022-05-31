@@ -1,0 +1,175 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Matrix Completion:  An Overview</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33136</md:content-id>
+  <md:title>Matrix Completion:  An Overview</md:title>
+  <md:abstract>This module is part of a collection of modules for a class project on matrix completion techniques for the sensor network localization problem done for the Fall, 2009 offering of Prof.  Baraniuk's ELEC 301 course at Rice University.</md:abstract>
+  <md:uuid>a1074d99-9d4e-4b98-90bb-b04a1ceef647</md:uuid>
+</metadata>
+<content>
+    <section id="cid1">
+      <title>Overview of Matrix Completion</title>
+      <para id="id231160">The fundamental question that the new and emerging field of matrix completion seeks to answer is this: Given a matrix with some of its entries missing, is it possible to determine what those entries should be? Answering this question
+has an enormous number of potential practical applications. To be more concrete, consider the problem of <emphasis effect="italics">collaborative filtering</emphasis>, of which perhaps the most famous example is the <emphasis effect="italics">Netflix</emphasis> problem <link target-id="bid0"/>.
+The <emphasis effect="italics">Netflix</emphasis> problem asks how one may be able to predict how an individual would rate movies he or she has not seen based on the ratings that individual has made in the past and on the ratings of other individuals stored in the
+database. This can be cast as a matrix completion problem in which each row of the matrix corresponds to a particular user, each column to a movie, and each entry a rating that the user of that entry's row has given to the movie in that entry's column.
+Because there is a large number of users and movies and because each user has probably seen relatively few of the available movies, there are a large number of entries missing. The idea is to somehow fill in the missing entries and
+thereby determine how every user would rate every movie available. For more examples of potential uses of matrix completion, see the introduction of <link target-id="bid1"/>.</para>
+      <para id="id231537">In general, matrix recovery is an impossible task because the unknown entries really could be anything; however, if one makes a few reasonable assumptions about the original matrix underlying the one being completed, then the matrix
+can indeed be reconstructed and often from a surprisingly low number of entries. More precisely, in their May, 2008 paper <emphasis effect="italics">Exact Matrix Completion via Convex Optimization</emphasis>, matrix completion pioneers Emmanuel J. Candès and
+Benjamin Recht offer the following definitions <link target-id="bid2"/>:</para>
+      <para id="id231558"><emphasis effect="bold">Definition:</emphasis> Let <m:math overflow="scroll"><m:mi>U</m:mi></m:math> be a subspace of <m:math overflow="scroll"><m:msup><m:mi mathvariant="double-struck">R</m:mi><m:mi>n</m:mi></m:msup></m:math> of dimension <m:math overflow="scroll"><m:mi>R</m:mi></m:math>, and let <m:math overflow="scroll"><m:msub><m:mi>P</m:mi><m:mi>U</m:mi></m:msub></m:math> be the operator that projects orthogonally onto <m:math overflow="scroll"><m:mi>U</m:mi></m:math>. The <emphasis effect="italics">coherence</emphasis> <m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>(</m:mo><m:mi>U</m:mi><m:mo>)</m:mo></m:mrow></m:math> of <m:math overflow="scroll"><m:mi>U</m:mi></m:math> is defined by</para>
+      <equation id="id231649">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>μ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>U</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mi>n</m:mi>
+              <m:mi>r</m:mi>
+            </m:mfrac>
+            <m:munder>
+              <m:mo movablelimits="true" form="prefix">max</m:mo>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>≤</m:mo>
+                <m:mi>i</m:mi>
+                <m:mo>≤</m:mo>
+                <m:mi>n</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msup>
+              <m:mrow>
+                <m:mo>∥</m:mo>
+                <m:msub>
+                  <m:mi>P</m:mi>
+                  <m:mi>U</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>e</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>∥</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>,</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id231100">where <m:math overflow="scroll"><m:msub><m:mi>e</m:mi><m:mi>i</m:mi></m:msub></m:math> is the standard basis vector with a 1 in the <m:math overflow="scroll"><m:msup><m:mi>i</m:mi><m:mi> th </m:mi></m:msup></m:math> coordinate and all other coordinates are zero.</para>
+      <para id="id231935"><emphasis effect="bold">Definition:</emphasis> Let <m:math overflow="scroll"><m:mi>A</m:mi></m:math> be an <m:math overflow="scroll"><m:mi>m</m:mi></m:math>-by-<m:math overflow="scroll"><m:mi>n</m:mi></m:math> matrix of rank <m:math overflow="scroll"><m:mi>r</m:mi></m:math> with singular value decomposition <m:math overflow="scroll"><m:mrow><m:msubsup><m:mo>∑</m:mo><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>r</m:mi></m:msubsup><m:msub><m:mi>σ</m:mi><m:mi>k</m:mi></m:msub><m:msub><m:mi>u</m:mi><m:mi>k</m:mi></m:msub><m:msubsup><m:mi>v</m:mi><m:mi>k</m:mi><m:mo>*</m:mo></m:msubsup></m:mrow></m:math>, and denote its column and row spaces by <m:math overflow="scroll"><m:mi>U</m:mi></m:math> and <m:math overflow="scroll"><m:mi>V</m:mi></m:math>, respectively. <m:math overflow="scroll"><m:mi>A</m:mi></m:math> is said to be
+<emphasis effect="italics"><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>μ</m:mi><m:mn>0</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>μ</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>-incoherent</emphasis> if</para>
+      <list id="id232080" display="block" list-type="enumerated">
+        <item id="uid1">There exists <m:math overflow="scroll"><m:mrow><m:msub><m:mi>μ</m:mi><m:mn>0</m:mn></m:msub><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> such that <m:math overflow="scroll"><m:mrow><m:mo movablelimits="true" form="prefix">max</m:mo><m:mfenced separators="" open="(" close=")"><m:mi>μ</m:mi><m:mo>(</m:mo><m:mi>U</m:mi><m:mo>)</m:mo><m:mo>,</m:mo><m:mi>μ</m:mi><m:mo>(</m:mo><m:mi>V</m:mi><m:mo>)</m:mo></m:mfenced><m:mo>&lt;</m:mo><m:msub><m:mi>μ</m:mi><m:mn>0</m:mn></m:msub></m:mrow></m:math>.
+</item>
+        <item id="uid2">There exists <m:math overflow="scroll"><m:mrow><m:msub><m:mi>μ</m:mi><m:mn>1</m:mn></m:msub><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> such that all entires of the <m:math overflow="scroll"><m:mi>m</m:mi></m:math>-by-<m:math overflow="scroll"><m:mi>n</m:mi></m:math> matrix <m:math overflow="scroll"><m:mrow><m:msubsup><m:mo>∑</m:mo><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>r</m:mi></m:msubsup><m:msub><m:mi>u</m:mi><m:mi>k</m:mi></m:msub><m:msubsup><m:mi>v</m:mi><m:mi>k</m:mi><m:mo>*</m:mo></m:msubsup></m:mrow></m:math> are less than or equal to <m:math overflow="scroll"><m:mrow><m:msub><m:mi>μ</m:mi><m:mn>1</m:mn></m:msub><m:msqrt><m:mfrac><m:mi>r</m:mi><m:mrow><m:mi>m</m:mi><m:mi>n</m:mi></m:mrow></m:mfrac></m:msqrt></m:mrow></m:math> in magnitude.
+</item>
+      </list>
+      <para id="id232277">Qualitatively, this definition means that the singular vectors of a <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>μ</m:mi><m:mn>0</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>μ</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>-incoherent matrix aren't too “spiky" and don't do anything “wild."</para>
+      <para id="id232310">In the same paper, Candès and Recht go on to show that if <m:math overflow="scroll"><m:mi>A</m:mi></m:math> is an <m:math overflow="scroll"><m:mi>m</m:mi></m:math>-by-<m:math overflow="scroll"><m:mi>n</m:mi></m:math><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>μ</m:mi><m:mn>0</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>μ</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>-incoherent matrix that has rank <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>≪</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mo movablelimits="true" form="prefix">max</m:mo><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:math>, then <m:math overflow="scroll"><m:mi>A</m:mi></m:math> can be recovered with high probability from a uniform sampling of <m:math overflow="scroll"><m:mi>M</m:mi></m:math>
+of its entries, where <m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>≥</m:mo><m:mi>O</m:mi><m:mo>(</m:mo><m:msup><m:mi>N</m:mi><m:mrow><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>2</m:mn></m:mrow></m:msup><m:mi>r</m:mi><m:mo form="prefix">log</m:mo><m:mi>N</m:mi><m:mo>)</m:mo></m:mrow></m:math><link target-id="bid2"/>. This result was later strengthened to <m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>≥</m:mo><m:mi>O</m:mi><m:mfenced separators="" open="(" close=")"><m:mi>N</m:mi><m:mi>r</m:mi><m:mo movablelimits="true" form="prefix">max</m:mo><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mo form="prefix">log</m:mo><m:mi>N</m:mi><m:mo>)</m:mo></m:mfenced></m:mrow></m:math> by Keshavan, Montanari, and Oh in <link target-id="bid3"/>.
+These results, coupled with the fact that many matrices that one encounters in practice both satisfy the incoherence property and are of low rank means that matrix completion has some serious potential
+for use in practical applications.</para>
+      <para id="id232522">Once one knows that matrix completion can be done, the next question is how to go about doing it. There are a variety of different matrix completion algorithms available. Candès et al. have developed a method that they call
+Singular Value Thresholding (SVT), which attempts to complete the matrix by solving the following optimization problem <link target-id="bid4"/>: Find a matrix <m:math overflow="scroll"><m:mi>X</m:mi></m:math> of that minimizes <m:math overflow="scroll"><m:msub><m:mrow><m:mo>∥</m:mo><m:mi>X</m:mi><m:mo>∥</m:mo></m:mrow><m:mo>*</m:mo></m:msub></m:math>
+subject to the condition that the entries of <m:math overflow="scroll"><m:mi>X</m:mi></m:math> be equal to those entries of the matrix <m:math overflow="scroll"><m:mi>A</m:mi></m:math> to be completed for which we know the value. Here, <m:math overflow="scroll"><m:msub><m:mrow><m:mo>∥</m:mo><m:mi>X</m:mi><m:mo>∥</m:mo></m:mrow><m:mo>*</m:mo></m:msub></m:math> is the <emphasis effect="italics">nuclear norm</emphasis> of <m:math overflow="scroll"><m:mi>X</m:mi></m:math>, defined to be the sum of the singular
+values of <m:math overflow="scroll"><m:mi>X</m:mi></m:math>. Keshavan, Montanari, and Oh offer an alternative algorithm, dubbed OptSpace, which is based on trimming the incomplete matrix to remove so-called “overrepresented" rows and columns whose values do not help reveal much
+about the unknown entries and then adjusting the trimmed matrix to minimize the error that is made at the entries whose values are known via a gradient descent procedure <link target-id="bid3"/>, <link target-id="bid5"/>. There are
+other algorithms as well, and which algorithm to choose is really up to the user. For our work, we elected to use the OptSpace algorithm, since it just seems to produce better results.</para>
+    </section>
+  </content>
+  <bib:file>
+    <bib:entry id="bid4">
+      <bib:article>
+        <!--required fields-->
+        <bib:author>Cai, J. and Candès, E. J. and Shen, Z.</bib:author>
+        <bib:title>A Singular Value Thresholding Algorithm for Matrix Completion</bib:title>
+        <bib:journal>arXiv:0810.3286v1</bib:journal>
+        <bib:year>2008</bib:year>
+        <!--optional fields-->
+        <bib:volume/>
+        <bib:number/>
+        <bib:pages/>
+        <bib:month>October</bib:month>
+        <bib:note/>
+      </bib:article>
+    </bib:entry>
+    <bib:entry id="bid1">
+      <bib:article>
+        <!--required fields-->
+        <bib:author>Candès, E. J. and Plan, Y.</bib:author>
+        <bib:title>Matrix Completion with Noise</bib:title>
+        <bib:journal>arXiv:0903.3131v1</bib:journal>
+        <bib:year>2009</bib:year>
+        <!--optional fields-->
+        <bib:volume/>
+        <bib:number/>
+        <bib:pages/>
+        <bib:month>March</bib:month>
+        <bib:note/>
+      </bib:article>
+    </bib:entry>
+    <bib:entry id="bid2">
+      <bib:article>
+        <!--required fields-->
+        <bib:author>Candès, E. J. and Recht, B.</bib:author>
+        <bib:title>Exact Matrix Completion via Convex Optimization</bib:title>
+        <bib:journal>arXiv:0805.4471v1</bib:journal>
+        <bib:year>2008</bib:year>
+        <!--optional fields-->
+        <bib:volume/>
+        <bib:number/>
+        <bib:pages/>
+        <bib:month>May</bib:month>
+        <bib:note/>
+      </bib:article>
+    </bib:entry>
+    <bib:entry id="bid3">
+      <bib:article>
+        <!--required fields-->
+        <bib:author>Keshavan, R. H. and Montanari, A. and Oh, S.</bib:author>
+        <bib:title>Matrix Completion from a Few Entries</bib:title>
+        <bib:journal>arXiv:0901.3150v4</bib:journal>
+        <bib:year>2009</bib:year>
+        <!--optional fields-->
+        <bib:volume/>
+        <bib:number/>
+        <bib:pages/>
+        <bib:month>September</bib:month>
+        <bib:note/>
+      </bib:article>
+    </bib:entry>
+    <bib:entry id="bid5">
+      <bib:article>
+        <!--required fields-->
+        <bib:author>Keshavan, R. H. and Oh, S.</bib:author>
+        <bib:title>OptSpace: A Gradient Descent Algorithm on the Grassman Manifold for Matrix Completion</bib:title>
+        <bib:journal>arXiv:0910.5260v2</bib:journal>
+        <bib:year>2009</bib:year>
+        <!--optional fields-->
+        <bib:volume/>
+        <bib:number/>
+        <bib:pages/>
+        <bib:month>November</bib:month>
+        <bib:note/>
+      </bib:article>
+    </bib:entry>
+    <bib:entry id="bid0">
+      <bib:unpublished>
+        <!--required fields-->
+        <bib:author>Netflix, </bib:author>
+        <bib:title>Netflix Prize</bib:title>
+        <bib:note>http://www.netflixprize.com//index</bib:note>
+        <!--optional fields-->
+        <bib:month/>
+        <bib:year/>
+      </bib:unpublished>
+    </bib:entry>
+  </bib:file>
+</document>

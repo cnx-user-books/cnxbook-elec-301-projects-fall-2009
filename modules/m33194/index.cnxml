@@ -1,0 +1,39 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Results</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33194</md:content-id>
+  <md:title>Results</md:title>
+  <md:abstract/>
+  <md:uuid>52daff6a-44ea-4902-a837-a5e083f78666</md:uuid>
+</metadata>
+<content>
+    <para id="id1170361541734">The final step in the project was to test the algorithm we had created so we went ahead and conducted a series of tests that would evaluate mostly correctness but also, to some extent, performance.</para>
+    <section id="id8829758">
+      <title>Testing</title>
+      <para id="id1170359968486"> First, we wanted to test to make sure that our algorithm was working properly. To do this, we attempted to match short segments of the original song (i.e. “noiseless”, actual copies of the library songs) of approximately ten seconds in length. The table below shows how these original clips matched. The titles from left to right are song segments, and titles running from top to bottom are library songs. We abbreviated them from the original, so they would fit in the matrix. The original names are “Stop this Train”, by John Mayer, “Semi-Charmed Life”, by Third Eye Blind, “I’ve got a Feeling” by Black Eyed Peas, “Love Like Rockets”, by Angels and Airwaves, “Crash Into Me”, by Dave Matthews Band and “Just Another Day in Paradise”, by Phil Vassar.</para>
+      <figure id="id1170366954069"><media id="id1170366954069_media" alt="">
+          <image mime-type="image/png" src="../../media/Picture 2-e498.png" id="id1170366954069__onlineimage" height="184" width="478"/>
+        </media>
+      <caption>This matrix shows the match score results of the six noiseless recordings made from fragments of songs in the database, each of them compared to all songs in the database</caption></figure>
+      
+      <para id="id4171450">The clear matches with highest scores can be seen along the diagonal. Most of these are close to 1, and each match meets our criteria of being 1.5 times greater than the other scores (comparing horizontally.) This was a good test that we were able to use to modify our algorithm and try different techniques. Ultimately, the above results showed that our code was sufficient for our needs.</para>
+      <para id="id7539745">We then needed to see if our code actually worked with real world (noisy) song segments. Songs were recorded on an iPhone simultaneously with various types of noise as follows: Train- low volume talking, Life- loud recording (clipping), Crash- typing, Rockets- repeating computer error noise, Feeling- Gaussian noise (added in Matlab to wav file), and Paradise- very loud talking. There were two additional songs we used in this test to check for robustness and proper matching. One is a live version of Crash, which includes a lot of crowd noise but does not necessarily have all the identical features of the original Crash fingerprint. The other additional song, “Yellow”, by Coldplay, is a song that is not in our library at all.</para>
+      <figure id="id1170359145091"><media id="id1170359145091_media" alt="">
+          <image mime-type="image/png" src="../../media/Picture 3-2212.png" id="id1170359145091__onlineimage" height="188" width="551"/>
+        </media>
+      <caption>This matrix shows the match score results of the six noisy recordings made from fragments of songs in the database, plus a live version of a song in the database and another song entirely not in the database</caption></figure>
+      
+      <para id="id1170358967141"> Again, the clear matches are highlighted in yellow along the diagonal. The above results show that our algorithm can still accurately match the song segments in more realistic conditions. The graph below shows more interesting results.</para>
+      <figure id="id1170371020287"><media id="id1170371020287_media" alt="">
+          <image mime-type="image/png" src="../../media/Picture 1-2606.png" id="id1170371020287__onlineimage" height="249" width="367"/>
+        </media>
+      <caption>This plot is a visual representation of the results matrix seen above</caption></figure>
+      
+    </section>
+    <section id="id5013119">
+      <title>Conclusions</title>
+      <para id="id5358206"> As before, the matches in the first six songs (from left to right) are obvious, and Yellow does not show any clear correlation to any library song, as desired, but the live version of Crash presents an interesting question. Do we actually want this song to match? Since we wanted our fingerprinting method to be unique to each song and song segment, we decided it would be best to have a non-match in this scenario. However, if one observes closely, it can be seen that the closest match (though it is definitely not above the 1.5 mark) is, in fact, matching to the original Crash. This emerges as a small feature of our results. This small “match” says that although we may not match any songs in the library, we can tell you that this live version most resembles the original Crash version, which may be a desirable outcome if we were to market this project.</para>
+      <para id="id1170365643934">We were amazed that the final filter could perform so well. The idea of completely ignoring amplitude information in the filter came from the paper by Avery Li-Chun Wang, one of Shazam’s developers. As he mentions, discarding amplitude information makes the algorithm more insensitive to equalization. However, this approach also makes it more noise resistant since, since what we do from there on basically consists of counting matching peaks versus non-matching peaks. Any leftover noise will count very little towards the final score, as the number of peaks per area in the spectrogram is limited by the thresholding algorithm and all peaks have the same magnitude in the filter.</para>
+    </section>
+  </content>
+</document>

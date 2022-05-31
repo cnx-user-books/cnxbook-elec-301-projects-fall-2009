@@ -1,0 +1,16 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Acknowledgments</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33142</md:content-id>
+  <md:title>Acknowledgments</md:title>
+  <md:abstract>This module is part of a collection of modules for a class project on matrix completion techniques for the sensor network localization problem done for the Fall, 2009 offering of Prof.  Baraniuk's ELEC 301 course at Rice University.</md:abstract>
+  <md:uuid>7745d715-1f0e-477d-aee6-a33d62425543</md:uuid>
+</metadata>
+<content>
+    <section id="cid1">
+      <title>Acknowledgments</title>
+      <para id="id324822">We would like to thank Mr. Andrew Waters for the invaluable support and guidance he provided us while we were working on this project as well as Prof. Baraniuk for suggesting such a fascinting project to us in the first place.</para>
+    </section>
+  </content>
+  <bib:file/>
+</document>

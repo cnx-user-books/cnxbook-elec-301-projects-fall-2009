@@ -1,0 +1,44 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>The Fingerprint Finding Algorithm</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33188</md:content-id>
+  <md:title>The Fingerprint Finding Algorithm</md:title>
+  <md:abstract/>
+  <md:uuid>9fae812e-1982-41c2-b4b1-605a47f50229</md:uuid>
+</metadata>
+<content>
+    <section id="id14127278">
+      <title>Filtering and Resampling</title>
+      <para id="id14014739">After the song data is imported, the signal is then resampled to 8000 samples per second in order to reduce the number of columns in the spectrogram. This will speed up later computations but still leaves enough resolution in the data for accurate results.</para>
+      <para id="id8745301">Then the data is high-pass filtered using a 30<sup>th</sup> order filter with a cutoff frequency around 2KHz (half the bandwidth of the resampled signal). Filtering is used because the higher frequencies in songs are more unique to each individual song. The bass, however, tends to overshadow these frequencies, thus the filter is used make fingerprint include more high frequencies points. Testing has shown that the algorithm has a much easier time distinguishing songs after they are high-pass filtering.</para>
+    </section>
+    <section id="id14119667">
+      <title>The Spectrogram</title>
+      <para id="id14075174">The spectrogram of the signal is then taken in order to view the frequencies present in each time slice. The spectrogram below is from a 10 second noisy recording.</para>
+      <figure id="id14077713"><media id="id14077713_media" alt="">
+          <image mime-type="image/png" src="../../media/Picture 2-e563.png" id="id14077713__onlineimage" height="290" width="387"/>
+        </media>
+      <caption>The effect of the low-pass filter is clearly visible in the spectrogram. However, local maxima in the low frequencies still exist and will still show up in the fingerprint.</caption></figure>
+      
+      <para id="id14129035">Each vertical time slice in the bin is then analyzed for prominent local maxima as described in the next section.</para>
+    </section>
+    <section id="id7227922">
+      <title>Finding the Local Maxima</title>
+      <para id="id14014702">In the first time slice, the five greatest local maxima are stored as points in the fingerprint. Then a threshold is created by convolving these five maxima with a Gaussian curve, creating a different value for the threshold at each frequency. An example threshold is shown in the figure below. The threshold is used to spread out the data stored in the fingerprint, since peaks that are close in time and frequency are stored as one point.</para>
+      <figure id="id10179347"><media id="id10179347_media" alt="">
+          <image mime-type="image/png" src="../../media/Picture 13.png" id="id10179347__onlineimage" height="264" width="351"/>
+        </media>
+      <caption>The initial threshold, formed by convolving the peaks in the first time slice with a Gaussian curve.</caption></figure>
+      
+      <para id="id4433895">For each of the remaining time slices, up to five local maxima above the threshold are added to fingerprint. If there are more than five maxima, then the five greatest in amplitude are chosen. The threshold is then updated by adding new Gaussian curves centered at the frequencies of the newly found peaks. Finally the threshold is scaled down so that it decays exponentially over time. The following figure shows how the threshold changes over time.</para>
+      <para id="id14083527">
+        <figure id="id8500356"><media id="id8500356_media" alt="">
+            <image mime-type="image/png" src="../../media/Picture 3-8c8b.png" id="id8500356__onlineimage" height="290" width="387"/>
+          </media>
+        <caption>The threshold increases whenever a new peak is formed around that peak’s frequency and decays exponentially over time.</caption></figure>
+      </para>
+      
+      <para id="id14128840">The final list of the time and frequencies of the local maxima above the threshold are returned as the song’s fingerprint.</para>
+    </section>
+  </content>
+</document>

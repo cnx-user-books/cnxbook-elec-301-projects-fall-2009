@@ -1,0 +1,24 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>The Resulting Fingerprint</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33189</md:content-id>
+  <md:title>The Resulting Fingerprint</md:title>
+  <md:abstract/>
+  <md:uuid>6eef87f2-4cf1-4017-bffe-200a930733fe</md:uuid>
+</metadata>
+<content>
+    <para id="id8359198">The following is the fingerprint of the sample signal from the examples above.</para>
+    <figure id="id8722251"><media id="id8722251_media" alt="">
+        <image mime-type="image/png" src="../../media/Picture 4-c58a.png" id="id8722251__onlineimage" height="292" width="389"/>
+      </media>
+    <caption>The fingerprint of the 10 second segment from the previous examples</caption></figure>
+    
+    <para id="id2000533">From the graph, it is easy to see patterns and different notes in the song. Lets see how the algorithm addresses the three issues identified in the first paragraph:</para>
+    <list id="id1167193093473" list-type="bulleted">
+      <item>Uniqueness – The algorithm only stores the prominent peaks in the spectrogram. Different songs have a different pattern of peaks in frequency and time, thus each song will have a unique fingerprint.</item>
+      <item>Sparseness – The algorithm only picks up at most five peaks per time slice. This limits the number of peaks in the resulting fingerprint. The threshold spreads out the positions of peaks so that the fingerprint is more representational of the data.</item>
+      <item>Noise Resistant – Unless the background noise is loud enough to create peaks greater than the peaks present in the song, then very little noise will show up in the fingerprint. Also, a ten second segment has around 6000 data points, so a matched filter will be able to detect a match between two fingerprints, even with a reasonable amount of added noise.</item>
+    </list>
+    <para id="id1167193113178">The next section will detail the process used to compare the fingerprint of the song segment to the fingerprints of the songs in the library.</para>
+  </content>
+</document>

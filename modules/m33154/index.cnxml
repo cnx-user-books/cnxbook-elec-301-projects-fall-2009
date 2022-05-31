@@ -1,0 +1,26 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Prelude</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33154</md:content-id>
+  <md:title>Prelude</md:title>
+  <md:abstract/>
+  <md:uuid>16e378fb-ec5d-428d-8e3a-2412c8f12147</md:uuid>
+</metadata>
+<content>
+  <section id="eip-520"><title>Purpose</title><para id="eip-882">
+To develop an algorithm for extraction of license plate numbers from still photos of stationary cars.
+</para></section><section id="eip-849"><title>Methods</title><para id="eip-34">We divided this project into two sections- Image Processing and Support Vector Machine (SVM) Training: 
+</para><list id="eip-196"><item>We take picture of a still car (from either front or back), compress and crop out to speed up the process, localize the plate position and extract the letters into individual binary matrices.</item>
+<item> We take each of the matrix generated in the previous process and use the SVM algorithm to distinguish which letter exactly it is.</item>
+</list></section><section id="eip-398"><title>Applications</title><para id="eip-538">
+This algorithm can be integrated to the related vehicle identification applications such as:
+</para><list id="eip-31" list-type="enumerated" number-style="arabic"><item>Parking lot registration </item>
+<item>Traffic violation tracking</item>
+<item>Vehicle surveillance</item>
+</list></section><para id="delete_me">
+     <!-- Insert module text here -->
+  </para>
+</content>
+
+</document>

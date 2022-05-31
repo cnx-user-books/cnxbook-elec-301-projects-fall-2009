@@ -1,0 +1,27 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>A Flag Semaphore Computer Vision System:  Future Work</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33103</md:content-id>
+  <md:title>A Flag Semaphore Computer Vision System:  Future Work</md:title>
+  <md:abstract>This module describes future work that could be done to expand upon that we have completed in this project.</md:abstract>
+  <md:uuid>3743b71b-d16b-471d-b6a8-509fb1100a76</md:uuid>
+</metadata>
+<content>
+    <section id="cid1">
+      <title>Real Time Video Processing</title>
+      <para id="id2253181">The flag semaphore computer vision and interpretation program that our group has a reasonably fast runtime due to the use of a matched filter implemented in the frequency domain and the accuracy of the program under spatial downsampling. In fact, the program runs in considerably less time than the duration of input video file provided that the program is not also attempting to write an output video file, clocking approximately 15 seconds for an approximately 20 second video. Consequently, this video processing could be performed in real time with the aid of video capture software operating in parallel, such as is provided in the MATLAB Data Acquisition Toolbox. However, due to a lack of funds, this was not implemented and left as a possible future addition that would require very little modification to our existing code.</para>
+    </section>
+    <section id="cid2">
+      <title>Identification of all Symbols</title>
+      <para id="id2253835">While we could successfully identify all of the static symbols in the flag semaphore symbol set, we left the “chip-chop” attention symbol unidentified as it is not used under the RFC 4828 TCP/IP standard and its exclusion greatly simplified the code. However, any future modifications may wish to support its identification for completeness.</para>
+    </section>
+    <section id="cid3">
+      <title>TCP/IP Transceiver Implementation</title>
+      <para id="id2253860">Because of time and scope constraints, the IP-SFS to Ethernet bridge was not satisfactorily completed. In the future, expanding this to full functionality would be quite an interesting project. It should also be noted that much of the <code display="inline">IpSfssFrame</code> functionality was written in haste, and while it was tested on reasonable cases, more automated unit testing on this and other classes in the Java IP-SFS framework would be ideal. The internal state of the transceiver is also partially incomplete. It does not respect the state (transmitting, receiving, idle), of the connection, nor does it acknowledge packet receptions with <code display="inline">ACK</code> signals (or <code display="inline">NAK</code> on errors), because the receiver and transmitter are not sufficiently connected.</para>
+    </section>
+    <section id="cid4">
+      <title>Miscellaneous</title>
+      <para id="id2253900">Other possible future expansions and modifications of our program could include improvements in the color matching and peak detection algorithms used to determine the positions of the flags. Although the current versions function correctly with a high degree of accuracy, they are ad hoc solutions that we developed to the problems of color matching and peak detection, so there may exist superior algorithms to perform those tasks. Further optimization of code for improved speed performance is desirable in order to perform both real time processing and real time video output writing to make the program more useful even if it is impractical.</para>
+    </section>
+  </content>
+</document>

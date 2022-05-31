@@ -1,0 +1,148 @@
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+    <md:content-id>col11153</md:content-id>
+    <md:title>ELEC 301 Projects Fall 2009</md:title>
+    <md:language>en</md:language>
+    <md:license url="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</md:license>
+    <md:uuid>0257256c-9b3b-4ebc-b7f7-e635ea432f29</md:uuid>
+<md:slug>elec-301-projects-fall-2009</md:slug>
+</metadata>
+  <col:content>
+    <col:subcollection>
+      <md:title>Digital Song Identification Using Frequency Analysis</md:title>
+      <col:content>
+        <col:module document="m33185"/>
+        <col:module document="m33186"/>
+        <col:module document="m33188"/>
+        <col:module document="m33189"/>
+        <col:module document="m33191"/>
+        <col:module document="m33193"/>
+        <col:module document="m33194"/>
+        <col:module document="m33196"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>A Matrix Completion Approach to Sensor Network Localization</md:title>
+      <col:content>
+        <col:module document="m33135"/>
+        <col:module document="m33136"/>
+        <col:module document="m33138"/>
+        <col:module document="m33141"/>
+        <col:module document="m33142"/>
+        <col:module document="m33146"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Discrete Multi-Tone Communication Over Acoustic Channel</md:title>
+      <col:content>
+        <col:module document="m33147"/>
+        <col:module document="m33155"/>
+        <col:module document="m33148"/>
+        <col:module document="m33144"/>
+        <col:module document="m33151"/>
+        <col:module document="m33152"/>
+        <col:module document="m33153"/>
+        <col:module document="m33140"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Language Recognition Using Vowel PMF Analysis</md:title>
+      <col:content>
+        <col:module document="m33133"/>
+        <col:module document="m33121"/>
+        <col:module document="m33115"/>
+        <col:module document="m33134"/>
+        <col:module document="m33113"/>
+        <col:module document="m33127"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>A Flag Semaphore Computer Vision System</md:title>
+      <col:content>
+        <col:module document="m33092"/>
+        <col:module document="m33095"/>
+        <col:module document="m33098"/>
+        <col:module document="m33100"/>
+        <col:module document="m33094"/>
+        <col:module document="m33103"/>
+        <col:module document="m33106"/>
+        <col:module document="m33107"/>
+        <col:module document="m33109"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>License Plate Extraction</md:title>
+      <col:content>
+        <col:module document="m33154"/>
+        <col:module document="m33156"/>
+        <col:module document="m33159"/>
+        <col:module document="m33160"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>An evaluation of several ECG analysis Algorithms for a low-cost portable ECG detector</md:title>
+      <col:content>
+        <col:module document="m33167"/>
+        <col:module document="m33166"/>
+        <col:module document="m33164"/>
+        <col:module document="m33168"/>
+        <col:module document="m33165"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Sparse Signal Recovery in the Presence of Noise</md:title>
+      <col:content>
+        <col:module document="m33082"/>
+        <col:module document="m33087"/>
+        <col:module document="m33081"/>
+        <col:module document="m33080"/>
+        <col:module document="m33079"/>
+        <col:module document="m33083"/>
+        <col:module document="m33086"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Video Stabilization</md:title>
+      <col:content>
+        <col:module document="m33246"/>
+        <col:module document="m33247"/>
+        <col:module document="m33251"/>
+        <col:module document="m33248"/>
+        <col:module document="m33249"/>
+        <col:module document="m33250"/>
+        <col:module document="m33253"/>
+        <col:module document="m33254"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Facial Recognition using Eigenfaces</md:title>
+      <col:content>
+        <col:module document="m33173"/>
+        <col:module document="m33174"/>
+        <col:module document="m33183"/>
+        <col:module document="m33182"/>
+        <col:module document="m33181"/>
+        <col:module document="m33177"/>
+        <col:module document="m33180"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Speak and Sing</md:title>
+      <col:content>
+        <col:module document="m33229"/>
+        <col:module document="m33233"/>
+        <col:module document="m33237"/>
+        <col:module document="m33241"/>
+        <col:module document="m33240"/>
+        <col:module document="m33242"/>
+        <col:module document="m33243"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Musical Instrument Recognition Through Fourier Analysis</md:title>
+      <col:content>
+        <col:module document="m33260"/>
+      </col:content>
+    </col:subcollection>
+  </col:content>
+</col:collection>

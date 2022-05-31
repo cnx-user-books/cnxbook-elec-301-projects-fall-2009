@@ -1,0 +1,36 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Musical Instrument Recognition Through Fourier Analysis</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33260</md:content-id>
+  <md:title>Musical Instrument Recognition Through Fourier Analysis</md:title>
+  <md:abstract>This system takes a sound signal as an input and determine whether the instrument being  played is  a woodwind, a string instrument or a horn.  We first sample an input .wav file at a fast rate.  Then, by using Fourier transforms on each sample we are able to determine the harmonics for each instrument, and how powerful each one of these are.  By making several comparisons based on the characteristics of each instrument, we were able to determine what type of instrument was being input into our system.</md:abstract>
+  <md:uuid>6e1aa2cd-3ed2-4925-af30-07b537c16931</md:uuid>
+</metadata>
+<content>
+  <para id="delete_me"><title>Introduction</title>Different instruments produce distinct sounds that are easily distinguishable by a human ear.  Our goal was to create a digital system that can accomplish the same thing. This has potential future application in helping to decode:
+ Old recordings
+ Multiple instruments overlapping (orchestras, bands, etc.)
+
+With a computer system that can automatically detect what is being played, confusion caused by our human ability to distinguish sounds can be avoided by looking at the physics behind sounds and how these are formed.
+
+All instruments make distinct sounds by producing vibrations in different ways.  This leads to the signals they produce having different properties that can be distinguished by a computer system.  By analyzing the harmonic frequencies from a sound file, and by looking at the different energy levels on each and how they relate to each other, one can determine what the source of this sound is.  A system such as this could potentially be applied to things such as converting audio to formats to MIDI or determining what instruments were used in a big band recording.</para><para id="eip-966"><title>Theory</title>When a note is played on a musical instrument, we associate it with a certain frequency. However it is really a combination of the frequency we hear (the note played) and a series of less powerful harmonic frequencies. The combination of these creates the tone, or timbre, we associate with each instrument. Our job was to write a program that looks at these harmonics and how they relate to the strongest pitch and judge what type of instrument was most likely to have made the sound. We did this by coming up with a point system that gives points to each family based on what qualities are displayed in the sample we took.</para><para id="eip-709"><title>Method</title>Our system for determining which instrument family a .wav file comes from:
+
+1. Take a .05 second sample of the wav file
+2. Take the FFT of the sample
+3. Figure out how many harmonics there are (i.e. spikes at least 1/10 as powerful as the main tone)
+4. Assign points to each family based on the order and power of harmonics
+5. Repeat for the next sample
+6. When one family has enough points over the other families, stop the system and declare that family the winner
+
+For instance, string instruments have fewer and less powerful overtones than brass instruments, while woodwinds fall somewhere between the two. The ratio of an overtone to the previous overtone is also much more likely to be below one in string instruments. </para><para id="eip-948"><title>Results</title>We tested our system with multiple samples of instruments playing individual notes in Propellerhead's Reason software, as well as with recordings of live solo performances. Because our program takes many samples from different points in each track, it does a good job of identifying which instrument is being used in which song. Our biggest problem was not with the live performances, but with computer samples playing notes that are out of some instruments' standard ranges. For instance, the FFT of a bassoon playing in its upper ranges looks extremely similar to that of a violin. However, our system can accurately place the following instruments:
+Violin (3 Reason samples, 2 live performances),
+Trumpet (2 Reason samples, 2 live performance),
+English Horn (1 Reason sample),
+Oboe (2 Reason samples, 2 live performances),
+Cello (1 Reason sample, 1 live performance),
+Tuba (1 Reason Sample),
+low range Bassoon (2 Reason Samples)</para><para id="eip-198"><title>Conclusion</title>We were able to create a system that is capable of classifying instruments in separate families.  By analyzing the different composition of the sound waves created by different instruments, we were able to find traits common to multiple instruments in each category. These were present in many instruments under each family since they produce sound in similar ways, allowing us to successfully separate them into strings, woodwinds or brass.</para>
+</content>
+
+</document>

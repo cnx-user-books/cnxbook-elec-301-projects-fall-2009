@@ -1,0 +1,47 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Receiver</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33151</md:content-id>
+  <md:title>Receiver</md:title>
+  <md:abstract/>
+  <md:uuid>3b7b88cb-7197-4f2c-a768-9148abcfb557</md:uuid>
+</metadata>
+<content>
+    <section id="id11161433">
+      <title>Decoding the Transmission</title>
+      <para id="id7152723">Since the receiver has full knowledge of all the steps taken to transmit, the reception process is the exact inverse of transmission. The only difference is the addition of the channel equalization described in the previous part. To get back the information we originally sent, we simply:</para>
+      <list id="id6123911" list-type="bulleted">
+        <item>Take the FFT of the reception and divide it by the FFT of the impulse response. Then iFFT it back.</item>
+        <item>Remove the cyclic prefix</item>
+        <item>Take the Fourier Transform</item>
+        <item>Demirror the vector</item>
+        <item>Approximate each received value to nearest point in constellation and map them back to the original bit sequences. See figure below for example in 4 bit approximation.</item>
+        <item>Convert the binary series back to ascii letter equivalents.</item>
+      </list>
+<figure id="constellations">
+  <title>Approximation of Constellation Map</title>
+  <media id="constellation" alt="constellation.">
+	   
+  <image mime-type="image/jpeg" src="../../media/constellations.JPG"/>
+		 
+</media>
+  <caption>
+     The map on the left was approximated to the one on the right with a 2.15% percent error.
+  </caption>
+</figure>
+      <para id="id13331298">Please see the block diagram below. It summarizes the reception process.</para>
+
+<figure id="trans_block_fig">
+  <title>Receive Block Diagram</title>
+  <media id="trans_block" alt="Receive block diagram.">
+	   
+  <image mime-type="image/jpeg" src="../../media/rec block diagram.jpg"/>
+		 
+</media>
+  <caption>
+     This diagram shows the all of the components and flow of our receiver system.
+  </caption>
+</figure>
+    </section>
+  </content>
+</document>

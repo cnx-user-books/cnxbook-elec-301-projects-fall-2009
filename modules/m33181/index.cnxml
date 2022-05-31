@@ -1,0 +1,45 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Facial Recognition using Eigenfaces: Results</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33181</md:content-id>
+  <md:title>Facial Recognition using Eigenfaces: Results</md:title>
+  <md:abstract>Results</md:abstract>
+  <md:uuid>13f0195a-d0b1-4705-a938-5fcdeb1ef3f4</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="example">
+      <link url="http://cnx.org/content/m33182/latest/" strength="3">Previous: Projection onto Face Space</link>
+      <link url="http://cnx.org/content/m33177/latest/" strength="3">Next: Conclusion</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="id1168466075538">
+      <title>Results</title>
+      <section id="id1168459267192">
+        <title>JAFFE Results</title>
+        <para id="id1168467766230">For the JAFFE database, our algorithm recognized a new photo of the person 65% to 75% of the time. We defined recognition as successfully matching a test image to a picture of the same person from the training set, even though the two images had different expressions. Recognition rate increased dramatically as we increased the number of eigenfaces, but stabilized after four eigenfaces (that is, our recognition rate did not increase by using more than four eigenfaces). The recognition rate also increased when we used more test images per person in the training set. Similarly, the recognition rate increased when we used a greater percentage of the dataset in the training set (with pictures chosen randomly from the dataset).</para>
+        <figure id="id1168461197914"><media id="id1168461197914_media" alt="">
+            <image mime-type="image/png" src="../../media/graphics1-239c.png" id="id1168461197914__onlineimage" height="244" width="650"/>
+          </media>
+        <caption>Results when varying the number of training images per person &amp; the percent of database used to as input images</caption></figure>
+        
+      </section>
+      <section id="id1168466094209">
+        <title>Rice University Field Test Results</title>
+        <para id="id5088537">For the Rice University database, our algorithm recognized a new photo of the person 65% to 75% of the time. Again, recognition rate increased dramatically as we increased the number of eigenfaces. In this case, the recognition rate stabilized after six eigenfaces. The recognition rate required more eigenfaces to stabilize because the Rice database was more diverse, including people of both genders and many different ethnicities. Therefore, more eigenfaces are needed for an accurate representation of the Rice population. Again, the recognition rate increased when we used more test images per person in the training set. The recognition rate also increased when we used a greater percentage of the dataset in the training set.<figure id="id1168465218620"><media id="id1168465218620_media" alt=""><image mime-type="image/png" src="../../media/graphics2-f946.png" id="id1168465218620__onlineimage" height="244" width="650"/></media>
+<caption>Results when varying the number of training images per person &amp; the percent of database used to as input images</caption></figure></para>
+        
+        <para id="id5829031">The resulting final algorithm was able to determine, at the four rates shown in the previous two figures, whether a test image was a non-face or face and also a match to known face, finding the closest match to a known face (as shown below).</para>
+        <figure id="id1168460664858"><media id="id1168460664858_media" alt="">
+            <image mime-type="image/jpg" src="../../media/Picture 1-f681.jpg" id="id1168460664858__onlineimage" height="462" width="583"/>
+          </media>
+        <caption>Counterclockwise from top left: Sample test image taken as input; test image reconstructed using eigenfaces; closest reconstructed image match; corresponding closest match image.</caption></figure>
+        
+      </section>
+    </section>
+  </content>
+</document>

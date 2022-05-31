@@ -1,0 +1,34 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Facial Recognition using Eigenfaces: Background</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33174</md:content-id>
+  <md:title>Facial Recognition using Eigenfaces: Background</md:title>
+  <md:abstract>Background</md:abstract>
+  <md:uuid>1df7afa9-e6b9-4146-a833-2efcae272d95</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="example">
+      <link url="http://cnx.org/content/m33183/latest/" strength="3">Next: Obtaining Eigenfaces</link>
+      <link url="http://cnx.org/content/m33173/latest/" strength="3">Previous: Introduction</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="id41923934">
+      <title>Background</title>
+      <section id="id45059789">
+        <title>Computational Implementations</title>
+        <para id="id47184402">Current facial recognition algorithms can be separated into two groups: geometric and statistical. The geometric approach looks into the distinguishing features of the face. The other algorithms are photometric, a statistical approach that distills an image into values and compares those values with those from a template or training set to eliminate variances. Some popular recognition algorithms include Principal Component Analysis (eigenfaces), Linear Discriminate Analysis, Elastic Bunch Graph Matching (fisherfaces), the Hidden Markov model, and dynamic link matching.</para>
+      </section>
+      <section id="id47238884">
+        <title>Eigenfaces</title>
+        <para id="id41557213">We decided to use eigenfaces for this project. Eigenfaces are created using a statistical tool called <emphasis>Principal Component Analysis (PCA)</emphasis>. Eigenfaces are useful because they focus on the differences between the data points (i.e., the small variations in eye shape, nose size, and skin color that humans unconsciously and effectively use to tell each other apart). Eigenfaces can be speedily extracted from large data sets, so this method is very applicable to our project.</para>
+        <para id="id44302997">However, the eigenface method has one major drawback: it is greatly affected by non-homogenous conditions. For example, Matthew Turk and Alex Pentland of MIT found that the eigenface approach identified a face correctly 96% of the time with lighting variation, 85% with orientation variation, and only 64% with size variation (1). Therefore, we decided to focus on one variable: lighting, background, face angle, position, or expression, and keep all the others constant. Our pictures were taken in a well-lit room against a white background, with the subject directly facing the camera, without accessories such as hats and glasses. We found that facial expressions were the most fun variable and decided to focus on that.</para>
+        <para id="id45835692">We worked with two databases: Rice University, which we created, and JAFFE (Japanese Female Facial Expression) from <link url="http://face-rec.org/">http://face-rec.org/</link>. The JAFFE database consists of 10 Japanese women, each expressing each of seven emotions. For the Rice database, we chose students of both genders and diverse ethnicities. Each subject was told to express each of six emotions: neutral, happy, sad, surprised, angry, and disgusted. We had sixteen subjects, each with six emotions, and we took two pictures per emotion, resulting in a database of 192 images. We used Matlab to process the images and create eigenfaces. </para>
+      </section>
+    </section>
+  </content>
+</document>

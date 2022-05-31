@@ -1,0 +1,23 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Introduction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33147</md:content-id>
+  <md:title>Introduction</md:title>
+  <md:abstract/>
+  <md:uuid>a563abab-0164-4a16-b28b-76ce70a7953d</md:uuid>
+</metadata>
+<content>
+    <section id="id39089711">
+      <title>What is DMT and where is it used?</title>
+      <para id="id43034897">DMT is a form of Orthogonal Frequency Division Multiplexing. Effectively, information is coded and modulated by several different sub carriers. This is the same modulation scheme used in common DSL channels. Specifically, at frequencies above those reserved for speech, there exist several hundred channels of the equal bandwidth used to transmit data to and from the internet. This is very convenient for phone users, as these DMT channels can be easily filtered out using a simple low-pass filter, preventing any possible interference from connecting to the internet while talking on the phone.</para>
+    </section>
+    <section id="id38672028">
+      <title>Why transmit over an acoustic channel?</title>
+      <para id="id47548464">The acoustic channel, and the audible frequencies contained therein, was chosen as a test area for our DMT project simply because of its accessibility. No complex or expensive hardware is necessary to transmit over it, just a standard computer speaker and microphone setup. </para>
+    </section>
+    <section id="id47803256">
+      <title>What can DMT do for us?</title>
+      <para id="id38590495">As will be revealed in later modules, DMT modulation offers many features that protect our signal’s information from being distorted by the channel. Specifically, by transmitting our information over several subcarriers at the same time instead of just one carrier, we can use the frequency response of the system to see which carriers are being attenuated and likewise increase the gain on those channels or get rid of them altogether. You will discover, as we did, how difficult that process turned out to be.</para>
+    </section>
+  </content>
+</document>

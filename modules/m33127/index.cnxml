@@ -1,0 +1,36 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Conclusions</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33127</md:content-id>
+  <md:title>Conclusions</md:title>
+  <md:abstract>It's time to wrap this up! Conclusions, Improvements, and our most sincere Thank You!</md:abstract>
+  <md:uuid>983704da-9004-4481-9535-3c044ce3e013</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="example">
+      <link url="http://cnx.org/content/m33133/latest/" strength="3">Meet the Team!</link>
+    </link-group>
+    <link-group type="prerequisite">
+      <link url="http://cnx.org/content/m33113/latest/" strength="3">Results</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="id1170763541626">
+      <title>Conclusions</title>
+      <para id="id1170763491132">After generating the PMFs from samples of each language, we notice that, for Japanese, the probability of the “u” sound is comparatively smaller than the other vowel sounds. This supports the fact that “u” sound is actually quite uncommon in the Japanese language. In addition, from our generated pmfs, it appears that detection for Japanese is fairly consistent, with only one sample missed. For Spanish, each of the five samples was detected correctly. However, for English, only two of the five samples were detected correctly. This result may suggest that English has greater variability in its vowel sounds than Spanish and Japanese. Therefore, five-minute samples are not enough for proper detection. </para>
+      <para id="id1170763490093">We conclude that our approach is inadequate for proper language detection. First, the PMFs of vowel sounds for different languages do not vary as much as we initially thought. Therefore, languages of similar origins (e.g. romantic languages) are difficult to differentiate apart. Second, our approach is extremely sample-size dependent, because it relies on the sample PMF to converge to the reference PMF. By the law of large numbers, our approach would only work with large sample sizes. In addition, there is no guarantee that our reference PMF is the expected PMF of the language. We compiled our reference PMF from sixty total minutes of samples, but the actual expected PMF may require much larger samples. Third, our method is quite tedious. Our samples require significant signal processing before it can be used in our system, including down-sampling, amplification, and noise removal. Also, each person speaks at different formant frequencies. Therefore, the vowel sound recognition system needs to be synced to each speaker. In conclusion, our language detection system is functional but severely limited. </para>
+    </section>
+    <section id="id1170763552928">
+      <title>Improvements</title>
+      <para id="id1170763488898">There’s always room for improvement! As mentioned, a larger sample size would greatly improve the accuracy of our system. In addition, since what separate languages are not their vowels but consonants, I believe a consonant sound recognition system in complement with our vowel sound recognition system would drastically improve the applicability of our system. Finally, the detection process, especially the preparation of the speech samples, can be automated to lessen hardship on the tester. </para>
+    </section>
+    <section id="id1170763515030">
+      <title>Acknowledgements</title>
+      <para id="id1170763492132">We would like to extend our thanks to Professor Richard Baraniuk, Matthew Moravec, Daniel Williamson, and our mentor Stephen Schnelle.</para>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,15 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>A Flag Semaphore Computer Vision System:  Acknowledgements</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33106</md:content-id>
+  <md:title>A Flag Semaphore Computer Vision System:  Acknowledgements</md:title>
+  <md:abstract>This module acknoledges some of the other people who have contributed to the success of this project.</md:abstract>
+  <md:uuid>797559e5-7c6f-4a9f-8100-a0f6de82fe12</md:uuid>
+</metadata>
+<content>
+    <section id="cid1">
+      <title>Acknowledgements</title>
+      <para id="id340523">The authors would now like to acknowledge some of the other people who have contributed to the success of this project. First, we thank Chinmay Hegde and Dr. Rich Baraniuk for mentoring our project group and instructing our ELEC 301 class, respectively. We also appreciate Dr. Alan Cox for providing us with information on the use of raw TCP sockets. Finally, we send our thanks to Micah Richert who published a program enabling our old version of MATLAB to read and write from wmv files and to the jNetPcap and WinPcap developers for their efforts.</para>
+    </section>
+  </content>
+</document>

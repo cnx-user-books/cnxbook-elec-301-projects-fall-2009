@@ -1,0 +1,19 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>References</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33146</md:content-id>
+  <md:title>References</md:title>
+  <md:abstract>This module is part of a collection of modules for a class project on matrix completion techniques for the sensor network localization problem done for the Fall, 2009 offering of Prof.  Baraniuk's ELEC 301 course at Rice University.</md:abstract>
+  <md:uuid>3f7f31bc-41a2-452c-bfb6-7f933bb1a0e5</md:uuid>
+</metadata>
+<content>
+    <section id="cid1">
+      <title>References</title>
+      <para id="id2253178">In addition to the papers that are cited throughout the other modules in this collection, we made use of the following other resources when carrying out this project:</para>
+      <para id="id2253185">The OptSpace code written by Keshavan, Montanari, and Oh that was used for running the simulations carried out in this project was obtained from <link url="http://www.stanford.edu/~raghuram/optspace/code.html">http://www.stanford.edu/~raghuram/optspace/code.html</link>. While
+the multidimensional scaling code used to generate the plots of the reconstructed networks was written entirely by us, we made use of the following book for information on how to go about writing it:</para>
+      <para id="id2253832">I. Borg and P. Groenen. <emphasis effect="italics">Modern Multidimensional Scaling: Theory and Applications</emphasis>. New York: Springer, 1997. pg. 207-210, 261-267.</para>
+    </section>
+  </content>
+  <bib:file/>
+</document>

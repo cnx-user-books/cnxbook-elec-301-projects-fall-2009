@@ -1,0 +1,654 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML">
+  <title>Facial Recognition using Eigenfaces: Projection onto Face Space</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33182</md:content-id>
+  <md:title>Facial Recognition using Eigenfaces: Projection onto Face Space</md:title>
+  <md:abstract>Methods</md:abstract>
+  <md:uuid>dc8de36a-447f-43cb-a6a7-e0361d64412f</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="example">
+      <link url="http://cnx.org/content/m33181/latest/" strength="3">Next: Results</link>
+      <link url="http://cnx.org/content/m33183/latest/" strength="3">Previous: Obtaining Eigenfaces</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="id17203837">
+      <title>Projection onto Face Space</title>
+      <section id="id8244853">
+        <title>Compute Weight Matrix</title>
+        <para id="id17316622">Now that we have the eigenfaces, we could proceed to projecting the training images onto the face space. The K-dimension face space is spanned with the top K eigenfaces. An interesting thing to note here is that each axis of the face space is weighted with respect to the eigenvalue associated with it. So the first few axes will contain more weight than the later axes. </para>
+        <para id="id7127941">To project the mean-subtracted training images <emphasis effect="italics">V</emphasis><emphasis effect="italics">i</emphasis>’s onto the face space, we first take each image and compute its weight <emphasis effect="italics">w</emphasis><emphasis effect="italics">i</emphasis> on each of the axis by taking the dot product between the image and an eigenface. This process is repeated for each eigenface with each training image. The resulting weights are put into a weight matrix <emphasis effect="italics">WM</emphasis> with a dimension of <emphasis effect="italics">K</emphasis> x <emphasis effect="italics">W</emphasis>.</para>
+        
+        <equation id="eip-20"><m:math>
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mrow>
+                        <m:msub>
+                          <m:mi>V</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mi>j</m:mi>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msub>
+                        <m:mo stretchy="false">=</m:mo>
+                        <m:msub>
+                          <m:mi>w</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mn>1</m:mn>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msub>
+                      </m:mrow>
+                      <m:mrow>
+                        <m:msub>
+                          <m:mi>u</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mn>1</m:mn>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msub>
+                        <m:mo stretchy="false">+</m:mo>
+                        <m:msub>
+                          <m:mi>w</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mn>2</m:mn>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msub>
+                      </m:mrow>
+                      <m:mrow>
+                        <m:msub>
+                          <m:mi>u</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mn>2</m:mn>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msub>
+                        <m:mo stretchy="false">+</m:mo>
+                        <m:mtext>.</m:mtext>
+                      </m:mrow>
+                      <m:mtext>.</m:mtext>
+                      <m:mrow>
+                        <m:mtext>.</m:mtext>
+                        <m:mo stretchy="false">+</m:mo>
+                        <m:msub>
+                          <m:mi>w</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mi>k</m:mi>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msub>
+                      </m:mrow>
+                      <m:msub>
+                        <m:mi>u</m:mi>
+                        <m:mstyle fontsize="8pt">
+                          <m:mrow>
+                            <m:mi>k</m:mi>
+                          </m:mrow>
+                        </m:mstyle>
+                      </m:msub>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{V rSub { size 8{j} } =w rSub { size 8{1} } u rSub { size 8{1} } +w rSub { size 8{2} } u rSub { size 8{2} } + "."  "."  "." +w rSub { size 8{k} } u rSub { size 8{k} } } {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation><equation id="id17825189">
+          <m:math>
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mstyle fontstyle="italic">
+                        <m:mrow>
+                          <m:mtext>WM</m:mtext>
+                        </m:mrow>
+                      </m:mstyle>
+                      <m:mo stretchy="false">=</m:mo>
+                      <m:mfenced open="[" close="]">
+                        <m:mtable>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mo stretchy="false">(</m:mo>
+                                <m:msub>
+                                  <m:mi>w</m:mi>
+                                  <m:mstyle fontsize="8pt">
+                                    <m:mrow>
+                                      <m:mn>1</m:mn>
+                                    </m:mrow>
+                                  </m:mstyle>
+                                </m:msub>
+                                <m:msub>
+                                  <m:mo stretchy="false">)</m:mo>
+                                  <m:mstyle fontsize="8pt">
+                                    <m:mrow>
+                                      <m:msub>
+                                        <m:mi>V</m:mi>
+                                        <m:mstyle fontsize="6pt">
+                                          <m:mrow>
+                                            <m:mn>1</m:mn>
+                                          </m:mrow>
+                                        </m:mstyle>
+                                      </m:msub>
+                                    </m:mrow>
+                                  </m:mstyle>
+                                </m:msub>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mo stretchy="false">(</m:mo>
+                                <m:msub>
+                                  <m:mi>w</m:mi>
+                                  <m:mn>1</m:mn>
+                                </m:msub>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:msub>
+                                      <m:mo stretchy="false">)</m:mo>
+                                      <m:msub>
+                                        <m:mi>V</m:mi>
+                                        <m:mstyle fontsize="6pt">
+                                          <m:mrow>
+                                            <m:mn>2</m:mn>
+                                          </m:mrow>
+                                        </m:mstyle>
+                                      </m:msub>
+                                    </m:msub>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mo stretchy="false">(</m:mo>
+                                      <m:msub>
+                                        <m:mi>w</m:mi>
+                                        <m:mn>1</m:mn>
+                                      </m:msub>
+                                      <m:mstyle fontsize="12pt">
+                                        <m:mrow>
+                                          <m:msub>
+                                            <m:mo stretchy="false">)</m:mo>
+                                            <m:msub>
+                                              <m:mi>V</m:mi>
+                                              <m:mstyle fontsize="6pt">
+                                                <m:mrow>
+                                                  <m:mi>W</m:mi>
+                                                </m:mrow>
+                                              </m:mstyle>
+                                            </m:msub>
+                                          </m:msub>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mo stretchy="false">(</m:mo>
+                                      <m:msub>
+                                        <m:mi>w</m:mi>
+                                        <m:mn>2</m:mn>
+                                      </m:msub>
+                                      <m:mstyle fontsize="12pt">
+                                        <m:mrow>
+                                          <m:msub>
+                                            <m:mo stretchy="false">)</m:mo>
+                                            <m:msub>
+                                              <m:mi>V</m:mi>
+                                              <m:mstyle fontsize="6pt">
+                                                <m:mrow>
+                                                  <m:mn>1</m:mn>
+                                                </m:mrow>
+                                              </m:mstyle>
+                                            </m:msub>
+                                          </m:msub>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mo stretchy="false">(</m:mo>
+                                      <m:msub>
+                                        <m:mi>w</m:mi>
+                                        <m:mn>2</m:mn>
+                                      </m:msub>
+                                      <m:mstyle fontsize="12pt">
+                                        <m:mrow>
+                                          <m:msub>
+                                            <m:mo stretchy="false">)</m:mo>
+                                            <m:msub>
+                                              <m:mi>V</m:mi>
+                                              <m:mstyle fontsize="6pt">
+                                                <m:mrow>
+                                                  <m:mn>2</m:mn>
+                                                </m:mrow>
+                                              </m:mstyle>
+                                            </m:msub>
+                                          </m:msub>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mo stretchy="false">(</m:mo>
+                                      <m:msub>
+                                        <m:mi>w</m:mi>
+                                        <m:mn>2</m:mn>
+                                      </m:msub>
+                                      <m:mstyle fontsize="12pt">
+                                        <m:mrow>
+                                          <m:msub>
+                                            <m:mo stretchy="false">)</m:mo>
+                                            <m:msub>
+                                              <m:mi>V</m:mi>
+                                              <m:mstyle fontsize="6pt">
+                                                <m:mrow>
+                                                  <m:mi>W</m:mi>
+                                                </m:mrow>
+                                              </m:mstyle>
+                                            </m:msub>
+                                          </m:msub>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mo stretchy="false">(</m:mo>
+                                      <m:msub>
+                                        <m:mi>w</m:mi>
+                                        <m:mn>3</m:mn>
+                                      </m:msub>
+                                      <m:mstyle fontsize="12pt">
+                                        <m:mrow>
+                                          <m:msub>
+                                            <m:mo stretchy="false">)</m:mo>
+                                            <m:msub>
+                                              <m:mi>V</m:mi>
+                                              <m:mstyle fontsize="6pt">
+                                                <m:mrow>
+                                                  <m:mn>1</m:mn>
+                                                </m:mrow>
+                                              </m:mstyle>
+                                            </m:msub>
+                                          </m:msub>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mo stretchy="false">(</m:mo>
+                                      <m:msub>
+                                        <m:mi>w</m:mi>
+                                        <m:mn>3</m:mn>
+                                      </m:msub>
+                                      <m:mstyle fontsize="12pt">
+                                        <m:mrow>
+                                          <m:msub>
+                                            <m:mo stretchy="false">)</m:mo>
+                                            <m:msub>
+                                              <m:mi>V</m:mi>
+                                              <m:mstyle fontsize="6pt">
+                                                <m:mrow>
+                                                  <m:mn>2</m:mn>
+                                                </m:mrow>
+                                              </m:mstyle>
+                                            </m:msub>
+                                          </m:msub>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mo stretchy="false">(</m:mo>
+                                      <m:msub>
+                                        <m:mi>w</m:mi>
+                                        <m:mn>3</m:mn>
+                                      </m:msub>
+                                      <m:mstyle fontsize="12pt">
+                                        <m:mrow>
+                                          <m:msub>
+                                            <m:mo stretchy="false">)</m:mo>
+                                            <m:msub>
+                                              <m:mi>V</m:mi>
+                                              <m:mstyle fontsize="6pt">
+                                                <m:mrow>
+                                                  <m:mi>W</m:mi>
+                                                </m:mrow>
+                                              </m:mstyle>
+                                            </m:msub>
+                                          </m:msub>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mo stretchy="false">(</m:mo>
+                                      <m:msub>
+                                        <m:mi>w</m:mi>
+                                        <m:mi>k</m:mi>
+                                      </m:msub>
+                                      <m:mstyle fontsize="12pt">
+                                        <m:mrow>
+                                          <m:msub>
+                                            <m:mo stretchy="false">)</m:mo>
+                                            <m:msub>
+                                              <m:mi>V</m:mi>
+                                              <m:mstyle fontsize="6pt">
+                                                <m:mrow>
+                                                  <m:mn>1</m:mn>
+                                                </m:mrow>
+                                              </m:mstyle>
+                                            </m:msub>
+                                          </m:msub>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mo stretchy="false">(</m:mo>
+                                      <m:msub>
+                                        <m:mi>w</m:mi>
+                                        <m:mi>k</m:mi>
+                                      </m:msub>
+                                      <m:mstyle fontsize="12pt">
+                                        <m:mrow>
+                                          <m:msub>
+                                            <m:mo stretchy="false">)</m:mo>
+                                            <m:msub>
+                                              <m:mi>V</m:mi>
+                                              <m:mstyle fontsize="6pt">
+                                                <m:mrow>
+                                                  <m:mn>2</m:mn>
+                                                </m:mrow>
+                                              </m:mstyle>
+                                            </m:msub>
+                                          </m:msub>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                      <m:mtext>.</m:mtext>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mstyle fontsize="12pt">
+                                  <m:mrow>
+                                    <m:mrow>
+                                      <m:mo stretchy="false">(</m:mo>
+                                      <m:msub>
+                                        <m:mi>w</m:mi>
+                                        <m:mi>k</m:mi>
+                                      </m:msub>
+                                      <m:mstyle fontsize="12pt">
+                                        <m:mrow>
+                                          <m:msub>
+                                            <m:mo stretchy="false">)</m:mo>
+                                            <m:msub>
+                                              <m:mi>V</m:mi>
+                                              <m:mstyle fontsize="6pt">
+                                                <m:mrow>
+                                                  <m:mi>W</m:mi>
+                                                </m:mrow>
+                                              </m:mstyle>
+                                            </m:msub>
+                                          </m:msub>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:mrow>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                        </m:mtable>
+                      </m:mfenced>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{ ital "WM"= left [ matrix {
+ \( w rSub { size 8{1} }  \)  rSub { size 8{V rSub { size 6{1} } } }  {} #  \( w rSub {1}  size 12{ \)  rSub {V rSub { size 6{2} } } } {} #  size 12{ "."  "."  "." }  {} #  size 12{ \( w rSub {1}  size 12{ \)  rSub {V rSub { size 6{W} } } }}  {} ##
+ size 12{ \( w rSub {2}  size 12{ \)  rSub {V rSub { size 6{1} } } }}  {} #  size 12{ \( w rSub {2}  size 12{ \)  rSub {V rSub { size 6{2} } } }}  {} #  size 12{ "."  "."  "." }  {} #  size 12{ \( w rSub {2}  size 12{ \)  rSub {V rSub { size 6{W} } } }}  {} ##
+ size 12{ \( w rSub {3}  size 12{ \)  rSub {V rSub { size 6{1} } } }}  {} #  size 12{ \( w rSub {3}  size 12{ \)  rSub {V rSub { size 6{2} } } }}  {} #  size 12{ "."  "."  "." }  {} #  size 12{ \( w rSub {3}  size 12{ \)  rSub {V rSub { size 6{W} } } }}  {} ##
+ size 12{ "."  "."  "." }  {} #  size 12{ "."  "."  "." }  {} #  size 12{ "."  "."  "." }  {} #  size 12{ "."  "."  "." }  {} ##
+ size 12{ \( w rSub {k}  size 12{ \)  rSub {V rSub { size 6{1} } } }}  {} #  size 12{ \( w rSub {k}  size 12{ \)  rSub {V rSub { size 6{2} } } }}  {} #  size 12{ "."  "."  "." }  {} #  size 12{ \( w rSub {k}  size 12{ \)  rSub {V rSub { size 6{W} } } }} {}
+}  right ]} {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation>
+        
+        <para id="id8326245">
+          <figure id="id17282318"><media id="id17282318_media" alt="">
+              <image mime-type="image/png" src="../../media/Picture 5.png" id="id17282318__onlineimage" height="362" width="651"/>
+            </media>
+          <caption>Projection of training images (blue dots) and test image (red dot) onto the 3-dimensional face space</caption></figure>
+        </para>
+      </section>
+      <section id="id15766236">
+        <title>Compute Threshold Values</title>
+        <para id="id13537292">When given a test image (red dot), it is first projected onto the face space using the same method as before and then categorized using some threshold values. By testing these and graphing the minimum distance between each test image and the closest image in the training set, we were able to experimentally come up with the thresholds. The following graph shows the result of a particular run on the HFH dataset.</para>
+        <para id="id10267541">
+          <figure id="id11668934"><media id="id11668934_media" alt="">
+              <image mime-type="image/png" src="../../media/Picture 4-36f6.png" id="id11668934__onlineimage" height="396" width="650"/>
+            </media>
+          <caption>Minimum distances of various test images to determine thresholds</caption></figure>
+        </para>
+        
+        <para id="id17860992">This graph shows the minimum distance between each test image and the closest image in the training set. Images 0-91 represent faces in the training set, images 92-160 are faces not in the training set, and images 161-225 are images that are not faces. Because the training set is randomly selected from our databases, the thresholds vary each time the code is run. The thresholds are dynamic values that change with respect to the furthest distance <emphasis effect="italics">d</emphasis> between any two training images. However, a trend emerged after looking at the data, and we determined that the thresholds were to be set at 10% (0.1<emphasis effect="italics">d</emphasis>) and 20%(0.2<emphasis effect="italics">d</emphasis>) of the maximum distance between two faces in the training set for determining if it was a match and whether or not the image was a face at all, respectively. These thresholds are used when determining the success or failure of recognition for both the JAFFE and Rice University datasets. </para>
+        
+        <para id="id14926555">As the figure shows, in this particular run, our algorithm successfully identified all faces in the training set as known faces. Similarly, all but one of the unknown faces fell within the correct threshold. However, our algorithm had some trouble identifying images that were not faces: about ¼ of them were identified as unknown faces. We think this occurred because some non-face images had the same round shape as a face (fruit, for example), or had features (animals). Despite this weakness, our algorithm was successful overall. </para>
+      </section>
+    </section>
+  </content>
+</document>

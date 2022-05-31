@@ -1,0 +1,36 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Meet the Team</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33133</md:content-id>
+  <md:title>Meet the Team</md:title>
+  <md:abstract>Meet the team members of this project!</md:abstract>
+  <md:uuid>0de4bc7b-2752-4f19-ac40-9dd72800f976</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="example">
+      <link url="http://cnx.org/content/m33121/latest/" strength="3">Introduction and some Background Information</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="id1170748998544">
+      <title>Language Recognition Using Vowel PMF Analysis</title>
+      <section id="id1170739367512">
+        <title>Meet the 4 Guys</title>
+        <para id="id1170738085765">Haiying Lu (hl6@) – Chinese boi from Mississippi. Likes sweet tea, fried chicken, and believes in true love. Dream occupation: Save the world with a law degree and lots of love. </para>
+        <para id="id1170739172013">Wharton Wang(wkw1@) –Culturally confused. 6’1 height complete waste. Fashion guru. Dream occupation: First Asian American President or win an Oscar, Grammy, &amp; Tony. </para>
+        <para id="id1170747408787">Jason Xu (jax1@) – Hair never grows longer than one inch. Desires life to be like a musical. Diva. Dream occupation: Be the next Yao Ming or open his own gym.</para>
+        <para id="id4366577">Qian Zhang (qz1@) – Enjoys good tv shows and will critique your dance move. Campus celebrity. Dream occupation: Runway model or Pokemon Master. </para>
+        <figure id="id1170746879810">
+          <media id="id1170746879810_media" alt="">
+            <image mime-type="image/jpg" src="../../media/graphics1-a64d.jpg" id="id1170746879810__onlineimage" height="322" width="242"/>
+          </media>
+        </figure>
+        <para id="id1170746396119">From L-R: Haiying Lu,Wharton Wang, Jason Xu, Qian Zhang</para>
+      </section>
+    </section>
+  </content>
+</document>

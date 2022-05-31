@@ -1,0 +1,36 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Facial Recognition using Eigenfaces: Conclusion</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33177</md:content-id>
+  <md:title>Facial Recognition using Eigenfaces: Conclusion</md:title>
+  <md:abstract>Conclusion</md:abstract>
+  <md:uuid>4f750490-6270-4923-ae74-b8240dfe24ea</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="example">
+      <link url="http://cnx.org/content/m33181/latest/" strength="3">Previous: Results</link>
+      <link url="http://cnx.org/content/m33180/latest/" strength="3">Next: References</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="id46650135">
+      <title>Conclusion</title>
+      <para id="id44223398">This project yielded fairly accurate face detection results using the eigenface method. Interestingly, we found that a database of some 200 images can be accurately represented with only about 6 eigenfaces. This demonstrates that the eigenface method is useful for its ability to compress large datasets into a small number of eigenfaces and weights. We predict that our results will scale, that is, the number of eigenfaces needed to represent a database of 1,000 or 1,000,000 images will be far fewer than the number of images. Based on our results, we hypothesize that more diverse datasets require slightly more eigenfaces for accurate representation. Our project demonstrates that the eigenface method is an efficient and accurate technique for facial recognition.</para>
+      <section id="id43858576">
+        <title>Further work</title>
+        <para id="id45254404">To improve the results of the eigenface method implemented, a normalization program could be developed to determine the facial metrics and normalize the photos such that facial features are held in constant positions and contrast and light intensities between photos are balanced. Localizing of the features would keep head positions fairly consistent and yield better eigenfaces. </para>
+        <para id="id37447598">Creating a program to extract faces from their environment (for example, by using a matched filter) would expand the possible applications of this project. Individual faces could be extracted from security cameras or group pictures.</para>
+        <para id="id40669789">A larger and more diverse dataset would also increase face identification and recognition. We would like to include people of diverse ages, since everyone in both the JAFFE and Rice datasets was in their teens or twenties. Increasing the size and quality of the dataset would boost the recognition rate. We would like to see how many eigenfaces are needed to represent a dataset of 1,000 or 1,000,000 images. </para>
+        <para id="id42293799">Because both our datasets have emotions as a variable, it would be interesting to create an “emotion detector”, as was done with the JAFFE data. Despite the fact that emotions look different on every person (fear was found to be an especially problematic emotion), emotion recognition rates of over 67% were attained<sup/>using Gabor wavelets<sup>2 </sup>. It would be interesting to see how the eigenface method compares.</para>
+      </section>
+      
+    </section><section id="eip-245"><title>Facial Recognition Source Codes</title><list id="eip-896"><item>If you would like to try out out our facial recognition code for yourself, you can download them <link resource="SingleRun.rar">here</link>. This code allows you to input one test image and matches it to the closest image in the given dataset. The JAFFE dataset is included for testing.</item>
+          <item>If you would like to test with our full code or to obtain the HFH dataset, please contact Aron Yu (<link url="mailto:aron.yu@rice.edu">aron.yu@rice.edu</link>)</item>
+<item>GUI version of the code coming soon...</item>
+        </list></section>
+  </content>
+</document>

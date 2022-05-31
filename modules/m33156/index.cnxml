@@ -1,0 +1,89 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Image Processing - License Plate Localization and Letters Extraction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33156</md:content-id>
+  <md:title>Image Processing - License Plate Localization and Letters Extraction</md:title>
+  <md:abstract>ELEC 301 Group Project: LiPE
+How to find the license plate letters and numbers in an image of a car.</md:abstract>
+  <md:uuid>a66532b2-53f8-4266-98c8-4bbfa501621b</md:uuid>
+</metadata>
+<content>
+    <para id="id16438852">The general method we used for extracting the license plate letters out of a picture was:</para>
+    <figure id="id8378642">
+      <media id="id8378642_media" alt="">
+        <image mime-type="image/png" src="../../media/graphics1-a5bf.png" id="id8378642__onlineimage" height="75" width="431"/>
+      </media>
+      <caption>Overall method for finding license plate letters/numbers.</caption>
+    </figure>
+    <list id="id17259590" list-type="enumerated" number-style="arabic">
+      <item><emphasis>Compression and Cropping: </emphasis>decreases the size of the photo and and blacks out areas that definitely do not contain license plate.</item>
+      <item><emphasis>License Plate Localization: </emphasis>determines the location of the plate in the photo</item>
+      <item><emphasis>Letter Extraction: </emphasis>searches within the plate for the plate letters/numbers and copies them out of the photo.</item>
+    </list>
+    <para id="id7823175">Following is an explanation of the individual sections. Included are also images showing the effects of each section on the following picture:</para>
+    <figure id="id16701425">
+      <media id="id16701425_media" alt="">
+        <image mime-type="image/jpg" src="../../media/graphics2-d068.jpg" id="id16701425__onlineimage" height="200" width="267"/>
+      </media>
+      <caption>Original image.</caption>
+    </figure>
+    <section id="id16617811">
+      <title>Compression and Cropping</title>
+      <para id="id19902729">In order to decrease image processing time, we first compress all pictures to a standard size and black out all areas that are definitely not license plates. The size we chose was 640px by 480px, the smallest size at which we could still reasonably read the license plates.</para>
+      <para id="id9787836">To determine which areas were definitely not license plates, we realized that the typical Texas plate contained red, blue, and white as major colors. Therefore, we focused on these two colors, making our cropping algorithm:</para>
+      <list id="id13423225" list-type="enumerated" number-style="arabic">
+        <item>Separate the JPEG picture into its three layers of red, green, and blue.</item>
+        <item>Consider the area around a blue pixel, and black it out if the density of red is lower than a certain threshold value.</item>
+      </list>
+      <para id="id7170426">
+        <figure id="id19898108"><media id="id19898108_media" alt="">
+            <image mime-type="image/jpg" src="../../media/graphics3-6b69.jpg" id="id19898108__onlineimage" height="200" width="267"/>
+          </media>
+          
+        <caption>Compressed and cropped image (Note the black areas around the right and bottom of the photo).</caption></figure>
+      </para>
+    </section>
+    <section id="id23204145">
+      <title>License Plate Localization</title>
+      <para id="id17098100">Once we determined which areas possibly contained license plates, we looked in those areas for the plates themselves. We determined that most plates contain dark letters on light backgrounds and so looked for areas of high contrast.</para>
+      <para id="id12734682">Our final algorithm looked as follows:</para>
+      <list id="id24237470" list-type="enumerated" number-style="arabic">
+        <item>Turn the cropped photo into black-and-white for easier differentiation between dark and light spots.</item>
+        <item>Filter the image to remove noise (single-pixel white spots).</item>
+        <item>Locate the license plate position by scanning the photo vertically. We expect a row running through the license plate row to have a maximum number of individual dark spots, or "clusters." Therefore, we find and store the two rows in the image with that contain the most clusters.</item>
+        <item>To find the horizontal position of the plate, scan the picture horizontally by moving a square window from left to right and counting the number of clusters inside. The final position of the license plate is square that contains the greatest number of clusters. If any two squares contain the same number of clusters, the two are merged together.</item>
+      </list>
+      <figure id="id13088488">
+        <media id="id13088488_media" alt="">
+          <image mime-type="image/jpg" src="../../media/graphics4-c705.jpg" id="id13088488__onlineimage" height="200" width="233"/>
+        </media>
+        <caption>Close-up of the license plate as determined by the algorithm.</caption>
+      </figure>
+    </section>
+    <section id="id21752459">
+      <title>Letter Extraction</title>
+      <para id="id11873526">To find the letters on a license plate, we first determined some identifying characteristics:</para>
+      <list id="id13038104" list-type="enumerated" number-style="arabic">
+        <item>Usually, and always on Texas plates, the letters of the plate are dark on a light background.</item>
+        <item>The letters are uniform in height</item>
+        <item>The letters all occur in approximately the same area.</item>
+        <item>There are usually between 3 and 7 letters on a plate.</item>
+      </list>
+      <para id="id7756748">These characteristics give us the form for our letter extracting algorithm.</para>
+      <list id="id17738264" list-type="enumerated" number-style="arabic">
+        <item>From the plate-locating algorithm, we have a small 200px by 200px image that contains the car's license plate.</item>
+        <item>We convert the image into grayscale for easier processing.</item>
+        <item>We locate all the dark (low intensity) spots in the picture that are surrounded by light (high intensity) spots. We determine the separation between these dark spots and give each individual spot a label.</item>
+        <item>Compare the sizes of the spots and look for about six that have the same height. These six spots are the letters on the plate.</item>
+        <item>Save the pixels that make up the letters into their individual matrices.</item>
+      </list>
+      <para id="id19934761">We tried this algorithm and found that it worked for all images for which the plate-locating algorithm returned an image containing the entire plate.</para>
+      <figure id="id25739943">
+        <media id="id25739943_media" alt="">
+          <image mime-type="image/png" src="../../media/graphics5.png" id="id25739943__onlineimage" height="35" width="160"/>
+        </media>
+        <caption>Letters extracted from the photo.</caption>
+      </figure>
+    </section>
+  </content>
+</document>

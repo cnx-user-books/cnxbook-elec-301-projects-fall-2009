@@ -1,0 +1,19 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>The Fingerprint of a Song</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33186</md:content-id>
+  <md:title>The Fingerprint of a Song</md:title>
+  <md:abstract/>
+  <md:uuid>6d89fc8e-a2a3-4945-b1cf-648143844651</md:uuid>
+</metadata>
+<content>
+    
+    <para id="id20051972">Just like how every individual has a unique fingerprint that can be used to distinguish one person from another, our algorithm creates a digital fingerprint for each song that can be used to distinguish two songs. The song’s fingerprint consists of list of time-frequency pairs that uniquely represent all the significant peaks in the song’s spectrogram. To assure accurate matching between two fingerprints, our algorithm needs to take into account the following issues when choosing peaks for the fingerprint:</para>
+    <list id="id20056856" list-type="bulleted">
+      <item><emphasis>Uniqueness</emphasis> – The fingerprint of each song needs to be unique to that one song. Fingerprints of different songs need to be different enough to be easily distinguished by our scoring algorithm.</item>
+      <item><emphasis>Sparseness</emphasis> – The computational time of our matched filter depends on the amount of data in each song’s fingerprint. Thus each fingerprint needs to sparse enough for fast results, but still contain enough information to provide accurate matches.</item>
+      <item><emphasis>Noise Resistant</emphasis> – Song data may contain large amounts of background noise. The fingerprinting algorithm must be able to differentiate between the signal and added noise, storing only the signal information in the fingerprint.</item>
+    </list>
+    <para id="id20056941">These criteria are all met by identifying major peaks in the song’s spectrogram. The following section describes the fingerprinting algorithm in more detail.</para>
+  </content>
+</document>

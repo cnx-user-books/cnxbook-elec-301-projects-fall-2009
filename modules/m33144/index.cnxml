@@ -1,0 +1,51 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>The Channel</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33144</md:content-id>
+  <md:title>The Channel</md:title>
+  <md:abstract>After transmission our signal enters the acoustic channel, join us as we witness what unfolds</md:abstract>
+  <md:uuid>a316a849-c8b5-4fd7-8739-08b45d2ba6a3</md:uuid>
+</metadata>
+<content>
+    <section id="id9546916">
+      <title>The Channel</title>
+      <para id="id12193610">To characterize the channel, we input an impulse by recording the tapping of the mic with our fingers. We then played that sound through the speaker and recorded the response with the mic. The signal is below, along with its spectrum.</para>
+<figure id="trans_block_fig">
+  <title>Impulse Response of the Channel and its Spectrum</title>
+  <media id="impulse" alt="impulse">
+	   
+  <image mime-type="image/jpeg" src="../../media/impulzes.JPG"/>
+		 
+</media>
+  <caption>
+     These graphs characterize the channel that we are transmitting through
+  </caption>
+</figure>
+      <para id="id8770222">We did this in preparation for the receiving end of the system to divide the received signal’s FFT by the impulse response’s FFT.</para>
+      <para id="id8869394">Below are plots of our transmitted and received signals, along with their spectrums. You will notice a great similarity between the signals in time, however a distinct difference in frequency. Unfortunately, this loss in frequency will translate to a loss of information.</para>
+<figure id="cigs">
+  <title>Transmitted and Received Signals in the time domain</title>
+  <media id="cignals" alt="signals">
+	   
+  <image mime-type="image/jpeg" src="../../media/signals.JPG"/>
+		 
+</media>
+  <caption>
+     These are the signals in time that we transmitted (green) and that we received (red).  As you can see they look very similar, and take it from us, they also sound similar.
+  </caption>
+</figure>
+<figure id="specs">
+  <title>Transmitted and Received Signal Spectrums</title>
+  <media id="spectrums" alt="spectrum">
+	   
+  <image mime-type="image/jpeg" src="../../media/spectrums.JPG"/>
+		 
+</media>
+  <caption>
+     The green spectrum is of the signal we transmitted, and the red is the spectrum of the signal we received.  We see a much bigger visual difference than we did in the time domain.
+  </caption>
+</figure>
+      <para id="id12265278">Above are plots for our transmitted and received signals. Here we used a block length of half the duration of the signal and sent it through the air at 44.1 kHz.</para>
+    </section>
+  </content>
+</document>

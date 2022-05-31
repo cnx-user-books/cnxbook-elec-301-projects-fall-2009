@@ -1,0 +1,72 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>A Flag Semaphore Computer Vision System: Demonstration</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33100</md:content-id>
+  <md:title>A Flag Semaphore Computer Vision System: Demonstration</md:title>
+  <md:abstract>This module contains several example flag semaphore video signals taken as input by the flag semaphore computer vision and interpretation program.  The corresponding output video files are also displayed.</md:abstract>
+  <md:uuid>99b8180f-1275-4249-a99f-91f7d7516e1e</md:uuid>
+</metadata>
+<content>
+  <section id="eip-335"><title>Example Video Input and Output</title><para id="eip-575">In the testing of the recognition system, several basic signals were recorded.  These tested things like recognizing the position of the sender from the first semaphore "J".  This is essential to properly recognize all eight positions of the flags, each of which occurs in our test signals.  We also test the letters to numbers state transition.</para><example id="eip-111"><para id="eip-694">
+  <figure id="exampleinput1"><title>Example Input Video: ELEC 301</title><media id="yt-media" display="block" alt="Example Input Video: ELEC 301">
+  <flash id="yt-video" mime-type="application/x-shockwave-flash" src="http://www.youtube.com/v/uU3_7cNT_7U&amp;hl=en_US&amp;fs=1&amp;" width="425" height="344">
+   <param name="allowscriptaccess" value="always"/>
+   <param name="allowsfullscreen" value="true"/>
+  </flash>
+ </media>
+<caption>A sample signal that spells out the course number ELEC 301, which includes both letters and numbers.</caption></figure>
+
+
+
+
+<figure id="exampleoutput1"><title>Example Output Video: ELEC 301</title><media id="yt-media2" display="block" alt="Example Output Video: ELEC 301">
+  <flash id="yt-video2" mime-type="application/x-shockwave-flash" src="http://www.youtube.com/v/5EeiXKrKwC8&amp;hl=en_US&amp;fs=1&amp;" width="425" height="344">
+   <param name="allowscriptaccess" value="always"/>
+   <param name="allowsfullscreen" value="true"/>
+  </flash>
+ </media>
+<caption>The output of the the filter for the signal "ELEC 301 " above.  Notice the blank output for the control codes for letters (the first) and numbers.  This file is output directly from the MATLAB code.</caption></figure>
+</para>
+</example><example id="eip-956"><para id="eip-510">
+  <figure id="exampleinput2"><title>Example Input Video: ABCDEFG</title><media id="yt-media3" display="block" alt="Example Input Video: ABCDEFG">
+  <flash id="yt-video3" mime-type="application/x-shockwave-flash" src="http://www.youtube.com/v/IbJ2fDOtUVs&amp;hl=en_US&amp;fs=1&amp;" width="425" height="344">
+   <param name="allowscriptaccess" value="always"/>
+   <param name="allowsfullscreen" value="true"/>
+  </flash>
+ </media>
+<caption>A simple alphabetic test case of the flag semaphore recognition system.  Note some of the patterns formed in the standard semaphore alphabet.</caption></figure>
+
+<figure id="exampleoutput2"><title>Example Output Video: ABCDEFG</title><media id="yt-media4" display="block" alt="Example Output Video: ABCDEFG">
+  <flash id="yt-video4" mime-type="application/x-shockwave-flash" src="http://www.youtube.com/v/EC-3Ql_983c&amp;hl=en_US&amp;fs=1&amp;" width="425" height="344">
+   <param name="allowscriptaccess" value="always"/>
+   <param name="allowsfullscreen" value="true"/>
+  </flash>
+ </media>
+<caption>The output of the recognition system for the signal "ABCDEFG".  Note that the system correctly differentiates between the signals, even when little motion is involved.</caption></figure>
+</para>
+</example><example id="eip-27"><para id="eip-158">
+  <figure id="exampleinput3"><title>Example Input Video: WRC</title><media id="yt-media5" display="block" alt="Example Input Video: WRC">
+  <flash id="yt-video5" mime-type="application/x-shockwave-flash" src="http://www.youtube.com/v/KgqXqYYVEpI&amp;hl=en_US&amp;fs=1&amp;" width="425" height="344">
+   <param name="allowscriptaccess" value="always"/>
+   <param name="allowsfullscreen" value="true"/>
+  </flash>
+ </media>
+<caption>A short test signal "WRC".  This was our first test case, and performs well.</caption></figure>
+
+<figure id="exampleoutput3"><title>Example Output Video: WRC</title><media id="yt-media6" display="block" alt="Example Output Video: WRC">
+  <flash id="yt-video6" mime-type="application/x-shockwave-flash" src="http://www.youtube.com/v/LB4jJqiV0-A&amp;hl=en_US&amp;fs=1&amp;" width="425" height="344">
+   <param name="allowscriptaccess" value="always"/>
+   <param name="allowsfullscreen" value="true"/>
+  </flash>
+ </media>
+<caption>The system correctly handles this three-letter signal.</caption></figure>
+</para>
+</example><para id="eip-117">
+
+</para></section><para id="delete_me">
+     <!-- Insert module text here -->
+  </para>
+</content>
+
+</document>

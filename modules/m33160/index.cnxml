@@ -1,0 +1,29 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Conclusions</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33160</md:content-id>
+  <md:title>Conclusions</md:title>
+  <md:abstract/>
+  <md:uuid>0b021643-3c9b-4ebd-91be-b9c08229fbc0</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.csie.ntu.edu.tw/~cjlin/libsvmtools/#9" strength="2">Multi-class classification (and probability output) via error-correcting codes</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+  <section id="eip-280"><title>Results</title><para id="eip-512">We were able to successfully locate the license plate in about 70% of our sample pictures, and of the characters we extracted, we were able to recognize them with about 72.7% accuracy (619 sets of training data).</para></section><section id="eip-98"><title>Future Improvements</title><section id="eip-914"><title>Compression and Cropping</title><para id="eip-590">
+Since we were targeting Texas plates, which only have red, blue, and white colors, we were able to black out many parts of the images by wiping out all green regions.  In the future, however, we would like to be able to recognize plates not from Texas that might have green components.  Therefore, we should find a criteria for finding the plates other than color.
+</para></section><section id="eip-178"><title>Letter Recognition</title><para id="eip-233"><title>Acquiring State Pattern and Convention Attributes</title>In many license plates, it is difficult to tell the difference between a zero and an O, even for a human.  Therefore, for the purposes of this project, zeros and Os were considered the same.  However, in many states, it is actually possible to tell the difference because the license plate has a set pattern (e.g., 2 letters, 2 numbers, 2 letters).  In the future, we could identify what state the plate comes from and then make use of this knowledge to get more accuracy in letter recognition.
+</para><para id="eip-963"><title>Multi-class Support Vector Machine</title>In addition, one of the characteristics of SVM is that is solves a two-class problem.  In order to get around this, for our project, we used a one-against-the-rest approach.  This meant that we basically used the SVM machine to answer the question, "Is this a __?" 35 (A-Z, 1-9) times for each unknown letter/digit.  In the future, we will want to look at more efficient and accurate methods. One of the possible improvement can be found in the work by <cite>T.-K. Huang, R. C. Weng, and C.-J. Lin. <link url="http://www.csie.ntu.edu.tw/~cjlin/libsvmtools/#9">Generalized Bradley-Terry Models and Multi-class Probability Estimates. Journal of Machine Learning Research</link></cite></para><para id="eip-218"><title>Automated Training Set Generation and Extraction Efficiency</title>Finally, currently, any digit that we feed into the SVM will register as something; we have no way of telling whether the image is in fact a letter/digit.  In the future, we would like to train the machine to be able to tell characters from non-characters.  This will allow less rigorous (and time-consuming) computation in the image-processing section and give our algorithm greater flexibility.</para></section></section><section id="eip-922"><title>References</title><para id="eip-929">Chih-Chung Chang and Chih-Jen Lin, LIBSVM : a library for support vector machines, 2001. Software available at <link url="http://www.csie.ntu.edu.tw/~cjlin/libsvm">http://www.csie.ntu.edu.tw/~cjlin/libsvm</link></para></section><section id="eip-142"><title>Special Thanks</title><list id="eip-935"><title>Thanks to:</title><item>Dr. Aswin Sankaranarayanan, our mentor</item>
+<item>Dr. Richard Baraniuk, the ELEC 301 instructor</item>
+<item>Dr. Fatih Porikli (MERL), for providing us with a license plate dataset</item>
+<item>Drew Bryant and Brian Bue for technical advising</item></list></section>
+</content>
+
+</document>

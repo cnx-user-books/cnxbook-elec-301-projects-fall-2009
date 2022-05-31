@@ -1,0 +1,53 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Facial Recognition using Eigenfaces: Introduction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33173</md:content-id>
+  <md:title>Facial Recognition using Eigenfaces: Introduction</md:title>
+  <md:abstract>ELEC 301 Fall 2009 final project using eigenfaces for facial recognition analysis and testing.</md:abstract>
+  <md:uuid>d4930c8a-676b-4847-8164-f713b109eb5d</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="example">
+      <link url="http://cnx.org/content/m33174/latest/" strength="3">Next: Background</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="id1171107932475">
+      <title>Introduction</title>
+      <section id="id1171121013800">
+        <title>Facial Recognition Preface</title>
+        <para id="id1171130517334">Although humans have an amazing ability to 
+distinguish and recognize faces, facial recognition on computers is an advanced 
+field of study yet to be perfected. Only within the past decade have people seen 
+the rise of face tracking in digital cameras and public security systems. Unlike 
+humans, computers are easily confused by changes in illumination, variation in 
+face angles, and accessories such as hair, glasses, and hats. However, computer 
+face recognition is worth pursuing, because of the wealth of applications in 
+security, digital photography, social networking, and other fields. This project 
+uses the eigenface method to identify faces from still images. </para>
+        <figure id="id1171118249720">
+          <media id="id1171118249720_media" alt="">
+            <image mime-type="image/jpg" src="../../media/Picture 0.jpg" id="id1171118249720__onlineimage" height="204" width="208"/>
+          </media>
+<caption>A potential face recognition/X-Ray technology application.</caption>
+        </figure>
+      </section>
+      <section id="id1171128153215">
+        <title>Facial Recognition Approach</title>
+        <para id="id1171130845907"> When considering the proper approach for 
+identifying faces, it was decided that the approach to be able to deal with 
+imperfect settings such as different relative positions, sizes, and shapes of 
+facial features such as the eyes, nose, cheekbones, and jaw. While facial 
+features are a major component of some facial recognition algorithms, the 
+extraction of landmarks were determined to be insufficiently robust for this 
+project without a powerful normalization algorithm capable of features such as 
+keeping a constant light intensity, correction of angles and pose variations, 
+and accounting for accessories like glasses. </para>
+      </section>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,79 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Testing</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33168</md:content-id>
+  <md:title>Testing</md:title>
+  <md:abstract/>
+  <md:uuid>8d0d5671-d402-426f-8b0f-b23902ca297d</md:uuid>
+</metadata>
+
+<content>
+    <para id="id1165460284635">Test-bed </para>
+    <para id="id1165474603933">A test bed can be setup using C. The data set used for testing in this module was a subset of the MIT-BIH Noise Stress test available online at <link url="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1560458/www.physionet.org"><emphasis effect="underline">www.physionet.org</emphasis></link>. To evaluate sensitivity to noise, one can read different noise level recordings; here, we analyze three in particular from the Physionet Noise Stress Test tool, selecting 3 different Signal to Noise Ratios (SNR): 24 dB, 18 dB, and 0 dB. </para>
+    <para id="id1165447279099">First, download all of the compilers and specialized libraries for gathering ECG data, initialize storage spaces, processing signals stored in a certain format, formatting outputs for consistency and re-use in other algorithms, etc. This is all contained in the WFDB library toolkit. Then, download a specific heart rate file of your choice from the Physionet database and run one of the C programs containing one of the available algorithms under the physiological signal processing header. These algorithms are designed to output a Physionet-compatible annotation file. This annotation file can then be processed manually by running the instantaneous heart rate algorithm (ihr). Using this setup also allows one to save the output of the algorithm as a regular annotation file. This ensures that in the future, the setup could be used to read annotation files and save them directly onto a memory storage unit for processing elsewhere. </para>
+    <para id="id1165457276038">The test here constructed consists of running each one of the three algorithms on 3 different data files from the noise stress test. The annotations are compared to reference annotations available on the Physionet-website. Using Physionet’s <emphasis effect="italics">“bxb”</emphasis> program, one can compare the annotations beat by beat. The bxb program outputs the two key parameters of interest in the analysis of heart beat detection: Sensitivity and Positive Predictivity.</para>
+    <para id="id1165472435587">Sensitivity (Se) = TP/(TP+MB)  </para>
+    <para id="id1165448631817">Positive Predictivity (+P) = TP/(TP+FP)</para>
+    <para id="id1165477213192"><emphasis effect="italics">TP</emphasis>: number of true positive detections.</para>
+    <para id="id1165474586636"><emphasis effect="italics">MB</emphasis>: number of false negatives or missed beats</para>
+    <para id="id1165470906443"><emphasis effect="italics">FP</emphasis>: number of false positives; the system detected a beat where the reference annotation showed no beat. </para>
+    <para id="id1165453884960">Results</para>
+    <para id="id1165449613624">Table 1</para>
+    <table id="id1165465143405" summary="">
+      <tgroup cols="9">
+        <colspec colnum="1" colname="c1"/>
+        <colspec colnum="2" colname="c2"/>
+        <colspec colnum="3" colname="c3"/>
+        <colspec colnum="4" colname="c4"/>
+        <colspec colnum="5" colname="c5"/>
+        <colspec colnum="6" colname="c6"/>
+        <colspec colnum="7" colname="c7"/>
+        <colspec colnum="8" colname="c8"/>
+        <colspec colnum="9" colname="c9"/>
+        <tbody>
+          <row>
+            <entry> </entry>
+            <entry namest="c2" nameend="c3">Noisy Signal with 0dB SNR</entry>
+            <entry namest="c4" nameend="c5">Noisy Signal with 18dB SNR</entry>
+            <entry namest="c6" nameend="c7">Noisy Signal with 24dB SNR</entry>
+            <entry namest="c8" nameend="c9">Non-Noisy Signal</entry>
+          </row>
+          <row>
+            <entry> </entry>
+            <entry>SQRS</entry>
+            <entry>WQRS</entry>
+            <entry>SQRS</entry>
+            <entry>WQRS</entry>
+            <entry>SQRS</entry>
+            <entry>WQRS</entry>
+            <entry>SQRS</entry>
+            <entry>WQRS</entry>
+          </row>
+          <row>
+            <entry>QRS Sensitivity: </entry>
+            <entry>54.91%</entry>
+            <entry>99.53%</entry>
+            <entry>92.80%</entry>
+            <entry>100.00%</entry>
+            <entry>97.70%</entry>
+            <entry>100.00%</entry>
+            <entry>96.55%</entry>
+            <entry>99.97%</entry>
+          </row>
+          <row>
+            <entry>QRS Positive Predictivity: </entry>
+            <entry>77.75%</entry>
+            <entry>57.68%</entry>
+            <entry>95.18%</entry>
+            <entry>98.46%</entry>
+            <entry>98.63%</entry>
+            <entry>99.64%</entry>
+            <entry>99.76%</entry>
+            <entry>99.27%</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <para id="id1165474136632">As can be seen from Table 1, the WQRS algorithm is overall more robust and tolerant to noise than the SQRS algorithm, particularly in the Sensitivity ratio. To note, however, is the situation that occurs to WQRS at 0dB noise, wherein the SQRS actually obtains a better Positive Predictivity ratio. This indicates that the WQRS formula is particularly adept at correctly noting beats and rarely misses beats, but is less capable of avoiding false positives at high noise levels. However, the WQRS also suppresses information in the ECG signal that we do not need i.e. the P and T waves which also lends to the filters effectiveness. Given that the overall spread from the other noise levels favors WQRS more, it seems best to side with WQRS for most applications.</para>
+  </content>
+</document>

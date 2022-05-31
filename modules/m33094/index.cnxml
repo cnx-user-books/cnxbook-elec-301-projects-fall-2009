@@ -1,0 +1,84 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>A Flag Semaphore Computer Vision System: TCP/IP</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33094</md:content-id>
+  <md:title>A Flag Semaphore Computer Vision System: TCP/IP</md:title>
+  <md:abstract>This module describes the RFC 4824 standard for transmission of TCP/IP data over flag semaphore.</md:abstract>
+  <md:uuid>0a9f26ea-deb6-42d1-b4b8-ddc182f45ee0</md:uuid>
+</metadata>
+<content>
+    <section id="cid1">
+      <title>A Link-Level Layer for IP Transmissions</title>
+      <para id="id259115">The idea of using flag semaphore to transmit Internet Protocol packets is suggested in <code display="inline">RFC 4824</code><link target-id="bid0"/>. This presents a link-layer protocol, suitable for encapsulating and transmitting IP packets, analogous to the Ethernet protocol frequently used for wire transmissions between machines, described by <code display="inline">RFC 894</code><link target-id="bid1"/> and other Internet Engineering Task Force (ITEF) standards.</para>
+      <para id="id259140">This protocol was presented as a Request For Comments on April first, 2007. To our knowledge, no working implementation of this protocol has been implemented, although several errata in the original publication have been identified. A similar protocol, <code display="inline">RFC 1149</code>, which transfers IP datagrams over avian carriers, was successfully tested in 2001 by a Linux User Group in Bergen, Norway<link target-id="bid2"/>, more than ten years after the original specification was published.</para>
+      <para id="id259496">Having implemented a flag semaphore recognition system, it seems reasonable to attempt to use it to implement the protocol described in <code display="inline">RFC 4824</code>. It even seems reasonable to attempt to write a IP-SFS to Ethernet bridge, but technical limitations prevented the completion of the bridge functionality. A complete receiver and transmitter framework exists, although the handling of states is incomplete.</para>
+      <section id="uid1">
+        <title>IP-SFS Channel Design in Summary</title>
+        <para id="id259516">The suggested channel protocol uses 25 of the alphabetic symbols in the standard semaphore alphabet. The first 16 characters are reserved for data transmission, and the remaining 9 are used for channel control codes.</para>
+        <para id="id259522">The interface is half-duplex, in that an interface may be either idle, transmitting, or receiving. The idle state is characterized by occasional <code display="inline">KAL</code> keep-alive signals, and either interface can initiate a state change from idle to transmitting by sending a <code display="inline">RTT</code> signal.</para>
+      </section>
+      <section id="uid2">
+        <title>Decoding IP-SFS Packets</title>
+        <para id="id259547">In an incoming IP-SFS character stream, as with the one created by our MATLAB interface. We can use an internal state machine, which encodes frames as strings between <code display="inline">FST</code> and <code display="inline">FEN</code> signals, with characters deleted by the appropriate <code display="inline">FUN</code> or <code display="inline">SUN</code> undo signals. Note that this reception is received asynchronously, in a separate instance if <code display="inline">IpSfssRx</code>, so that decoding bottlenecks will not affect our semaphore receiver.</para>
+        <para id="id259579">Once an entire packet is received, and control signals are stripped out, it is possible to condense our semaphore sequence to a byte array, as each signal represents a 4-bit <emphasis effect="italics">nibble</emphasis>. A small amount of byte manipulation shifts each pair of semaphores into a single byte. Note that the number of semaphores received must be even.</para>
+        <para id="id259591">The first two and last two bytes of each IP-SFS frame are header and footer data – the header defines one of five possible encapsulated protocols with support for compressed or uncompressed IPv4 or IPv6, and an optional cyclic redundancy check method – CRC CCITT 16, a standard polynomial redundancy check that is easy to implement. The last two bytes of the frame are the checksum of the frame so far.</para>
+        <para id="id259600">The <code display="inline">IpSfssFrame</code> class can be constructed using a string – such a sequence of data semaphores. This will throw an exception in case of error, or create an instance of the frame. Errors are thrown for format violations or CRC failures. The object allows us to return the encapsulated packet as a byte array.</para>
+      </section>
+      <section id="uid3">
+        <title>Sending IP-SFS Packets</title>
+        <para id="id259623">The system also supports the propagation of IP datagrams. An <code display="inline">IpSfssFrame</code> can also be instantiated with a raw IP packet with any of the standard options, including compression and verifying checksums.</para>
+        <para id="id259633">An asynchronous transmitter, <code display="inline">IpSfssTx</code>, can be instantiated. Running this in a separate thread allows semaphores to be queued, without the function blocking for completion. This is especially important because there is a (configurable) minimum display time for each signal. A Swing-based GUI can display these signals on the screen.</para>
+      </section>
+      <section id="uid4">
+        <title>IP-SFS to Ethernet Bridge</title>
+        <para id="id259654">The original goal was to produce an IP-SFS to Ethernet bridge, such that IP packets transmitted as the payload of SFS frames could be placed onto the outgoing queue of a running machine with a network connection.</para>
+        <para id="id259659">Such “raw sockets” does not natively exist on Windows, although the WinPcap project offers link-layer access. The link-layer access, however, requires proper Ethernet headers on outgoing packets, which could likely be fabricated with additional time spent on the project.</para>
+        <para id="id259667">The Java <code display="inline">libpcap</code> interface also offers methods to dump incoming packets to a file. This makes network sniffing possible, but does not allow packets to be read in real time.</para>
+      </section>
+      <section id="uid5">
+        <title>Future Expansion</title>
+        <para id="id259686">Because of time and scope constraints, the IP-SFS to Ethernet bridge was not satisfactorily completed. In the future, expanding this to full functionality would be quite an interesting project.</para>
+        <para id="id259691">It should also be noted that much of the <code display="inline">IpSfssFrame</code> functionality was written in haste, and while it was tested on reasonable cases, more automated unit testing on this and other classes in the Java IP-SFS framework would be ideal.</para>
+        <para id="id259701">The internal state of the transceiver is also partially incomplete. It does not respect the state (transmitting, receiving, idle), of the connection, nor does it acknowledge packet receptions with <code display="inline">ACK</code> signals (or <code display="inline">NAK</code> on errors), because the receiver and transmitter are not sufficiently connected.</para>
+      </section>
+    </section>
+  </content>
+  <bib:file>
+    <bib:entry id="bid0">
+      <bib:misc>
+        <!--required fields-->
+        <!--optional fields-->
+        <bib:author>Hofmueller, J. and Bachmann, A. and zmoelnig, I. O.</bib:author>
+        <bib:title>The Transmission of IP Datagrams over the Semaphore Flag Signaling System (SFSS)</bib:title>
+        <bib:howpublished>http://tools.ietf.org/html/rfc4824</bib:howpublished>
+        <bib:month>April</bib:month>
+        <bib:year>2007</bib:year>
+        <bib:note/>
+      </bib:misc>
+    </bib:entry>
+    <bib:entry id="bid1">
+      <bib:misc>
+        <!--required fields-->
+        <!--optional fields-->
+        <bib:author>Hornig, C.</bib:author>
+        <bib:title>A Standard for the Transmission of IP Datagrams over Ethernet Networks</bib:title>
+        <bib:howpublished>http://tools.ietf.org/html/rfc894</bib:howpublished>
+        <bib:month>April</bib:month>
+        <bib:year>1984</bib:year>
+        <bib:note/>
+      </bib:misc>
+    </bib:entry>
+    <bib:entry id="bid2">
+      <bib:misc>
+        <!--required fields-->
+        <!--optional fields-->
+        <bib:author>Larsen, Audun</bib:author>
+        <bib:title>The highly unofficial CPIP WG</bib:title>
+        <bib:howpublished>http://www.blug.linux.no/rfc1149/</bib:howpublished>
+        <bib:month>April</bib:month>
+        <bib:year>2001</bib:year>
+        <bib:note/>
+      </bib:misc>
+    </bib:entry>
+  </bib:file>
+</document>

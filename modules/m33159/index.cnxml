@@ -1,0 +1,63 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>SVM Train</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33159</md:content-id>
+  <md:title>SVM Train</md:title>
+  <md:abstract/>
+  <md:uuid>8aba8bd1-e833-4198-acf5-7c32d5de1fba</md:uuid>
+</metadata>
+<content>
+  <section id="eip-914"><title>The Math and Algorithm</title><para id="eip-532">For digit recognition, we use Support Vector Machine (SVM) as a learning machine to perform multi-class classification.</para><para id="eip-48">The way SVM works is to map vectors into an N-dimensional space and use an (N-1)-dimensional hyperplane as a decision plane to classify data. The task of SVM modeling is to find the optimal hyperplane that separates different class membership.</para>
+
+<example id="eip-858"><para id="eip-720">
+Let's take a look at a simple schematic example where every object either belongs to GREEN or RED. 
+</para>
+
+
+<figure id="example0"><media id="e0" alt="Example Image">
+    <image mime-type="image/png" src="../../media/example0.png"/>
+  </media>
+  
+<caption>Picture from:  Chih-Chung Chang and Chih-Jen Lin, LIBSVM : a library for support vector machines, 2001.  </caption></figure>
+
+
+<para id="eip-926">SVM finds the line defining the boundary between the two types. Then, it can classify a new object by looking at on which side of the line it falls. </para>
+<para id="eip-423">However, it is unlikely that we can always have a linear dividing boundary. Rather than fitting nonlinear curves to the data, we can map each object into a different space via a kernel function where a linear dividing hyperplane is feasible.</para>
+<figure id="example1"><media id="e1" alt="A dog sitting on a bed">
+    <image mime-type="image/png" src="../../media/example1-7ee2.png"/>
+  </media>
+  
+<caption>Hyperplane classifying the two cases (Picture from:  Chih-Chung Chang and Chih-Jen Lin, LIBSVM : a library for support vector machines, 2001.)</caption></figure>
+
+<para id="eip-492">The concept of the kernel mapping function is so powerful that SVM can perform separation with very complex boundaries. The kernel function we use in this project is radial basis function (RBF).</para>
+</example>
+<section id="eip-614"><title>SVM Working Principles</title><list id="eip-658"><item>Vectorize each instance into an array of features (attributes).</item>
+<item>Model with training data to find optimal dividing hyperplane with maximal margin.</item>
+<item>Use SVM to map all the objects into a different space via a kernel function (see Figure 3 for examples). </item>
+<item>Classify new object according to its position with respect to hyperplane.</item>
+<item>Errors in training are allowed while the goal of training is to maximize the margin and minimize errors. Namely, find the solution to optimization problem in Figure 4, where x is the attribute, y is the object label, ξ is the error and φ is the mapping function.</item></list>
+
+<figure id="kernel"><media id="f0" alt="A dog sitting on a bed">
+    <image mime-type="image/png" src="../../media/fig0.png" height="150" width="470"/>
+  </media>
+  
+<caption>A few examples on the kernel functions; for our case we choose the radial basis function (RBF)
+  </caption></figure>
+
+<figure id="hplane"><media id="f1" alt="A dog sitting on a bed">
+    <image mime-type="image/png" src="../../media/fig1.png" height="100" width="300"/>
+  </media>
+  
+<caption>Find a hyperplane with the maximized margin space to split the two classes. (Equation from:  Chih-Chung Chang and Chih-Jen Lin, LIBSVM : a library for support vector machines, 2001.)</caption></figure>
+</section>
+</section>
+
+<section id="eip-380"><title>Methods and Running Routines</title><list id="eip-371" list-type="enumerated" number-style="arabic"><item> Collect the matrices obtained from the Image Processing section and label each of the instances. </item>
+<item>Select a reasonable amount as the training set, and the rest as the testing set, with a balanced choice for each of the instances. </item>
+<item> Feed the training set into the SVM-train process to generate a model. This calculation takes time, but it only needs to be done once.</item>
+<item> Now we're ready to make predictions to a given license plate! An input of labeled data will give us the accuracy of this algorithm; an unlabeled instance can also be fed in to see the prediction.</item>
+</list><note id="eip-935">The SVM library we used is available at: http://www.csie.ntu.edu.tw/~cjlin/libsvm</note></section>
+</content>
+
+</document>

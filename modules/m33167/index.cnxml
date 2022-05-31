@@ -1,0 +1,21 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Introduction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33167</md:content-id>
+  <md:title>Introduction</md:title>
+  <md:abstract>An evaluation of several ECG analysis Algorithms for a low-cost portable ECG detector.</md:abstract>
+  <md:uuid>6e66f362-f89e-46e5-93f5-0ebe775d28b7</md:uuid>
+</metadata>
+
+<content>
+    <para id="id6070983">Introduction </para>
+    <para id="id5763265">Measuring vital signs is a crucial part of health care in hospitals across the world. However, these systems are often extremely expensive, and can often only be given to patients already in intensive care. Upon entering the Emergency ward, however, a patient often needs to wait before receiving direct medical attention, since it is important for health care professionals to prioritize to whom they direct attention. If a low-cost system of constant monitoring of vital signs existed, the emergency wards could potentially provide simple vital sign monitoring for every patient that entered the hospital, assisting in resource management and providing better tools with which to evaluate patients [1]. We aim in this module to discuss the basic physiology behind the ECG trace, provide an overview of the primary signal processing methods used to develop a heart rate calculator, and describe a test bed that can be used to test an algorithm, with some demo results. We will end with a discussion on the possibilities these algorithms provide for implementation of a real-time heart rate monitor.</para>
+    <para id="id4246184"> The most important vital sign that can be monitored is the heart rate. Many physiological conditions can be diagnosed by analyzing heart rate abnormality, and abnormal heart rate has been shown to be a leading indicator for heart attack[2]. The primary conditions that are diagnosed are bradycardia and tachycardia. Bradycardia is known as the slowing of the heart rate; for adults, below 60 bpm. Tachycardia is the abnormal quickening of the heart; for adults, above 100 bpm. </para>
+    <para id="id11537700">Tachycardia has been shown to indicate greater oxygen demand for the heart, and eventually, can lead to a heart attack. More specifically, the case of ventricular tachycardia </para>
+    <para id="id11231314">is known to be a potentially life-threatening condition that can lead to sudden death if not immediately detected and treated.</para>
+    <para id="id6202998">Bradycardia also takes on different forms. Sinus bradycardia is a particularly slow heartrate that is associated with heart diseases. It is also possible for sinus bradycardia not to indicate any medical condition whatsoever, such as a patient’s good fitness. An alternate form of bradycardia known as Sick sinus syndrome is caused by complications with the sinoatrial node, which naturally monitors the heart. Heart block is the most serious complication, as it can arise suddenly and lead to sudden cardiac arrest or other medical emergency [3].</para>
+    <para id="id5680833">The primary action that needs to be taken in order to monitor these potentially life-threatening conditions is to take an ECG (electrocardiogram) recording of the signal. The Electrocardiogram has been extensively researched in the literature, and is relied upon and accepted by many medical professionals as the best way to measure and diagnose abnormal rhythms of the heart. An ECG machine works by measuring the electrical activity of the heart over time using electrodes placed at key places of the body. The electric potential between two electrodes is termed a lead, and averages are taken of different leads around the body to determine the overall electrical activity through different axes of the body. The current gold standard is the 12-lead ECG. </para>
+    <para id="id5669984">Even though the standard ECG is relied upon as the primary means of diagnosing abnormal rhythms, to actually glean this information off of the reading of the trace paper requires a great deal of training and specialization. Unless the trained specialist is present to continuously evaluate every patient’s </para>
+    <para id="id5752476">ECG recording, in an emergency situation a medical complication may go unnoticed.</para>
+  </content>
+</document>

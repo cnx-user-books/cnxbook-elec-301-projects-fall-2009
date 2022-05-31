@@ -1,0 +1,21 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>A Flag Semaphore Computer Vision System: Conclusions</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33109</md:content-id>
+  <md:title>A Flag Semaphore Computer Vision System: Conclusions</md:title>
+  <md:abstract>This module concludes the discussion of our computer vision system for the interpretation of flag semaphore signals with a summary of our progress and results.</md:abstract>
+  <md:uuid>81fc0ae3-b801-4a61-929b-167c8120bd70</md:uuid>
+</metadata>
+<content>
+    <section id="cid1">
+      <title>Conclusions</title>
+      <para id="id102852">Over the course of the past month, our project group successfully implemented a computer vision system for the interpretation of flag semaphore signals. The approach taken has yielded accurate results that are robust under noise contamination and can withstand substantial spacial downsampling. However, weaknesses in color matching and peak detection along with several missing desirable features leaves room for future improvement. Notably, the program would be capable of processing video input in real time with the aid of parallel video capture software with few additional changes to the code. Also, significant progress toward fully implementing a TCP/IP packet transceiver using the RFC 4824 standard was made. Our limited testing results suggest that the program yields results that are of reasonably high accuracy, with a tradeoff between accuracy and signaling rate. Hence, we conclude with the primary demonstration of our projects success in the output video below that signals the class name “ELEC 301”.</para>
+    </section><para id="eip-956"><figure id="exampleoutput1"><title>Example Output Video: ELEC 301</title><media id="yt-media2" display="block" alt="Example Output Video: ELEC 301">
+  <flash id="yt-video2" mime-type="application/x-shockwave-flash" src="http://www.youtube.com/v/5EeiXKrKwC8&amp;hl=en_US&amp;fs=1&amp;" width="425" height="344">
+   <param name="allowscriptaccess" value="always"/>
+   <param name="allowsfullscreen" value="true"/>
+  </flash>
+ </media>
+<caption>The output of the the filter for the signal "ELEC 301 " above.  Notice the blank output for the control codes for letters (the first) and numbers.  This file is output directly from the MATLAB code.</caption></figure></para>
+  </content>
+</document>

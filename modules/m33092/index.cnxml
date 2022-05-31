@@ -1,0 +1,30 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>A Flag Semaphore Computer Vision System: Introduction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33092</md:content-id>
+  <md:title>A Flag Semaphore Computer Vision System: Introduction</md:title>
+  <md:abstract/>
+  <md:uuid>f3e0dbf1-6b63-4c60-a1cb-2db129a390c4</md:uuid>
+</metadata>
+<content>
+    <section id="cid1">
+      <title>A Flag Semaphore Recognition System</title>
+      <para id="id149649">We seek to implement a computer vision system for classifying and interpreting flag semaphore systems, as recorded by something as simple and commonplace as a webcam. The classification is implemented in a MATLAB script that, taking an input video file in wmv format, produces a string of the message in semaphore in the video. This can optionally produce a marked-up video, showing the semaphores as they are recognized, overlaid with the video. Note that this can process video files faster than they can be played, and could be implemented in realtime with parallel capture methods.</para>
+      <para id="id149658">We also seek to implement a related Internet Engineering Task Force protocol documented in <code display="inline">RFC 4824</code><link target-id="bid0"/>. This documents transmitting IP datagrams over a link layer implemented in flag semaphore. We seek to bridge this link layer and a more standard Ethernet connection.</para>
+      <section id="uid1">
+        <title>A Maritime Signaling System</title>
+        <para id="id149681">Flag semaphore is a perhaps-archaic system for transmitting signals through a line of sight connections with different positions of colored flags. With one flag in each arm, and eight possible positions for each flag, there are 28 possible static signals with distinct positions for each flag, with an additional “attention” dynamic signal, and space, denoted with both flags down.</para>
+        <para id="id149684">The traditional naval semaphore flags, as used in the system we have implemented are square, are square and are divided into two large red and yellow triangles across the diagonal. Because the flags are not rigid, they deform, making traditional matched filtering difficult, but the colorful design of the flags is helpful, because it allows us to use color tracking to determine the flags' positons.</para>
+        <figure id="uid2">
+          <media id="uid2_media" alt="">
+            <image mime-type="image/png" src="../../media/juliet.png" id="uid2_onlineimage" width="200"><!-- NOTE: attribute width changes image size online (pixels). original width is 200. --></image>
+            <image mime-type="application/postscript" for="pdf" src="../../media/juliet.eps" id="uid2_printimage" print-width="3.75cm">
+              <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+            </image>
+          </media>
+          <caption>A diagram of signal "J" (courtesy of Wikipedia). This symbol is always used to begin transmission.</caption>
+        </figure>
+      </section>
+    </section>
+  </content>
+</document>

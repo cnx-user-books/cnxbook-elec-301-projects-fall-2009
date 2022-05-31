@@ -1,0 +1,58 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>A Flag Semaphore Computer Vision System:  Program Flow</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33095</md:content-id>
+  <md:title>A Flag Semaphore Computer Vision System:  Program Flow</md:title>
+  <md:abstract>This module describes the computational flow of the program written as our flag semaphore computer vision and interpretation system.</md:abstract>
+  <md:uuid>1e00b6de-1216-444e-a2ae-d2a2513566c4</md:uuid>
+</metadata>
+<content>
+    <section id="cid1">
+      <title>Program Computational Flow</title>
+      <para id="id133504">This section describes the processes that the flag semaphore computer vision system we implemented undergoes in order to process input signals an produce output, separating the description into sections about the input, classification, and ouput. Refer to the flow chart in <link target-id="uid1"/> for an illustration and concise description.</para>
+      <figure id="uid1"><media id="uid1_media" alt="">
+          <image mime-type="image/png" src="../../media/FlowChart.png" id="uid1_onlineimage" width="600"><!-- NOTE: attribute width changes image size online (pixels). original width is 1227. --></image>
+          <image mime-type="application/postscript" for="pdf" src="../../media/FlowChart.eps" id="uid1_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>This flow chart illustrates the processes involved in the flag semaphore computer vision system from input signal to various outputs.</caption></figure>
+    </section>
+    <section id="cid2">
+      <title>Input</title>
+      <para id="id133538">The flag semaphore computer vision and interpretation system we developed takes a prerecorded video file as input to a MATLAB function. The video signal should be produced with two semaphore signaling flags of the red and yellow triangle type. For best performance, the signaler should be near the center of the video frame images and as close to the camera as possible while ensureing that the vertical and horizontal signaling range fits within the images. The signaler may either signal facing the camera or signal facing away from the camera, and the proper adjustment will automatically be made by the program. Also, The upward direction of the camera must correspond to the upward direction of the signaler.</para>
+      <para id="id133886">All signals should be formed through rapid motion to the desired flag positions. A signal is only guaranteed to register if it is held in place for at least the specified hold time (which defaults to 1 second). However, the framerate of the video file and the rate at which a person can signal limit the signaling rates compatible with this program to reasonable values. Increasing the hold time increases the accuracy of the output. Repeated characters should be formed by signaling a space between them. Please note that the "chip-chop" attention signal is not supported at this time. (It is an error in the RFC 4824 protocol.) Every signal must begin with the alphabetic character (J) on the first frame, which is used to determine the direction the signaler is facing and the pixel position of the signaler. This first character will not be displayed.</para>
+      <para id="id133896">The video file itself should be in a wmv format, although other file types compatible with mmread may also function correctly. The file should be placed in the same directory as this file (FlagSemaphore.m) and the file name should be passed to the function in a string as the first arguement.</para>
+      <para id="id133902">The second arguement, which is optional, supplies the desired time, in seconds, for which a signal must be held in order to be guarenteed to register. Increasing this parameter decreases the likelihood that a slow transition between two signals will be incorrectly registered as a signal, but decreases the best possible signaling rate. Thus, signal transitions should be fast and abrupt for this reason. The default hold time is one second.</para>
+    </section>
+    <section id="cid3">
+      <title>Classification</title>
+      <para id="id133918">The flag semaphore computer vision and interpretation system we developed, after extracting half of the hold time blocks of input video data as RGB matrices, classifies the signal as a flag semaphore symbol and then produces several forms of output. Because of the objects of interest in the image are two bright red and yellow flags, the classification problem suggests color tracking as a promising approach.</para>
+      <para id="id133925">Hence, our classifier begins by performing color matching with the RGB matrix data of each frame in the half of the hold time interval in order to find the red regions and yellow regions in the image. Color matching is a somewhat difficult problem since the RGB regions corresponding to a given color are, in general, not convex and difficult to describe algorithmically. However, our rudimentary color matching algorithm was always sufficient to highlight the flag regions.</para>
+      <para id="id133936">Because there are multiple flags in the image and there could be similarly colored objects nearby, we use a 2D matched filter with a small square box as the filtering signal implemented in the frequency domain for speed in order to discriminate between objects of the same color. A simple peak finding algorithm then finds the pixel locations of the red objects and the pixel locations of the red objects. Since our flags are red and yellow, we search for red objects near yellow objects and identify those as flags, with special case handling so that the cases in which less than two red objects or less than two yellow objects are found may still be correctly identified using saved data from the previous flag locations. This produces results that are highly resistant to noise contamination unless the noisy objects are colored with large patches of both red and yellow.</para>
+      <para id="id133946">Each of the flag positions are then placed in one of eight angular regions about an estimate of the center of the signaler corresponding to the eight flag positions used to form flag semaphore signals. If the flags remain in the same angular region for the vast majority of the frames considered, the flags are not in motion and a symbol is registered according to which angular regions contain the flags. Otherwise, the flags are taken to be in transition. Thereafter, the output symbol is interpreted in the context of the sequence of previous symbols to produce a character or to toggle between letters and numbers.</para>
+    </section>
+    <section id="cid4">
+      <title>Output</title>
+      <para id="id133964">Several other inputs can optionally be supplied to specify other options. The print flag is the second argument and determines whether the interpreted message will be displayed on the MATLAB prompt. The third argument is the play flag which specifies whether the video will be played in a MATLAB figure window. The fourth argument is the transceiver flag which determines whether the program will attempt to send and receive TCP/IP packets (currently ignored). The final two arguments determine whether an output video file will be produced and specify the name of the output file. For information on how to form packets of TCP/IP data, refer to the <link url="http://tools.ietf.org/html/rfc4824">RFC 4824 documentation</link>.</para>
+      <para id="id133974">For example, the following would store a the message interpreted from the video file example1.wmv into the string message1 without printing to the MATLAB prompt, playing the video file, attempting to transmit and
+recieve packets, or writing an output video file.
+<code id="eip-689" display="block">message1=FlagSemaphore('example1.wmv');</code></para>
+      
+      <para id="id133982">This, on the other hand, would store a the message interpreted from the video file example2.wmv into the string message2 while printing to the MATLAB prompt but not playing the video file, attempting to transmit and recieve packets, or writing an output video file.
+<code id="eip-688" display="block">message2=FlagSemaphore('example2.wmv',1,1,0,0,0,'');</code></para>
+      
+      <para id="id133992">This, example would store a the message interpreted from the video file example3.wmv into the string message3 while playing the video file but not printing to the MATLAB prompt, attempting to transmit and recieve packets, or writing an output video file.
+<code id="eip-690" display="block">message3=FlagSemaphore('example3.wmv',1,0,1,0,0,'');</code></para>
+      
+      <para id="id134002">This, example would store a the message interpreted from the video file example4.wmv into the string message4 while attempting to transmit and recieve packets but not playing the video file, printing to the MATLAB prompt, or writing an output video file. Note that this option is not yet implemented and will be ignored.
+<code id="eip-691" display="block">message4=FlagSemaphore('example4.wmv',1,0,0,1,0,'');</code></para>
+      
+      <para id="id134012">This, example would store a the message interpreted from the video file example5.wmv into the string message5 while writing an output video file but not playing the video file, printing to the MATLAB prompt, or attempting to transmit and receive packets.
+<code id="eip-692" display="block">message5=FlagSemaphore('example5.wmv',1,0,0,0,1,'exampleoutput5.wmv');</code></para>
+      
+      <para id="id134021">Some example flag semaphore signal input video files and output video files can be found in the demonstrations section. Links to the full source code can be found in the additional resources section.</para>
+    </section>
+  </content>
+</document>

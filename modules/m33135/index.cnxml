@@ -1,0 +1,54 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Introduction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33135</md:content-id>
+  <md:title>Introduction</md:title>
+  <md:abstract>This module is part of a collection of modules for a class project on matrix completion techniques for the sensor network localization problem done for the Fall, 2009 offering of Prof.  Baraniuk's ELEC 301 course at Rice University.</md:abstract>
+  <md:uuid>fd20be52-7b3c-40f4-99f8-8c04dcba8ef0</md:uuid>
+</metadata>
+<content>
+    <section id="cid1">
+      <title>Introduction</title>
+      <para id="id2253179"><emphasis effect="italics">Sensor network localization</emphasis> refers to the problem of trying to reconstruct the shape of a network of sensors – that is, the positions of each sensor relative to all the others – from information about the pairwise distances
+between them. If all of the pairwise distances are known exactly, then the shape of the network may be recovered via a technique called <emphasis effect="italics">multidimensional scaling</emphasis> (MDS) <link target-id="bid0"/>. Of
+more practical interest is the case in which many – even most – of the distances are unknown and in which the known distance measurements have been corrupted with noise. Determining the shape of the network under these conditions
+is still an open problem. Over the years, researchers have come up with a variety of different approaches for tackling this problem, with some of the most recent ones being based on graph rigidty theory, such as those in <link target-id="bid0"/>
+and <link target-id="bid1"/>; however, for our project, we decided to examine this problem from a fundamentally different tack. Instead, we approach the problem
+using methods from the brand new field of <emphasis effect="italics">matrix completion</emphasis>, which is concerned with “filling in the gaps" in a matrix for which not all of the entries may be known.</para>
+      <para id="id2253871">The remainder of this collection is divided as follows. In the next section, we provide an overview of the most recent work in matrix completion for those who may not be familiar with this very new field. After that, we discuss
+the procedures we used to conduct our investigation. Finally, we examine the results of our simulations and present our conclusions.</para>
+    </section>
+  </content>
+  <bib:file>
+    <bib:entry id="bid0">
+      <bib:article>
+<!--required fields-->
+        <bib:author>Singer, A.</bib:author>
+        <bib:title>A Remark on Global Positioning from Local Distances</bib:title>
+        <bib:journal>Proc. Natl. Acad. Sci. USA</bib:journal>
+        <bib:year>2008</bib:year>
+<!--optional fields-->
+        <bib:volume>105</bib:volume>
+        <bib:number/>
+        <bib:pages>9507-9511</bib:pages>
+        <bib:month>July</bib:month>
+        <bib:note/>
+      </bib:article>
+    </bib:entry>
+    <bib:entry id="bid1">
+      <bib:article>
+<!--required fields-->
+        <bib:author>Zhang, L. and Liu, L. and Gotsman, C. and Gortler, S.J.</bib:author>
+        <bib:title>An As-Rigid-As-Possible Approach to Sensor Network Localization</bib:title>
+        <bib:journal>Harvard Computer Science Technical Report: TR-01-09</bib:journal>
+        <bib:year>2009</bib:year>
+<!--optional fields-->
+        <bib:volume/>
+        <bib:number/>
+        <bib:pages/>
+        <bib:month>January</bib:month>
+        <bib:note/>
+      </bib:article>
+    </bib:entry>
+  </bib:file>
+</document>

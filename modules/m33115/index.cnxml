@@ -1,0 +1,29 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Our System Setup</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33115</md:content-id>
+  <md:title>Our System Setup</md:title>
+  <md:abstract>How is our system setup? How is this going to work?</md:abstract>
+  <md:uuid>2dceb57c-15a9-4538-8968-24892b68172b</md:uuid>
+</metadata>
+<content>
+    <section id="id17360274">
+      <title>Our System Setup</title>
+      <para id="id14806246">We plan to use the probability mass function (PMF) of 5 different vowel sounds in 3 different languages to determine which language a speech sample is spoken in. However, before we can attempt to carry out that task, we require a means of counting the number of occurrences of the 5 different vowel sounds in any given speech sample to create the PMFs.</para>
+      <para id="id12114772">We chose English, Spanish and Japanese to analyze in this project. Spanish and Japanese both have simple vowel sounds. For example, 90% of Japanese speaking consists of the 5 basic vowel sounds in our database. Spanish is similar and English is a little more complicated in pronunciation but we can still find an approximate distribution with our system and database. The choice of these languages has a good representation of western and eastern language and they are all widely used languages.</para>
+      <para id="id13577330">Two important databases are crucial in order for the system to perform at this point. One is the formant’s frequency of the 5 most basic vowel sounds (a, i, u, e, o). The other database we want to have is the reference PMF of the 3 languages we are using. If we believe that there is a certain pattern in the PMF of the vowel sound distribution in these languages, then statistically, if we have a large enough sample, the PMF should represent the population parameters. In our case, we decided to use a long speech sample of each language and use its vowel sound PMF as the reference data, which will be used later in the system to match smaller random speech samples.</para>
+      <para id="id17377425">
+        <figure id="id15182525">
+          <media id="id15182525_media" alt="">
+            <image mime-type="image/png" src="../../media/graphics1-b1da.png" id="id15182525__onlineimage" height="380" width="600"/>
+          </media>
+        </figure>
+      </para>
+      <figure id="id8003743">
+        <media id="id8003743_media" alt="">
+          <image mime-type="image/png" src="../../media/graphics2-6abf.png" id="id8003743__onlineimage" height="247" width="463"/>
+        </media>
+      </figure>
+    </section>
+  </content>
+</document>

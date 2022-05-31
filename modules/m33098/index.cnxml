@@ -1,0 +1,24 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>A Flag Semaphore Computer Vision System:  Program Assessment</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33098</md:content-id>
+  <md:title>A Flag Semaphore Computer Vision System:  Program Assessment</md:title>
+  <md:abstract>This module evaluates the advantages, disadvantages, and trade-offs involved in this approach to programming a computer vision system for flag semaphore interpretation.</md:abstract>
+  <md:uuid>1c99ccc0-e791-4dbf-89c9-c047f6ad9f4f</md:uuid>
+</metadata>
+<content>
+    <section id="cid1">
+      <title>Program Approach Advantages</title>
+      <para id="id100634">The approach taken to the implementation of our flag semaphore computer vision classification and interpretation system described in the program flow module provides several important benefits.</para>
+      <para id="id100639">Due to the use of the Fast Fourier Transform to implement the matched filter in the frequency domain, the program runs sufficiently fast that it could be used for real time video processing with the aid of additional parallel video capture software, such as that which can be found in the MATLAB Data Acquisition Toolbox. When additional speed is desired, we note that the program remains highly accurate, even with a downsampling factor of three in both spacial dimensions.</para>
+      <para id="id100646">Furthermore, the program demonstrates robustness when presented data contaminated with noise in the form of extraneous red or yellow objects as a result of the use of both the red and yellow region data when attempting to identify the flags. Detailed special case handling prevents video frames in which one or more complete color region of a flag is occluded from ruining the color tracking.</para>
+      <para id="id100653">Although it is difficult to get a good estimate of the accuracy of the classifier, limited testing, which can be seen on the demonstrations page, suggests that the results are quite accurate. Additionally, the program provides for variable accuracy by increasing or decreasing the signal hold time parameter This boosts accuracy by reducing the likelihood that a transition between symbols will be classified as a symbol but decreases the maximum possible signaling rate due to increased required pause time at each symbol. Hence this option represents a tradeoff, the optimal value of which will be different for different signalers.</para>
+    </section>
+    <section id="cid2">
+      <title>Program Approach Disadvantages</title>
+      <para id="id101009">Although sufficiently effective for the test videos, the color matching and peak detection algorithms used are not perfect. A full treatment of color matching would be somewhat difficult as RGB regions corresponding to a given color are, in general, not convex and thus difficult to describe. The solutions used are ad hoc solutions that we developed for the problems of color matching and peak detection, so there likely exist superior algorithms to perform those tasks.</para>
+      <para id="id101016">Also, the program models the signaler arms as rotating about a single point, but there is width between human shoulders. While this problem was effectively overcome with empirical adjustment of the size of the angular regions by observation of signaler habits, it remains a weakness of the model.</para>
+      <para id="id101022">Occasionally incorrect signaling due to signaler error makes it difficult to get a good estimate of the accuracy of the classifier, but the program works well for some hold time for every test signal video recorded.</para>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,32 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>The Problem</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33155</md:content-id>
+  <md:title>The Problem</md:title>
+  <md:abstract/>
+  <md:uuid>a644ab7b-799a-40fd-8738-43ed447bb6a2</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m33144/latest/" strength="3">The Channel</link>
+      <link url="http://cnx.org/content/m33148/latest/" strength="3">Transmitter</link>
+      <link url="http://cnx.org/content/m33151/latest/" strength="3">Receiver</link>
+      <link url="http://cnx.org/content/m33152/latest/" strength="3">Results and Conclusions</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="id9155641">
+      <title>Creating a DSL Modem</title>
+      <para id="id11186226">Our goal is to use Discrete Multi-Tone modulation to transmit a text message over the audible range of frequencies in an acoustic channel. We are creating a DSL modem that transmits through the air. </para>
+      <para id="id9361262">To do this, we will observe the frequency characteristics of the channel, and use that information to equalize our received transmission in hope to preserve the maximum amount of content from the signal. As in any engineering problem, we are constantly striving to push the data-rate of our system, while minimizing the occurrence of errors. Here we go!</para>
+      <para id="id11215260"><link document="m33148" version="1.1">The Transmitter</link></para>
+      <para id="id15626141"><link document="m33144" version="1.1">The Channel</link></para>
+      <para id="id11181435"><link document="m33151" version="1.1">Receiver</link></para>
+      <para id="id13420216"><link document="m33152" version="1.1">Results and Conclusions</link></para>
+    </section>
+  </content>
+</document>

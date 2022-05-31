@@ -1,0 +1,33 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Introduction and some Background Information</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33121</md:content-id>
+  <md:title>Introduction and some Background Information</md:title>
+  <md:abstract>Why we chose this topic and what's so cool about it?</md:abstract>
+  <md:uuid>cd53bfd4-c277-41fa-935c-3c0b405ee0a6</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="example">
+      <link url="http://cnx.org/content/m33115/latest/" strength="3">Our System Setup</link>
+      <link url="http://cnx.org/content/m11734/latest/" strength="3">How to Detect Vowels</link>
+      <link url="http://cnx.org/content/m0505/latest/" strength="2">Spectrograms</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="id29847552">
+      <title>Introduction: Language Recognition Using Vowel PMF Analysis</title>
+      <para id="id8721034">In recent years, voice and sound recognition technology has become increasingly prevalent in general society. Early applications focused on security and privacy measures were utilized by a small portion of the total population. However, today virtually every person who owns a computer has access to such technology. There are programs which transcribe speech into text, identify different speakers, identify what song is being played, and accept audio signals as valuable input in general.</para>
+      <para id="id22173718">Our goal is to add language recognition to the growing list. The inspiration is from the multi-language background of all the group members and about 60% of the Rice students speak at least two languages fluently. Therefore, we think it will be interesting to develop a system which can “listen” to a speech sample and recognize the language it is using. </para>
+    </section>
+    <section id="id3895253">
+      <title>Background: Formant Analysis of Vowel Sounds</title>
+      <para id="id22569052">Formants are broad peak envelopes found in the spectrum of sound. Vowel sounds are pronounced with an open vocal tract which creates a periodic resonance in air pressure. In contrast, consonant sounds require a closure of the tract at some point during pronunciation, making them devoid of the same type of resonance found in vowels. This results in easily identifiable differences between the two types of sounds in the frequency domain—one of the most evident being the emergence of clear formants in vowels.</para>
+      <para id="id11927427">Each vowel sound generally has 3 or 4 formants located at specific frequency ranges corresponding to how ‘open’, ‘closed’, ‘front’, ‘back’, or ‘round’ the sound is. These characteristics depend on how the lips, tongue, and jaw are used in pronunciation. Although there are 3 or 4 total formants for most vowel sounds, the first two formants are usually all that is required to distinguish between them.</para>
+      <para id="id26365749">For our purposes of finding PMFs of vowel sounds in different languages, we are only looking at 5 most basic vowel sounds so it is usually sufficient to check up to the first two formants to decide the vowel sound. In addition to a vowel sound’s natural frequency, the speaker’s pitch will also vary the position of the formant. Therefore, we only used male speech samples consistently so that we have a relatively consistent vowel distribution for every sample.</para>
+    </section>
+  </content>
+</document>

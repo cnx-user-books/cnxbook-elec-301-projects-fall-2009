@@ -1,0 +1,42 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Facial Recognition using Eigenfaces: References and Acknowledgements</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33180</md:content-id>
+  <md:title>Facial Recognition using Eigenfaces: References and Acknowledgements</md:title>
+  <md:abstract>References and Acknowledgments</md:abstract>
+  <md:uuid>19eab5c5-be55-4756-b955-64b194c89d9c</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="example">
+      <link url="http://cnx.org/content/m33177/latest/" strength="3">Previous: Conclusion</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="id1170170114942">
+      <title>References and Acknowledgements</title>
+      <para id="id1170175593995">Team members:</para>
+      <list id="id1170171150843" list-type="bulleted">
+        <item>Catherine Elder (cje1@rice.edu)</item>
+        <item>Norman Pai (nlp1@rice.edu)</item>
+        <item>Jeffrey Yeh (jwy1@rice.edu)</item>
+        <item>Yingbo “Aron” Yu (yy4@rice.edu)</item>
+      </list>
+      <para id="id1170174220803">We would like to thank Manjari Narayan, our advisor for this project, for all her help. Finally, we would like to thank professor Richard Baraniuk and Matthew Moravec for the opportunity to work on this project.</para>
+      <section id="id1170174037829">
+        <title>References</title>
+        <list id="id1170174078494" list-type="enumerated" number-style="arabic">
+          <item>Zhao, W. et al. "Face Recognition: A Literature Survey." ACM Computing Surveys, Vol. 35, No. 4, December 2003, pp. 399–458</item>
+          <item>M. Turk and A. Pentland (1991). "<link url="http://www.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf">Face recognition using eigenfaces</link>". Proc. IEEE Conference on Computer Vision and Pattern Recognition. pp. 586–591</item>
+          <item>JAFFE image database – "Coding Facial Expressions with Gabor Wavelets”, Michael J. Lyons, Shigeru Akamatsu, Miyuki Kamachi, Jiro Gyoba &lt; <link url="http://www.kasrl.org/jaffe.html">http://www.kasrl.org/jaffe.html</link>&gt;. </item>
+          <item>“Introduction to Fourier Transforms for Image Processing.” &lt;<link url="http://www.cs.unm.edu/~brayer/vision/fourier.html">http://www.cs.unm.edu/~brayer/vision/fourier.html</link>&gt;.</item>
+          <item>“Face Recognition Using Eigenfaces.” &lt;<link url="http://www.cs.princeton.edu/~cdecoro/eigenfaces/">http://www.cs.princeton.edu/~cdecoro/eigenfaces/</link>&gt;. </item>
+          <item>Pissarenko, Dimitri. “Eigenface-based facial recognition.” &lt;<link url="http://openbio.sourceforge.net/resources/eigenfaces/eigenfaces-html/facesOptions.html">http://openbio.sourceforge.net/resources/eigenfaces/eigenfaces-html/facesOptions.html</link>&gt;.</item>
+        </list>
+      </section>
+    </section>
+  </content>
+</document>

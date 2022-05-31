@@ -1,0 +1,13 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Introduction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33185</md:content-id>
+  <md:title>Introduction</md:title>
+  <md:abstract/>
+  <md:uuid>9f9974d2-1459-4648-abd7-ace573abd841</md:uuid>
+</metadata>
+<content>
+    
+    <para id="id15195617">Imagine sitting at a café (or “other” public venue) and you hear a song playing on the stereo. You decide that you really like it, but you don’t know the name of the song. There’s a solution for that. Software song identification has been a topic of interest for years. However, it is computationally difficult to tackle this problem using conventional algorithms. Frequency analysis provides for a fast and accurate solution to this problem, and we decided to use this analysis to come up with a fun project idea. The main purpose of our project was to be able to accurately match a noisy song segment with a song in our song library. The company Shazam was our main inspiration and we started out by studying how Shazam works.</para>
+  </content>
+</document>

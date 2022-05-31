@@ -1,0 +1,25 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>A Flag Semaphore Computer Vision System: Additional Resources</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33107</md:content-id>
+  <md:title>A Flag Semaphore Computer Vision System: Additional Resources</md:title>
+  <md:abstract>This module contains additional resources about flag semaphore or our project.</md:abstract>
+  <md:uuid>2bc501c1-d3bd-4679-a587-c39d0f22b5af</md:uuid>
+</metadata>
+<content>
+
+<section id="eip-419">
+<title>Semaphore Related Resources</title>
+<list id="eip-981"><item>A <link url="http://www.gwpda.org/naval/s0900000.htm">section</link> of the 1913 Royal Navy Handbook of Signaling is available from the <link url="http://gwpda.org/">World War I Document Archive.</link></item>
+<item><link url="http://tools.ietf.org/html/rfc4824">RFC 4824</link> documents sending IP datagrams over flag semaphore.</item></list></section>
+
+<section id="eip-982">
+<title>Project Resources</title>
+<list id="eip-983">
+<item>The <link url="http://sf.net">SourceForge</link> project page for our project is available: <link url="http://sourceforge.net/projects/flagsemaphore/">A Flag Semaphore Computer Vision System.</link></item>
+<item>The <link url="http://www.youtube.com/user/smkruzick">videos</link> for the project are available on YouTube.</item>
+</list> </section>
+</content>
+
+</document>

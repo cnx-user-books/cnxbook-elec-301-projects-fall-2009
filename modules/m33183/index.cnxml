@@ -1,0 +1,757 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML">
+  <title>Facial Recognition using Eigenfaces: Obtaining Eigenfaces</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33183</md:content-id>
+  <md:title>Facial Recognition using Eigenfaces: Obtaining Eigenfaces</md:title>
+  <md:abstract>Testing</md:abstract>
+  <md:uuid>ce6cf0ed-4c63-4237-b151-2f4eff8a7b8c</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="example">
+      <link url="http://cnx.org/content/m33174/latest/" strength="3">Previous: Background</link>
+      <link url="http://cnx.org/content/m33182/latest/" strength="3">Next: Projection onto Face Space</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="id1167563030726">
+      <title>Obtaining Eigenfaces</title>
+      <section id="id1167548781136">
+        <title>Eigenface Concept</title>
+        <para id="id1167581201904">Each image is loaded into a computer as a matrix of different intensities. All the images were converted to gray scale so that we only need to operate on one layer of image (instead of three layers for a RBG image). A vector whose direction is unchanged when multiplied by the matrix is referred to as an eigenvector of that matrix. The eigenvectors of the covariance matrix associated with a large set of faces are called eigenfaces. The eigenfaces can be thought of as a basis for the set of faces. Just as any vector in a vector space is composed of a linear combination of the basis vectors, each face in the set can be expressed as a linear combination of the eigenfaces. </para>
+      </section>
+      <section id="id1167578033610">
+        <title>Format Input Data</title>
+        <para id="id1167555839576">To compute the eigenfaces, a portion of a given dataset is first chosen randomly to be the training set. The images in the training set are used to construct the image matrix <emphasis effect="italics">A</emphasis> (Note: All images in the dataset must have the same dimensions). The training set can be chosen by selecting a given percentage of the dataset or by selecting a given number of images per person from the database. Once the images are selected, each image <emphasis effect="italics">I</emphasis><emphasis effect="italics">i</emphasis> is vectorized into a column vector <emphasis effect="italics">P</emphasis><emphasis effect="italics">i</emphasis> such that its length equals to the total number of pixels in the image. This process brings the mathematics of all the computations down to a lower-dimensionality space.</para>
+        <equation id="id1167566862232">
+          <m:math>
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mtable>
+                      <m:mtr>
+                        <m:mtd>
+                          <m:mrow>
+                            <m:mrow>
+                              <m:mi>I</m:mi>
+                              <m:mo stretchy="false">=</m:mo>
+                              <m:mrow>
+                                <m:mi>N</m:mi>
+                                <m:mo stretchy="false">×</m:mo>
+                                <m:mi>M</m:mi>
+                              </m:mrow>
+                            </m:mrow>
+                            <m:mrow/>
+                          </m:mrow>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mrow>
+                            <m:mo stretchy="false">⇒</m:mo>
+                            <m:mrow/>
+                          </m:mrow>
+                        </m:mtd>
+                        <m:mtd>
+                          <m:mrow>
+                            <m:mrow>
+                              <m:msub>
+                                <m:mi>P</m:mi>
+                                <m:mstyle fontsize="8pt">
+                                  <m:mrow>
+                                    <m:mi>i</m:mi>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:msub>
+                              <m:mo stretchy="false">=</m:mo>
+                              <m:mrow>
+                                <m:mn>1</m:mn>
+                                <m:mo stretchy="false">×</m:mo>
+                                <m:mstyle fontstyle="italic">
+                                  <m:mrow>
+                                    <m:mtext>NM</m:mtext>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:mrow>
+                            </m:mrow>
+                            <m:mrow/>
+                          </m:mrow>
+                        </m:mtd>
+                      </m:mtr>
+                    </m:mtable>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{ matrix {
+I=N times M {} #  drarrow  {} # P rSub { size 8{i} } =1 times  ital "NM"{}
+} } {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation>
+        <figure id="id1167569974738"><media id="id1167569974738_media" alt="">
+            <image mime-type="image/png" src="../../media/Picture 62.png" id="id1167569974738__onlineimage" height="102" width="650"/>
+          </media>
+        <caption>Sample training images</caption></figure>
+        
+        <para id="id8583361">The mean face of the training set is computed and subtracted from all the images within the training set (given <emphasis effect="italics">W</emphasis> images in the training set).</para>
+        <equation id="id1167586289998">
+          <m:math>
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mrow>
+                        <m:mi>μ</m:mi>
+                        <m:mo stretchy="false">=</m:mo>
+                        <m:mfrac>
+                          <m:mn>1</m:mn>
+                          <m:mi>W</m:mi>
+                        </m:mfrac>
+                      </m:mrow>
+                      <m:mrow>
+                        <m:msubsup>
+                          <m:mo stretchy="false">∑</m:mo>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mrow>
+                                <m:mi>i</m:mi>
+                                <m:mo stretchy="false">=</m:mo>
+                                <m:mn>0</m:mn>
+                              </m:mrow>
+                            </m:mrow>
+                          </m:mstyle>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mi>W</m:mi>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msubsup>
+                        <m:msub>
+                          <m:mi>P</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mi>i</m:mi>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msub>
+                      </m:mrow>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{μ= {  {1}  over  {W} }  Sum rSub { size 8{i=0} }  rSup { size 8{W} }  {P rSub { size 8{i} } } } {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation>
+        <equation id="id1167547482291">
+          <m:math>
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:msub>
+                        <m:mi>V</m:mi>
+                        <m:mstyle fontsize="8pt">
+                          <m:mrow>
+                            <m:mi>i</m:mi>
+                          </m:mrow>
+                        </m:mstyle>
+                      </m:msub>
+                      <m:mo stretchy="false">=</m:mo>
+                      <m:mrow>
+                        <m:msub>
+                          <m:mi>P</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mi>i</m:mi>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msub>
+                        <m:mo stretchy="false">−</m:mo>
+                        <m:mi>μ</m:mi>
+                      </m:mrow>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{V rSub { size 8{i} } =P rSub { size 8{i} }  - μ} {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation>
+        <para id="id1167580101944">
+          <figure id="id1167562940319"><media id="id1167562940319_media" alt="">
+              <image mime-type="image/png" src="../../media/Picture 47.png" id="id1167562940319__onlineimage" height="220" width="269"/>
+            </media>
+          <caption>Mean face of HFH dataset</caption></figure>
+        </para>
+        
+        <para id="id1167589395167">Finally, the mean subtracted training images are put into a single matrix of dimension <emphasis effect="italics">NM</emphasis> x <emphasis effect="italics">W,</emphasis> forming the image matrix <emphasis effect="italics">A</emphasis>.</para>
+        <equation id="id1167581610682">
+          <m:math>
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mrow>
+                        <m:mi>A</m:mi>
+                        <m:mo stretchy="false">=</m:mo>
+                        <m:mo stretchy="false">[</m:mo>
+                      </m:mrow>
+                      <m:mtable>
+                        <m:mtr>
+                          <m:mtd>
+                            <m:mrow>
+                              <m:msub>
+                                <m:mi>V</m:mi>
+                                <m:mstyle fontsize="8pt">
+                                  <m:mrow>
+                                    <m:mn>1</m:mn>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:msub>
+                              <m:mrow/>
+                            </m:mrow>
+                          </m:mtd>
+                          <m:mtd>
+                            <m:mrow>
+                              <m:msub>
+                                <m:mi>V</m:mi>
+                                <m:mstyle fontsize="8pt">
+                                  <m:mrow>
+                                    <m:mn>2</m:mn>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:msub>
+                              <m:mrow/>
+                            </m:mrow>
+                          </m:mtd>
+                          <m:mtd>
+                            <m:mrow>
+                              <m:msub>
+                                <m:mi>V</m:mi>
+                                <m:mstyle fontsize="8pt">
+                                  <m:mrow>
+                                    <m:mn>3</m:mn>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:msub>
+                              <m:mrow/>
+                            </m:mrow>
+                          </m:mtd>
+                          <m:mtd>
+                            <m:mrow>
+                              <m:mtext>.</m:mtext>
+                              <m:mtext>.</m:mtext>
+                              <m:mtext>.</m:mtext>
+                              <m:mrow/>
+                            </m:mrow>
+                          </m:mtd>
+                          <m:mtd>
+                            <m:mrow>
+                              <m:msub>
+                                <m:mi>V</m:mi>
+                                <m:mstyle fontsize="8pt">
+                                  <m:mrow>
+                                    <m:mi>W</m:mi>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:msub>
+                              <m:mrow/>
+                            </m:mrow>
+                          </m:mtd>
+                        </m:mtr>
+                      </m:mtable>
+                      <m:mo stretchy="false">]</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{A= \[  matrix {
+V rSub { size 8{1} }  {} # V rSub { size 8{2} }  {} # V rSub { size 8{3} }  {} #  "."  "."  "."  {} # V rSub { size 8{W} } {}
+}  \] } {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation>
+      </section>
+      <section id="id1167569984957">
+        <title>Compute Eigenfaces</title>
+        <para id="id1167588310723">Typical PCA calculation would first retrieve the covariance matrix <emphasis effect="italics">C</emphasis>. Covariance measures the relation of how much two random variables vary together such that if the covariance is positive when both dimensions increase together and negative when they are inversely proportional. The eigenfaces were then obtained by computing the eigenvectors of the covariance matrix <emphasis effect="italics">C</emphasis>. This computation will yield NM unique eigenvectors.</para>
+        
+        <equation id="eip-877"><m:math>
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mi>C</m:mi>
+                      <m:mo stretchy="false">=</m:mo>
+                      <m:mstyle fontstyle="italic">
+                        <m:mrow>
+                          <m:msup>
+                            <m:mtext>AA</m:mtext>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>T</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msup>
+                        </m:mrow>
+                      </m:mstyle>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{C= ital "AA" rSup { size 8{T} } } {}</m:annotation>
+            </m:semantics>
+          </m:math></equation><equation id="eip-880"><m:math>
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mtext>cov</m:mtext>
+                      <m:mo stretchy="false">(</m:mo>
+                      <m:mi>X</m:mi>
+                      <m:mi>,</m:mi>
+                      <m:mi>Y</m:mi>
+                      <m:mrow>
+                        <m:mo stretchy="false">)</m:mo>
+                        <m:mo stretchy="false">=</m:mo>
+                        <m:mtable>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:munder accentunder="true">
+                                  <m:mrow>
+                                    <m:mo stretchy="false">∑</m:mo>
+                                    <m:mrow>
+                                      <m:mo stretchy="false">(</m:mo>
+                                      <m:mrow>
+                                        <m:msub>
+                                          <m:mi>x</m:mi>
+                                          <m:mstyle fontsize="8pt">
+                                            <m:mrow>
+                                              <m:mi>i</m:mi>
+                                            </m:mrow>
+                                          </m:mstyle>
+                                        </m:msub>
+                                        <m:mo stretchy="false">−</m:mo>
+                                        <m:mover accent="true">
+                                          <m:mi>x</m:mi>
+                                          <m:mo>¯</m:mo>
+                                        </m:mover>
+                                      </m:mrow>
+                                      <m:mo stretchy="false">)</m:mo>
+                                      <m:mo stretchy="false">(</m:mo>
+                                      <m:mrow>
+                                        <m:msub>
+                                          <m:mi>y</m:mi>
+                                          <m:mstyle fontsize="8pt">
+                                            <m:mrow>
+                                              <m:mi>i</m:mi>
+                                            </m:mrow>
+                                          </m:mstyle>
+                                        </m:msub>
+                                        <m:mo stretchy="false">−</m:mo>
+                                        <m:mover accent="true">
+                                          <m:mi>y</m:mi>
+                                          <m:mo>¯</m:mo>
+                                        </m:mover>
+                                      </m:mrow>
+                                      <m:mo stretchy="false">)</m:mo>
+                                    </m:mrow>
+                                  </m:mrow>
+                                  <m:mo>̲</m:mo>
+                                </m:munder>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mi>n</m:mi>
+                                <m:mo stretchy="false">−</m:mo>
+                                <m:mn>1</m:mn>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                        </m:mtable>
+                      </m:mrow>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{"cov" \( X,Y \) = matrix {
+ {underline  { Sum { \( x rSub { size 8{i} } - {overline  {x}}  \)  \( y rSub { size 8{i} } - {overline  {y}}  \) } }}  {} ##
+n-1
+} } {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation><para id="id1167583577221">But in the case of this project, these resulting matrix of dimension <emphasis effect="italics">NM</emphasis> x <emphasis effect="italics">NM</emphasis> was way too large for MATLAB to process. Furthermore, even if MATLAB had the ability to process such a large matrix it would still later be too computationally intensive. Instead of computing the covariance matrix <emphasis effect="italics">C</emphasis> directly, this project utilizes a smaller matrix S with dimensions <emphasis effect="italics">W</emphasis> x <emphasis effect="italics">W </emphasis>that can still be able to compute the eigenfaces efficiently. This simplification stems from the fact that the <emphasis effect="italics">rank</emphasis> of the covariance matrix <emphasis effect="italics">C</emphasis> is limited by the number of images in the training set. Since there are at most W-1 non-trivial eigenfaces for <emphasis effect="italics">C</emphasis>, there is no need to compute all of the eigenfaces for the dataset. This simplification will prove to be useful as long as <emphasis effect="italics">NM</emphasis>&gt;&gt;<emphasis effect="italics">W</emphasis>.</para>
+        <equation id="id1167585172468">
+          <m:math>
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mrow>
+                        <m:mi>S</m:mi>
+                        <m:mo stretchy="false">=</m:mo>
+                        <m:msup>
+                          <m:mi>A</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mi>T</m:mi>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msup>
+                      </m:mrow>
+                      <m:mi>A</m:mi>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{S=A rSup { size 8{T} } A} {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation>
+        <para id="id1167551382777">The smaller matrix dimensions will be computationally effective later when large databases will be sorted through since only <emphasis effect="italics">W</emphasis> eigenvalues and eigenfaces will be used.</para>
+        <para id="id1167544271549">Now, using some linear algebra tricks, we could show that the eigenvalues of <emphasis effect="italics">C</emphasis> and <emphasis effect="italics">S </emphasis>are the same and that the top <emphasis effect="italics">W</emphasis> eigenvectors of <emphasis effect="italics">C</emphasis> (<emphasis effect="italics">u</emphasis><emphasis effect="italics">i</emphasis>) can be obtained from the eigenvectors of <emphasis effect="italics">S</emphasis> (<emphasis effect="italics">v</emphasis><emphasis effect="italics">i</emphasis>).</para>
+        
+        <equation id="eip-802"><m:math>
+            <m:semantics>
+              <m:mrow>
+                <m:mrow>
+                  <m:mtable>
+                    <m:mtr>
+                      <m:mrow>
+                        <m:mstyle fontsize="12pt">
+                          <m:mrow>
+                            <m:mrow>
+                              <m:mrow>
+                                <m:mstyle fontstyle="italic">
+                                  <m:mrow>
+                                    <m:msub>
+                                      <m:mtext>Sv</m:mtext>
+                                      <m:mstyle fontsize="8pt">
+                                        <m:mrow>
+                                          <m:mi>i</m:mi>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:msub>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mo stretchy="false">=</m:mo>
+                                <m:msub>
+                                  <m:mi>λ</m:mi>
+                                  <m:mstyle fontsize="8pt">
+                                    <m:mrow>
+                                      <m:mi>i</m:mi>
+                                    </m:mrow>
+                                  </m:mstyle>
+                                </m:msub>
+                              </m:mrow>
+                              <m:msub>
+                                <m:mi>v</m:mi>
+                                <m:mstyle fontsize="8pt">
+                                  <m:mrow>
+                                    <m:mi>i</m:mi>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:msub>
+                            </m:mrow>
+                          </m:mrow>
+                        </m:mstyle>
+                        <m:mrow/>
+                      </m:mrow>
+                    </m:mtr>
+                    <m:mtr>
+                      <m:mrow>
+                        <m:msup>
+                          <m:mi>A</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mi>T</m:mi>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msup>
+                        <m:mrow>
+                          <m:mstyle fontstyle="italic">
+                            <m:mrow>
+                              <m:msub>
+                                <m:mtext>Av</m:mtext>
+                                <m:mstyle fontsize="8pt">
+                                  <m:mrow>
+                                    <m:mi>i</m:mi>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:msub>
+                            </m:mrow>
+                          </m:mstyle>
+                          <m:mo stretchy="false">=</m:mo>
+                          <m:msub>
+                            <m:mi>λ</m:mi>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>i</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msub>
+                        </m:mrow>
+                        <m:msub>
+                          <m:mi>v</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mi>i</m:mi>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msub>
+                        <m:mrow/>
+                      </m:mrow>
+                    </m:mtr>
+                    <m:mtr>
+                      <m:mrow>
+                        <m:mstyle fontstyle="italic">
+                          <m:mrow>
+                            <m:msup>
+                              <m:mtext>AA</m:mtext>
+                              <m:mstyle fontsize="8pt">
+                                <m:mrow>
+                                  <m:mi>T</m:mi>
+                                </m:mrow>
+                              </m:mstyle>
+                            </m:msup>
+                          </m:mrow>
+                        </m:mstyle>
+                        <m:mrow>
+                          <m:mstyle fontstyle="italic">
+                            <m:mrow>
+                              <m:msub>
+                                <m:mtext>Av</m:mtext>
+                                <m:mstyle fontsize="8pt">
+                                  <m:mrow>
+                                    <m:mi>i</m:mi>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:msub>
+                            </m:mrow>
+                          </m:mstyle>
+                          <m:mo stretchy="false">=</m:mo>
+                          <m:msub>
+                            <m:mi>λ</m:mi>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>i</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msub>
+                        </m:mrow>
+                        <m:mstyle fontstyle="italic">
+                          <m:mrow>
+                            <m:msub>
+                              <m:mtext>Av</m:mtext>
+                              <m:mstyle fontsize="8pt">
+                                <m:mrow>
+                                  <m:mi>i</m:mi>
+                                </m:mrow>
+                              </m:mstyle>
+                            </m:msub>
+                          </m:mrow>
+                        </m:mstyle>
+                        <m:mrow/>
+                      </m:mrow>
+                    </m:mtr>
+                    <m:mtr>
+                      <m:mrow>
+                        <m:mrow>
+                          <m:mstyle fontstyle="italic">
+                            <m:mrow>
+                              <m:msub>
+                                <m:mtext>CAv</m:mtext>
+                                <m:mstyle fontsize="8pt">
+                                  <m:mrow>
+                                    <m:mi>i</m:mi>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:msub>
+                            </m:mrow>
+                          </m:mstyle>
+                          <m:mo stretchy="false">=</m:mo>
+                          <m:msub>
+                            <m:mi>λ</m:mi>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>i</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msub>
+                        </m:mrow>
+                        <m:mstyle fontstyle="italic">
+                          <m:mrow>
+                            <m:msub>
+                              <m:mtext>Av</m:mtext>
+                              <m:mstyle fontsize="8pt">
+                                <m:mrow>
+                                  <m:mi>i</m:mi>
+                                </m:mrow>
+                              </m:mstyle>
+                            </m:msub>
+                          </m:mrow>
+                        </m:mstyle>
+                        <m:mrow/>
+                      </m:mrow>
+                    </m:mtr>
+                    <m:mtr>
+                      <m:mrow>
+                        <m:mrow>
+                          <m:mstyle fontstyle="italic">
+                            <m:mrow>
+                              <m:msub>
+                                <m:mtext>Cu</m:mtext>
+                                <m:mstyle fontsize="8pt">
+                                  <m:mrow>
+                                    <m:mi>i</m:mi>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:msub>
+                            </m:mrow>
+                          </m:mstyle>
+                          <m:mo stretchy="false">=</m:mo>
+                          <m:msub>
+                            <m:mi>λ</m:mi>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>i</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msub>
+                        </m:mrow>
+                        <m:msub>
+                          <m:mi>u</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mi>i</m:mi>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msub>
+                        <m:mrow/>
+                      </m:mrow>
+                    </m:mtr>
+                  </m:mtable>
+                  <m:mrow/>
+                </m:mrow>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0">alignl { stack {
+ size 12{ ital "Sv" rSub { size 8{i} } =λ rSub { size 8{i} } v rSub { size 8{i} } }  {} # 
+A rSup { size 8{T} }  ital "Av" rSub { size 8{i} } =λ rSub { size 8{i} } v rSub { size 8{i} }  {} # 
+ ital "AA" rSup { size 8{T} }  ital "Av" rSub { size 8{i} } =λ rSub { size 8{i} }  ital "Av" rSub { size 8{i} }  {} # 
+ ital "CAv" rSub { size 8{i} } =λ rSub { size 8{i} }  ital "Av" rSub { size 8{i} }  {} # 
+ ital "Cu" rSub { size 8{i} } =λ rSub { size 8{i} } u rSub { size 8{i} }  {} 
+} } {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation><para id="id1167551560491">In this manner, we can see that the eigenvectors of C can be derived from </para>
+        <equation id="id1167584440901">
+          <m:math>
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mstyle fontstyle="italic">
+                        <m:mrow>
+                          <m:msub>
+                            <m:mtext>Av</m:mtext>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>i</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msub>
+                        </m:mrow>
+                      </m:mstyle>
+                      <m:mo stretchy="false">=</m:mo>
+                      <m:msub>
+                        <m:mi>u</m:mi>
+                        <m:mstyle fontsize="8pt">
+                          <m:mrow>
+                            <m:mi>i</m:mi>
+                          </m:mrow>
+                        </m:mstyle>
+                      </m:msub>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{ ital "Av" rSub { size 8{i} } =u rSub { size 8{i} } } {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation>
+        <para id="id1167588112797">where the computation of <emphasis effect="italics">v</emphasis><emphasis effect="italics">i</emphasis><sub>’s</sub> were much less computationally extensive than the direct computation of u<emphasis effect="italics">i</emphasis>’s.</para>
+        <para id="id1167562375928">These <emphasis effect="italics">u</emphasis><emphasis effect="italics">i</emphasis> vectors will constitute the columns of the eigenfaces.</para>
+        <para id="id1167594968144">Eigenface = 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mtable><m:mtr><m:mtd><m:mrow><m:mo stretchy="false">[</m:mo><m:msub><m:mi>u</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:msub><m:mi>u</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:msub><m:mi>u</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>3</m:mn></m:mrow></m:mstyle></m:msub><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mtext>.</m:mtext><m:mtext>.</m:mtext><m:mtext>.</m:mtext><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:msub><m:mi>u</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>W</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">]</m:mo><m:mrow/></m:mrow></m:mtd></m:mtr></m:mtable></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ matrix {
+ \[ u rSub { size 8{1} }  {} # u rSub { size 8{2} }  {} # u rSub { size 8{3} }  {} #  "."  "."  "."  {} # u rSub { size 8{W} }  \] {}
+} } {}</m:annotation></m:semantics></m:math></para>
+      </section>
+      <section id="id1167538306859">
+        <title>Top K Eigenfaces</title>
+        <para id="id5065649">Even with this complexity reduction, it is still redundant to use all <emphasis effect="italics">W</emphasis> eigenfaces for the reconstruction process. We could reduce the number of eigenfaces used even more by indentifying the eigenfaces that contain more content than the others. To determine this property, we bring our attentions to the eigenvalues that correspond to the individual eigenfaces. We immediately see that there are some eigenfaces that have higher eigenvalues than the others. </para>
+        <figure id="id1167562718999"><media id="id1167562718999_media" alt="">
+            <image mime-type="image/png" src="../../media/Picture 16.png" id="id1167562718999__onlineimage" height="247" width="330"/>
+          </media>
+        <caption>Eigenvalues of the corresponding eigenfaces of HFH dataset</caption></figure>
+        
+        <para id="id1167569811982">After arranging the eigenvalues in descending order, the result becomes clearer. We conclude that the eigenfaces corresponding to high eigenvalues contain more content. In other words, the higher the eigenvalue, the more characteristic features of the face the particular eigenvector describes. Therefore, we simplify the reconstruction process by only using the top <emphasis effect="italics">K</emphasis> eigenfaces. This completes the training process of our implementation. </para>
+        <para id="id1167593731984">
+          <figure id="id1167540234069"><media id="id1167540234069_media" alt="">
+              <image mime-type="image/png" src="../../media/graphics1-0d15.png" id="id1167540234069__onlineimage" height="103" width="662"/>
+            </media>
+          <caption>Top 5 eigenfaces of HFH dataset</caption></figure>
+        </para>
+        
+        <figure id="id4879158"><media id="id4879158_media" alt="">
+            <image mime-type="image/png" src="../../media/graphics2-7369.png" id="id4879158__onlineimage" height="122" width="662"/>
+          </media>
+        <caption>Last 5 eigenfaces of HFH dataset</caption></figure>
+        
+        <para id="id1167592212092">In terms of the eigenfaces themselves, we found that the more important eigenfaces (those with higher eigenvalues) had lower spatial frequency than the less important eigenfaces (those with lower eigenvalues). This is apparent in the figure above, where the first eigenfaces look blurry and indistinct, and the later eigenfaces have sharp edges and look more like individual people. This suggests that faces can be identified based on their low-frequency components alone. </para>
+      </section>
+    </section>
+    <section id="id1167569604993">
+      <title>Eigenface Recognition Face Datasets</title>
+      <section id="id1167560938871">
+        <title>Test 1 (JAFFE database)</title>
+        <para id="id1167567052497">For the first test of this project’s eigenface generation algorithm, the Japanese Female Facial Expression (JAFFE) Database was used. The JAFFE database fit our ideal conditions of similar lighting conditions, solid white backgrounds, and normalization of facial features such as the nose, eyes, and lips. The database is a set of 180 images of seven facial expressions (six basic facial expressions and one neutral).</para>
+      </section>
+      <section id="id1167575246173">
+        <title>Test 2 (Rice University)</title>
+        <para id="id1167579882717">For the Rice database, we chose students of both genders and diverse ethnicities. Each subject was told to express each of six emotions: neutral, happy, sad, surprised, angry, and disgusted. We had sixteen subjects, each with six emotions, and we took two pictures per emotion, resulting in a database of 192 images. We also created a special database of two emotions: closed eyes and expression of choice, to be used for demonstration at the poster session.</para>
+        <para id="id1167563172224"/>
+      </section>
+      <section id="id1167550646485">
+        <title>Algorithm Concept</title>
+        <figure id="id1167594932694"><media id="id1167594932694_media" alt="">
+            <image mime-type="image/png" src="../../media/Picture 1-da43.png" id="id1167594932694__onlineimage" height="580" width="650"/>
+          </media>
+        <caption>Diagram of eigenface computation and input with our algorithm. Also, a visual representation of K-dimensional “face space” and threshold setting between test image reconstruction (red dot) and closest match image reconstruction (blue dot)</caption></figure>
+        
+      </section>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,35 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Algorithms</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33164</md:content-id>
+  <md:title>Algorithms</md:title>
+  <md:abstract/>
+  <md:uuid>6f8eb529-1f8b-40e1-8c11-446df53ac026</md:uuid>
+</metadata>
+
+<content>
+    <para id="id13097775">There are a range of available algorithms for QRS detection, based on various methods such as peak detection, slope transform analysis, and length transform analysis. Most of these algorithms involve the use of adaptive filters, and others use non-adaptive filters. Adaptive filters are preferred when it comes to heart rate analysis, largely because ECG signals are non-linear. For this reason, it is necessary to periodically analyze the output and modify the filter parameters accordingly.</para>
+    <para id="id7308025">We aim in this project to give a brief overview of the existing literature and algorithms, and compare the robustness of two leading QRS detection algorithms in accurately detecting heartbeats. </para>
+    <para id="id11549434">
+      <emphasis effect="bold">Algorithms for ECG Analysis</emphasis>
+    </para>
+    <para id="id20786454">There is an extensive library of QRS detection algorithms available in the medical literature, since QRS detectors are the most important signal processing algorithm involved in ECG analysis. We will here analyze three primary algorithm methods: Peak Detections, Slope transform analysis, and length transform analysis.</para>
+    <para id="id15833752">Particular Peak Detection Algorithm</para>
+    <para id="id16068900">The peak detection algorithm that we chose to analyze specifically looks at a 160ms window, splits the window into three segments, and finds if the maximum value is contained within the center segment; if so, a beat is annotated. If no beat is detected for longer than 200ms, the threshold is updated using an adaptive filter that functions according to the rate described below:</para>
+    <figure id="id12793315">
+      <media id="id12793315_media" alt="">
+        <image mime-type="image/png" src="../../media/graphics1-47a1.png" id="id12793315__onlineimage" height="41" width="378"/>
+      </media>
+    </figure>
+    <para id="id19843125">We were unable to generate a working peak detection algorithm in order to insert it into the algorithm tester; however, an in-depth review of the literature indicated that it was overall less accurate than the other two algorithms.</para>
+    <para id="id14658200">SQRS</para>
+    <para id="id12811941"> The slope-detection algorithm that we chose uses a Finite Impulse response filter with the following filter mask:</para>
+    <para id="id18753169"> [1 4 6 4 1 −1 −4 −6 −4 −1];</para>
+    <para id="id10022707"> This filter mask corresponds to the basic shape of a QRS wave. After low-pass filtering to eliminate any remaining noise, this QRS “template” is convolved with the actual signal; the output of the convolution thus provides information about the places in which the signal best matches the QRS shape, wherein the peaks of the convolution correspond to the best matches. </para>
+    <para id="id15161885"><figure id="id15626989"><media id="id15626989_media" alt=""><image mime-type="image/jpg" src="../../media/graphics2-e777.jpg" id="id15626989__onlineimage" height="313" width="750"/></media></figure> The algorithm incorporates an adaptive threshold that updates at every beat annotation, after 2 seconds without a beat annotation, or if the signal proves too noisy and contains too many physiologically impossible false positive detections. This is one of the two algorithms we investigated and tested. The algorithm is described by the following flow chart:</para>
+    <para id="id13107918">WQRS:</para>
+    <para id="id8181748">Finally, the second filter that we are investigating and testing is based on what is called the WQRS algorithm. This algorithm is different from the SQRS algorithm in the information it extracts from the raw ECG signal and the manner in which it does so.   The main step in this algorithm that makes it different from the SQRS algorithm is that this takes a <emphasis effect="italics">length transform </emphasis>of the ECG signal. This is a transformation that essentially serves to convert the erratic ECG signal into another signal from which it is easier to analyze and extract useful information. When applied to a potential QRS complex, the length transform can tell us how wide the distance from Q to S is, and where the onset and the end of the complex are located in time. The length transformation also introduces a non-linear scaling factor into the mix, which scales different parts of the signal differently. This results in areas that we are interested in, i.e. the QRS complex being accentuated, and the areas that we do not require, such as noise and the P and T waves, being suppressed. Thus, we are able to obtain the information necessary to determine the heart rate whilst not letting noise interfere.<figure id="id19040835"><media id="id19040835_media" alt=""><image mime-type="image/png" src="../../media/Picture 2-8ac9.png" id="id19040835__onlineimage" height="425" width="619"/></media></figure></para>
+    <para id="id13058375">  The first step in the algorithm is to low pass filter the signal in order to eliminate noise. Following this, the length transform is applied and a threshold value of the algorithm is set as three times the mean value of the length transform of the first set of data points. After 10 seconds have elapsed, the threshold value is readjusted to be one-third the threshold base value. Following this, the threshold base value is periodically adjusted. </para>
+    <para id="id20632164"><figure id="id20632166"><media id="id20632166_media" alt=""><image mime-type="image/jpg" src="../../media/graphics3-5d02.jpg" id="id20632166__onlineimage" height="316" width="838"/></media></figure>Once the algorithm detects a potential QRS complex in which the length of QS has just exceeded the threshold, the time ‘t’ the event occurred is saved. Then we travel backward for 125 ms to the minimum value of the length L<sub>min</sub> and forward for 125 ms from ‘t’ to obtain the maximum value L<sub>max</sub>, where L is the magnitude of the length transform. Next, we again travel backward to recover where the QRS onset is located in time and forward to recover where the end is located in time. The onset and end times are added with -20ms and +20ms respectively, in order to provide for potential losses caused by the threshold. This adjustment is based on statistical observations of typical heart rates and ECG signals. Finally, the algorithm waits for 250ms before proceeding to check for another QRS complex in order to avoid detecting the same beat again by mistake.</para>
+  </content>
+</document>

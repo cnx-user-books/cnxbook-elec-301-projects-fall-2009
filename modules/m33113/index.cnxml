@@ -1,0 +1,296 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Results</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33113</md:content-id>
+  <md:title>Results</md:title>
+  <md:abstract>Results! Answers! Results!</md:abstract>
+  <md:uuid>a67bcd9e-ea77-4c13-a6a5-44b124610b95</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="example">
+      <link url="http://cnx.org/content/m33127/latest/" strength="3">Conclusion</link>
+      <link url="http://cnx.org/content/m11751/latest/" strength="1">More on Vowel Detection</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="id11451587">
+      <title>Detection</title>
+      <para id="id15058967">For each language, we prepared five samples for detection. In essence, our code compares the pmfs of the sample with the reference pmfs in our database. The most straightforward method is to subtract the sample PMF vector from the 3 reference PMF vectors in the database and look at the sum of the difference from 5 vowels. The one with the smallest total error will be the output decision of the language. </para>
+      <table id="id9590202" summary=""><tgroup cols="6">
+          <colspec colnum="1" colname="c1"/>
+          <colspec colnum="2" colname="c2"/>
+          <colspec colnum="3" colname="c3"/>
+          <colspec colnum="4" colname="c4"/>
+          <colspec colnum="5" colname="c5"/>
+          <colspec colnum="6" colname="c6"/>
+          <tbody>
+            <row>
+              <entry/>
+              <entry namest="c2" nameend="c6">
+                <emphasis>Reference PMFs</emphasis>
+              </entry>
+            </row>
+            <row>
+              <entry/>
+              <entry>a</entry>
+              <entry>E</entry>
+              <entry>i</entry>
+              <entry>o</entry>
+              <entry>u</entry>
+            </row>
+            <row>
+              <entry>JAP</entry>
+              <entry>0.25</entry>
+              <entry>0.35</entry>
+              <entry>0.12</entry>
+              <entry>0.23</entry>
+              <entry>0.05</entry>
+            </row>
+            <row>
+              <entry>SPANISH</entry>
+              <entry>0.06</entry>
+              <entry>0.45</entry>
+              <entry>0.19</entry>
+              <entry>0.2</entry>
+              <entry>0.1</entry>
+            </row>
+            <row>
+              <entry>ENGLISH</entry>
+              <entry>0.15</entry>
+              <entry>0.35</entry>
+              <entry>0.5</entry>
+              <entry>0.4</entry>
+              <entry>0.5</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      <caption>Reference pmfs compiled from sixty minute samples for each language</caption></table>
+    </section>
+    <section id="id8772172">
+      <title>Results</title>
+      <table id="id14707036" summary=""><tgroup cols="5">
+          <colspec colnum="1" colname="c1"/>
+          <colspec colnum="2" colname="c2"/>
+          <colspec colnum="3" colname="c3"/>
+          <colspec colnum="4" colname="c4"/>
+          <colspec colnum="5" colname="c5"/>
+          <tbody>
+            <row>
+              <entry namest="c1" nameend="c5">
+                <emphasis>Japanese</emphasis>
+              </entry>
+            </row>
+            <row>
+              <entry>a</entry>
+              <entry>e</entry>
+              <entry>i</entry>
+              <entry>o</entry>
+              <entry>u</entry>
+            </row>
+            <row>
+              <entry>0.1866</entry>
+              <entry>0.4249</entry>
+              <entry>0.1593</entry>
+              <entry>0.2018</entry>
+              <entry>0.0273</entry>
+            </row>
+            <row>
+              <entry>0.2592</entry>
+              <entry>0.3723</entry>
+              <entry>0.1105</entry>
+              <entry>0.2020</entry>
+              <entry>0.0559</entry>
+            </row>
+            <row>
+              <entry>0.2606</entry>
+              <entry>0.3092</entry>
+              <entry>0.1238</entry>
+              <entry>0.2427</entry>
+              <entry>0.0635</entry>
+            </row>
+            <row>
+              <entry>0.2412</entry>
+              <entry>0.3496</entry>
+              <entry>0.1344</entry>
+              <entry>0.2092</entry>
+              <entry>0.0656</entry>
+            </row>
+            <row>
+              <entry>0.0816</entry>
+              <entry>0.3754</entry>
+              <entry>0.0727</entry>
+              <entry>0.3071</entry>
+              <entry>0.1632</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      <caption>Pmfs generated from five five-minute Japanese samples</caption></table>
+      <table id="id12206941" summary=""><tgroup cols="5">
+          <colspec colnum="1" colname="c1"/>
+          <colspec colnum="2" colname="c2"/>
+          <colspec colnum="3" colname="c3"/>
+          <colspec colnum="4" colname="c4"/>
+          <colspec colnum="5" colname="c5"/>
+          <tbody>
+            <row>
+              <entry namest="c1" nameend="c5">
+                <emphasis>Spanish</emphasis>
+              </entry>
+            </row>
+            <row>
+              <entry>a</entry>
+              <entry>e</entry>
+              <entry>i</entry>
+              <entry>o</entry>
+              <entry>u</entry>
+            </row>
+            <row>
+              <entry>0.1008</entry>
+              <entry>0.4258</entry>
+              <entry>0.2145</entry>
+              <entry>0.1398</entry>
+              <entry>0.1192</entry>
+            </row>
+            <row>
+              <entry>0.0396</entry>
+              <entry>0.4578</entry>
+              <entry>0.1887</entry>
+              <entry>0.2559</entry>
+              <entry>0.0580</entry>
+            </row>
+            <row>
+              <entry>0.0506</entry>
+              <entry>0.454</entry>
+              <entry>0.1902</entry>
+              <entry>0.1979</entry>
+              <entry>0.1074</entry>
+            </row>
+            <row>
+              <entry>0.0682</entry>
+              <entry>0.4763</entry>
+              <entry>0.1630</entry>
+              <entry>0.2187</entry>
+              <entry>0.0738</entry>
+            </row>
+            <row>
+              <entry>0.0608</entry>
+              <entry>0.4053</entry>
+              <entry>0.2055</entry>
+              <entry>0.1929</entry>
+              <entry>0.1355</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      <caption>Pmfs generated from five five-minute Spanish samples</caption></table>
+      <table id="id8208374" summary=""><tgroup cols="5">
+          <colspec colnum="1" colname="c1"/>
+          <colspec colnum="2" colname="c2"/>
+          <colspec colnum="3" colname="c3"/>
+          <colspec colnum="4" colname="c4"/>
+          <colspec colnum="5" colname="c5"/>
+          <tbody>
+            <row>
+              <entry namest="c1" nameend="c5">
+                <emphasis>English</emphasis>
+              </entry>
+            </row>
+            <row>
+              <entry>a</entry>
+              <entry>e</entry>
+              <entry>i</entry>
+              <entry>o</entry>
+              <entry>U</entry>
+            </row>
+            <row>
+              <entry>0.1580</entry>
+              <entry>0.3553</entry>
+              <entry>0.0769</entry>
+              <entry>0.3764</entry>
+              <entry>0.0335</entry>
+            </row>
+            <row>
+              <entry>0.1830</entry>
+              <entry>0.2468</entry>
+              <entry>0.1450</entry>
+              <entry>0.3021</entry>
+              <entry>0.1231</entry>
+            </row>
+            <row>
+              <entry>0.1798</entry>
+              <entry>0.4568</entry>
+              <entry>0.1023</entry>
+              <entry>0.2029</entry>
+              <entry>0.0582</entry>
+            </row>
+            <row>
+              <entry>0.1013</entry>
+              <entry>0.5023</entry>
+              <entry>0.0803</entry>
+              <entry>0.2587</entry>
+              <entry>0.0287</entry>
+            </row>
+            <row>
+              <entry>0.1670</entry>
+              <entry>0.3897</entry>
+              <entry>0.0598</entry>
+              <entry>0.3667</entry>
+              <entry>0.0168</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      <caption>Pmfs generated from five five-minute English samples</caption></table>
+      <table id="id15040312" summary=""><tgroup cols="6">
+          <colspec colnum="1" colname="c1"/>
+          <colspec colnum="2" colname="c2"/>
+          <colspec colnum="3" colname="c3"/>
+          <colspec colnum="4" colname="c4"/>
+          <colspec colnum="5" colname="c5"/>
+          <colspec colnum="6" colname="c6"/>
+          <tbody>
+            <row>
+              <entry namest="c1" nameend="c6">
+                <emphasis>Detection Results</emphasis>
+              </entry>
+            </row>
+            <row>
+              <entry/>
+              <entry>Sample1</entry>
+              <entry>Sample2</entry>
+              <entry>Sample3</entry>
+              <entry>Sample4</entry>
+              <entry>Sample5</entry>
+            </row>
+            <row>
+              <entry>Japanese</entry>
+              <entry>Japanese</entry>
+              <entry>Japanese</entry>
+              <entry>Japanese</entry>
+              <entry>Japanese</entry>
+              <entry>English</entry>
+            </row>
+            <row>
+              <entry>Spanish</entry>
+              <entry>Spanish</entry>
+              <entry>Spanish</entry>
+              <entry>Spanish</entry>
+              <entry>Spanish</entry>
+              <entry>Spanish</entry>
+            </row>
+            <row>
+              <entry>English</entry>
+              <entry>English</entry>
+              <entry>Japanese</entry>
+              <entry>Japanese</entry>
+              <entry>Spanish</entry>
+              <entry>English</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      <caption>Detection results of the five samples of each language</caption></table>
+    </section>
+  </content>
+</document>

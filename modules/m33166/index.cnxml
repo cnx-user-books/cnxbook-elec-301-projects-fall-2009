@@ -1,0 +1,30 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>How ECG Signals Are Analyzed</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m33166</md:content-id>
+  <md:title>How ECG Signals Are Analyzed</md:title>
+  <md:abstract/>
+  <md:uuid>5b5cd73f-0006-4788-b3d0-9cf093381140</md:uuid>
+</metadata>
+
+<content>
+    <para id="id1167924839277">How ECG Signals Are Analyzed :</para>
+    <para id="id1167925731373">Methods have been developed to analyze the heart rate automatically, by reading the ECG signal trace and performing certain types of signal processing in order to extract the heart rate information. In analyzing the ECG, the most important parameter to focus on is the QRS complex. The ECG signal is split up in the literature into different waves, each with its own nomenclature. </para>
+    <para id="id1167922713701">
+      <figure id="id1167927050100">
+        <media id="id1167927050100_media" alt="">
+          <image mime-type="image/png" src="../../media/graphics1-1d19.png" id="id1167927050100__onlineimage" height="67" width="127"/>
+        </media>
+      </figure>
+      <figure id="id1167922724028">
+        <media id="id1167922724028_media" alt="">
+          <image mime-type="image/png" src="../../media/Picture 1-7c8b.png" id="id1167922724028__onlineimage" height="420" width="552"/>
+        </media>
+      </figure>
+    </para>
+    <para id="id1167928294929"> The QRS complex stands for the key portion of the ECG wave that involves the depolarization of the right and left ventricles. The QRS complex thus contains the peak of the pulse, and indicates that a heartbeat has occurred. </para>
+    <para id="id1167925512686">QRS detection is the most important parameter in the determination of heart rate variability []. Although not every QRS complex contains three separate Q, R and S waves, any conventional combination of these can be considered a QRS complex. However, in order to understand the ECG reading and analyze it, it is necessary to label each part of the complex. Once they are identified, they can be employed to characterize heartbeats. </para>
+    <para id="id1167922886262"> Once the QRS has been detected, the location of the QRS in time can be annotated as a beat, and a sequence of beat annotation over time can be charted. A heart rate algorithm that takes the sequence of beat annotations, measures the time difference between beats to calculate a heart rate at every moment in time can then analyze this sequence of beat annotations.</para>
+    <para id="id1167925013736"><figure id="id1167925965647"><media id="id1167925965647_media" alt=""><image mime-type="image/jpg" src="../../media/graphics2-3f31.jpg" id="id1167925965647__onlineimage" height="310" width="650"/></media></figure> Now, with the necessary heart rate information extracted, basic thresholds can be put on a heart rate variability system in order to determine if the patient has exited a normal state. If the heart rate is below 60 bpm or above 100 bpm for a normal adult, an alarm can be raised to alert the medical personnel that the patient requires particular attention.</para>
+  </content>
+</document>
